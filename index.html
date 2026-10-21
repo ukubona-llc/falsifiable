@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ledger of Falsifiables · Ukubona</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5L76.5 86.4L7.2 36.1L92.8 36.1L23.5 86.4Z' fill='none' stroke='%237c5cff' stroke-width='7' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#faf8f4;--fg:#1d1b19;--mut:#6b655d;--card:#fff;--line:#e3ded5;--acc:#6d4aff;color-scheme:light;
+--r1:#d9534f;--r2:#e08a1e;--r3:#2f9e6e;--r4:#2d7fd3;--r5:#8a5bd6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121110;--fg:#efebe4;--mut:#9a9389;--card:#1b1918;--line:#2e2b27;--acc:#9b85ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121110;--fg:#efebe4;--mut:#9a9389;--card:#1b1918;--line:#2e2b27;--acc:#9b85ff;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,'Times New Roman',serif}
+main{max-width:980px;margin:0 auto;padding:84px 18px 60px}
+h1{font-size:1.9rem;margin:.2em 0 .1em;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:1.8em 0 .5em}
+p.sub,.mut{color:var(--mut)}
+.bar{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:20}
+#logo{left:14px;width:46px;height:46px}
+#logo svg{width:100%;height:100%;animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;display:grid;place-items:center;font-size:18px;padding:0}
+#theme{right:14px}#waffle{right:62px}
+.dots{display:grid;grid-template-columns:repeat(3,5px);gap:3px}.dots i{width:5px;height:5px;border-radius:50%;background:currentColor}
+#grid{position:fixed;right:14px;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:19;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;display:none;grid-template-columns:repeat(3,84px);gap:8px;box-shadow:0 8px 30px rgba(0,0,0,.18)}
+#grid.open{display:grid}
+#grid a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:12px;text-decoration:none;color:var(--fg);font:600 12px system-ui,sans-serif}
+#grid a:hover,#grid a.on{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+#grid a b{font-size:22px;color:var(--acc);font-weight:400}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top}
+th{font:600 .72rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.chip{display:inline-block;font:600 .7rem system-ui,sans-serif;padding:1px 7px;border-radius:99px;margin:0 3px 3px 0;color:#fff}
+.st{font:600 .68rem system-ui,sans-serif;letter-spacing:.04em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.f{font:.82rem system-ui,sans-serif;color:var(--mut);margin-top:3px}.f em{color:var(--fg);font-style:normal}
+.filters button{font:600 .78rem system-ui,sans-serif;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:5px 11px;border-radius:99px;cursor:pointer;margin:0 6px 6px 0}
+.filters button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+form label{display:block;font:600 .78rem system-ui,sans-serif;margin:12px 0 4px}
+input[type=text],input[type=date],textarea,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}
+.rg label{display:inline-block;margin-right:10px;font-weight:400}
+.go{margin-top:14px;background:var(--acc);color:#fff;border:0;border-radius:10px;padding:10px 18px;font:600 .9rem system-ui,sans-serif;cursor:pointer}
+svg text{fill:var(--fg);font:12px system-ui,sans-serif}svg .m{fill:var(--mut)}
+</style>
+</head>
+<body>
+<div id="logo" class="bar" aria-label="Ukubona"><svg viewBox="0 0 100 100"><path d="M50 5L76.5 86.4L7.2 36.1L92.8 36.1L23.5 86.4Z" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linejoin="round"/></svg></div>
+<button id="waffle" class="btn bar" aria-label="Apps"><span class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
+<button id="theme" class="btn bar" aria-label="Toggle light or dark">◐</button>
+<nav id="grid"></nav>
+<main id="view"></main>
+<script>
+const TODAY=new Date();
+const RG=[
+["I","Principal","P_i","Human","Carbon, silicon","Holds the objective, bears the consequence, keeps the final commit."],
+["II","Representation","R_ij","Algorithm","Kin-Network","Fixed rules, permissions and stored models of the world. Mode A (FastAPI)."],
+["III","Specialist","A_ijk, Γ_ijk","SLM","Professional","A small specialist that acts in one domain and can be copied into other settings."],
+["IV","Collisions","Milieu_t, P_it, R_ijt, A_ijkt, Γ_ijkt","LLM","Inherent-Adaptive","Brings many hypotheses from different domains into contact with the current setting."],
+["V","Allocation","Budget, Payoff, Survival, Graveyard, Unknowns","Agents","Bejan’s constructal law","Many LLM-backed workers spend budget; the ledger records what paid, survived or died."]];
+const RC=["var(--r1)","var(--r2)","var(--r3)","var(--r4)","var(--r5)"];
+// id, domain, as-of, claim, falsifier, rungs, deadline, if-wrong
+const SEED=[
+["M-1","Musk","2026-10-21","Next-gen Roadster enters production in 2028.","No verifiable production start or deliveries by end of 2028.",[5],"2028-12-31",""],
+["M-2","Musk","2026-10-21","Demonstrated cold-gas thruster and suction system ships on production Roadsters.","Production cars ship without thrusters able to reproduce the demo maneuvers.",[3,5],"2028-12-31",""],
+["M-3","Musk","2026-10-21","Roadster with thrusters is street-legal in major jurisdictions, or a clear regulatory path exists.","No US or EU approval for road use of the thruster features at production start.",[2,5],"2028-12-31",""],
+["M-4","Musk","2026-10-21","One SpaceX share to every kid in America in 2027, “the first of many.”","By end of 2027, no verifiable transfer to a population near ~70M under-18s, or no further rounds.",[5],"2027-12-31",""],
+["M-5","Musk","2026-10-21","The giveaway comes from personal holdings and starts a repeated pattern.","Only a one-off token gesture, or most children receive nothing of material value.",[5],"2027-12-31",""],
+["M-6","Musk","2026-10-21","Roadster stunt and share pledge are product or vision signals, not pure distraction.","Roadster stays a slipping halo project while core Tesla timelines slip relative to attention generated.",[4],null,""],
+["M-7","Musk","pattern","Unsupervised robotaxi reaches broad commercial deployment on stated timelines.","Supervised-only operation past successive deadline windows.",[5],null,""],
+["M-8","Musk","pattern","Crewed Mars timelines hold on the windows repeatedly floated.","No crewed architecture advancing beyond Starship iterative testing on the stated horizons.",[5],null,""],
+["W-1","Mearsheimer","2026-10-21","Iran war: US economic strangulation fails to force surrender.","Iran capitulates under the blockade strategy.",[4,5],null,""],
+["W-2","Mearsheimer","2026-10-21","Coercion failure pushes Iran toward nuclear weapons.","Iran forgoes weapons despite failed coercion.",[4,5],null,""],
+["W-3","Mearsheimer","2026-10-21","Saudi Arabia cannot win against the Houthis despite horizontal escalation.","A decisive Saudi victory.",[4,5],null,""],
+["W-4","Mearsheimer","2026-10-21","Hostile neighbors plus no US guarantee drive Saudi nuclear ambitions.","Saudi Arabia shows no nuclear pursuit under those conditions.",[4,5],null,""],
+["W-5","Mearsheimer","2026-10-21","Russia holds ~20% of Ukraine; the remainder becomes a dysfunctional rump.","Settlement or battlefield change that reverses either condition.",[4,5],null,""],
+["W-6","Mearsheimer","2026-10-21","US handling of the three wars solidifies an anti-US Eurasian bloc.","The bloc fractures or realigns.",[5],null,""],
+["AF-011","Cross-domain","2026-10-21","First-week attention is a poor proxy for delivery of the promised capability.","Attention adds ≥0.10 out-of-sample R² to predicting verified delivery, in two held-out cohorts.",[4],null,"Stop reading spectacle as signal"],
+["AF-012","Cross-domain","2026-10-21","Renewables exceed coal in global electricity generation in 2026.","Renewables do not exceed coal, same source and definitions.",[4,5],"2027-12-31",""],
+["AF-013","Cross-domain","2026-10-21","At least two of US–Iran, Saudi–Houthi, Russia–Ukraine reach a 12-month frozen conflict.","Fewer than two qualify by 2028-12-31; unclear cases are INCONCLUSIVE.",[4,5],"2028-12-31",""],
+["AF-014","Cross-domain","2026-10-21","The five-rung architecture beats simpler models on prediction and intervention quality.","Fails to improve held-out prediction or decision quality by 10%, or gains vanish after cost.",[1,2,3,4,5],"2028-10-21","Revise or discard the architecture"],
+["AF-015","Cross-domain","2026-10-21","Explicit probabilities, deadlines and postmortems improve calibration over narrative-only talk.","Ledger group fails to reach ≥15% lower mean Brier score.",[5],"2028-10-21",""]];
+let USER=[];try{USER=JSON.parse(localStorage.getItem("ukb-ledger")||"[]")}catch(e){}
+const all=()=>SEED.concat(USER);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chips=r=>r.map(i=>`<span class="chip" style="background:${RC[i-1]}">${RG[i-1][0]}</span>`).join("");
+const days=d=>Math.round((new Date(d)-TODAY)/864e5);
+function status(r){if(!r[6])return["OPEN · pattern","var(--mut)"];const n=days(r[6]);return n<0?["EXPIRED—UNRESOLVED","var(--r1)"]:["OPEN · "+n+" days","var(--r3)"]}
+const load=()=>{const c=[0,0,0,0,0];all().forEach(r=>r[5].forEach(i=>c[i-1]++));return c};
+
+const V={
+pentad(){return `<h1>Pentadics</h1><p class="sub">Five rungs; every claim is routed to the rung where it would be decided.</p>
+<h2>Table · the ladder</h2><div class="wrap"><table><tr><th>Rung</th><th>Substrate</th><th>Domain</th><th>Role · operator</th><th>What it does here</th></tr>
+${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}</span></td><td>${r[3]}</td><td>${r[4]}</td><td><b>${r[1]}</b><div class="f">${r[2]}</div></td><td>${r[5]}</td></tr>`).join("")}</table></div>
+<h2>Diagram · the pentagram</h2><div class="card">${star()}<p class="f">Edges join non-adjacent rungs: I↔III, III↔V, V↔II, II↔IV, IV↔I. Node size is the number of ledger rows touching that rung.</p></div>`},
+ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
+return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
+<div class="filters">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
+<div class="wrap"><table><tr><th>ID</th><th>Claim and falsifier</th><th>Rungs</th><th>Status</th></tr>
+${all().filter(r=>f==="All"||r[1]===f).map(r=>{const s=status(r);return `<tr><td><b>${esc(r[0])}</b><div class="f">${esc(r[1])}<br>${esc(r[2])}</div></td><td>${esc(r[3])}<div class="f"><em>Falsified if:</em> ${esc(r[4])}</div>${r[7]?`<div class="f"><em>If wrong, we change:</em> ${esc(r[7])}</div>`:""}</td><td>${chips(r[5])}</td><td class="st" style="color:${s[1]}">${s[0]}${r[6]?`<div class="f">by ${r[6]}</div>`:""}</td></tr>`}).join("")}</table></div>`},
+figures(){const c=load(),mx=Math.max(...c);
+const ax=i=>{const a=(-90+72*i)*Math.PI/180;return[150+Math.cos(a),150+Math.sin(a)]};
+const pt=(i,k)=>{const[x,y]=ax(i);return(150+(x-150)*110*k)+","+(150+(y-150)*110*k)};
+const ring=k=>[0,1,2,3,4].map(i=>pt(i,k)).join(" ");
+const radar=`<svg viewBox="0 0 300 300" width="100%" style="max-width:340px"><polygon points="${ring(1)}" fill="none" stroke="var(--line)"/><polygon points="${ring(.5)}" fill="none" stroke="var(--line)"/>${[0,1,2,3,4].map(i=>`<line x1="150" y1="150" x2="${pt(i,1).split(",")[0]}" y2="${pt(i,1).split(",")[1]}" stroke="var(--line)"/><text x="${pt(i,1.2).split(",")[0]}" y="${pt(i,1.2).split(",")[1]}" text-anchor="middle" dominant-baseline="middle">${RG[i][0]} · ${c[i]}</text>`).join("")}<polygon points="${[0,1,2,3,4].map(i=>pt(i,c[i]/mx)).join(" ")}" fill="var(--acc)" fill-opacity=".25" stroke="var(--acc)" stroke-width="2"/></svg>`;
+const t0=new Date("2026-10-01"),t1=new Date("2029-01-31"),X=d=>40+(new Date(d)-t0)/(t1-t0)*620;
+const dl=all().filter(r=>r[6]).sort((a,b)=>a[6]<b[6]?-1:1);
+const tl=`<svg viewBox="0 0 700 ${50+dl.length*20}" width="100%" style="min-width:620px">${[2027,2028,2029].map(y=>`<line x1="${X(y+"-01-01")}" x2="${X(y+"-01-01")}" y1="10" y2="${30+dl.length*20}" stroke="var(--line)"/><text class="m" x="${X(y+"-01-01")+4}" y="22">${y}</text>`).join("")}<line x1="${X(TODAY)}" x2="${X(TODAY)}" y1="10" y2="${30+dl.length*20}" stroke="var(--r1)" stroke-dasharray="3 3"/><text x="${X(TODAY)+4}" y="${44+dl.length*20}" style="fill:var(--r1)">today</text>${dl.map((r,i)=>`<circle cx="${X(r[6])}" cy="${38+i*20}" r="5" fill="${RC[Math.max(...r[5])-1]}"/><text x="${X(r[6])+9}" y="${42+i*20}">${esc(r[0])}</text>`).join("")}</svg>`;
+const lo=c[0]+c[1]+c[2],hi=c[3]+c[4];
+return `<h1>Figures</h1><p class="sub">Computed live from the ledger, including rows you append.</p><div class="cols"><div class="card"><b>Rung load</b><div style="text-align:center">${radar}</div></div><div class="card"><b>What the shape says</b><p>${hi} rung touches sit on IV–V (collisions, allocation) against ${lo} on I–III (principal, representation, specialist). The ledger audits <i>outcomes</i> far more than <i>mechanisms</i>. A row that can only die at rung V cannot tell you which rung failed.</p><p class="mut">Contribution: before a claim is registered, name the lowest rung where it could be falsified.</p></div></div>
+<h2>Timeline · deadlines</h2><div class="card" style="overflow-x:auto">${tl}<p class="f">Dot color is the highest rung the row touches.</p></div>`},
+rules(){return `<h1>Rules of the game</h1><div class="cols">
+${[["Binary and public","Delivery data, filings, transfer records or product specs decide a row. Narrative reframing does not."],["Append-only","Rows are never edited or deleted. A revision is a new row that names the one it supersedes."],["Preregistered","Metric, threshold and deadline are frozen before outcomes are known."],["Count the graveyard","Missed, withdrawn and inconvenient claims are scored, not just the survivors."],["The closing question","Not “were we right?” but “what will we do differently if we are wrong?” If nothing, it is commentary."]].map((r,i)=>`<div class="card"><span class="chip" style="background:${RC[i]}">${RG[i][0]}</span> <b>${r[0]}</b><p class="mut">${r[1]}</p></div>`).join("")}</div>
+<h2>Table · record format</h2><div class="wrap"><table><tr><th>Field</th><th>Meaning</th></tr>${[["claim","One proposition a contrary observation can refute"],["metric · threshold","Observable variable and the precommitted pass/fail line"],["deadline","YYYY-MM-DD"],["falsifier","The observation that makes the claim fail"],["status","OPEN · SURVIVED · FALSIFIED · INCONCLUSIVE · EXPIRED—UNRESOLVED"],["allocation_change","What we do differently if wrong"],["supersedes","The row this one replaces, if any"]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</table></div>`},
+append(){return `<h1>Append a row</h1><p class="sub">Rows save in this browser only and cannot be edited afterward.</p><form id="f" class="card">
+<label>Domain</label><input type="text" name="dom" value="Cross-domain" required>
+<label>Claim</label><textarea name="claim" rows="2" required></textarea>
+<label>Falsified if</label><textarea name="fal" rows="2" required></textarea>
+<label>Deadline (optional)</label><input type="date" name="dl">
+<label>If wrong, we will change</label><input type="text" name="chg" required>
+<label>Rungs where it could be decided</label><div class="rg">${RG.map((r,i)=>`<label><input type="checkbox" name="r" value="${i+1}"> ${r[0]} ${r[1]}</label>`).join("")}</div>
+<button class="go">Append to ledger</button></form>`}};
+function star(){const c=load(),mx=Math.max(...c);const P=[0,1,2,3,4].map(i=>{const a=(-90+72*i)*Math.PI/180;return[250+130*Math.cos(a),210+130*Math.sin(a)]});
+const E=[[0,2],[2,4],[4,1],[1,3],[3,0]];
+return `<svg viewBox="0 0 500 430" width="100%" style="max-width:520px;display:block;margin:auto">${E.map(e=>`<line x1="${P[e[0]][0]}" y1="${P[e[0]][1]}" x2="${P[e[1]][0]}" y2="${P[e[1]][1]}" stroke="var(--acc)" stroke-width="2"/>`).join("")}${P.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${12+18*c[i]/mx}" fill="${RC[i]}"/><text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" style="fill:#fff;font-weight:700">${RG[i][0]}</text><text x="${p[0]}" y="${p[1]+(i<1?-34:i<3?(i==1?-34:44):44)}" text-anchor="middle">${RG[i][1]}</text>`).join("")}</svg>`}
+const S={dom:"All"};
+const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["append","+","Append"]];
+function render(){const k=location.hash.slice(1),v=V[k]?k:"pentad";document.getElementById("view").innerHTML=V[v]();
+document.getElementById("grid").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${n[0]===v?"on":""}"><b>${n[1]}</b>${n[2]}</a>`).join("");
+document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{S.dom=b.dataset.d;render()});
+const f=document.getElementById("f");if(f)f.onsubmit=e=>{e.preventDefault();const d=new FormData(f),r=d.getAll("r").map(Number);if(!r.length){alert("Pick at least one rung.");return}
+const n=17+USER.length;USER.push(["AF-0"+n,d.get("dom"),TODAY.toISOString().slice(0,10),d.get("claim"),d.get("fal"),r,d.get("dl")||null,d.get("chg")]);
+try{localStorage.setItem("ukb-ledger",JSON.stringify(USER))}catch(x){}location.hash="ledger";S.dom="All";render()};
+window.scrollTo(0,0)}
+addEventListener("hashchange",()=>{render();document.getElementById("grid").classList.remove("open")});
+document.getElementById("waffle").onclick=()=>document.getElementById("grid").classList.toggle("open");
+document.getElementById("theme").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("ukb-theme",r.dataset.theme)}catch(e){}};
+try{const t=localStorage.getItem("ukb-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}
+render();
+</script>
+</body>
+</html>
