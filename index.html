@@ -555,7 +555,8 @@ const SEED=[
 ["AF-012","Cross-domain","2026-10-21","Renewables exceed coal in global electricity generation in 2026.","Renewables do not exceed coal, same source and definitions.",[4,5],"2027-12-31",""],
 ["AF-013","Cross-domain","2026-10-21","At least two of US–Iran, Saudi–Houthi, Russia–Ukraine reach a 12-month frozen conflict.","Fewer than two qualify by 2028-12-31; unclear cases are INCONCLUSIVE.",[4,5],"2028-12-31",""],
 ["AF-014","Cross-domain","2026-10-21","The five-rung architecture beats simpler models on prediction and intervention quality.","Fails to improve held-out prediction or decision quality by 10%, or gains vanish after cost.",[1,2,3,4,5],"2028-10-21","Revise or discard the architecture"],
-["AF-015","Cross-domain","2026-10-21","Explicit probabilities, deadlines and postmortems improve calibration over narrative-only talk.","Ledger group fails to reach ≥15% lower mean Brier score.",[5],"2028-10-21",""]];
+["AF-015","Cross-domain","2026-10-21","Explicit probabilities, deadlines and postmortems improve calibration over narrative-only talk.","Ledger group fails to reach ≥15% lower mean Brier score.",[5],"2028-10-21",""],
+["C-1","Cross-domain","2026-10-22","Individual-level information (the occupant) improves prediction beyond role-level structure (the node).","Adding occupant-level features improves held-out prediction by less than 10% over a role-only model on pre-coded decisive turns or treatment-effect cohorts.",[1,4],"2028-10-22","Treat the occupant as noise; keep the role-level model"]];
 let USER=[];try{USER=JSON.parse(localStorage.getItem("ukb-ledger")||"[]")}catch(e){}
 const all=()=>SEED.concat(USER);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -989,6 +990,14 @@ coens(){return `<h1>Coen's</h1>
 
   <blockquote><strong>The resolution that isn’t one:</strong> escape is not leaving the node. It is the occupant’s stance toward it: abide, scheme, endure, match, or become it. None of these dissolves the node, which is why V → I′ holds in all five.</blockquote>
   <p class="coen-note">Working draft v0.1. The variables are not measured and the placements are readings, not data. Expect revision.</p>
+  <h2>11. Counting vs. seeing: the question for the ledger</h2>
+  <p>“Okubala si kulaba” (counting is not seeing) rhymes with Benacerraf, but the conclusions differ. Benacerraf’s is deflationary: numbers are positions, and there is no occupant to see. The proverb implies something worth seeing that the count misses. Two readings reconcile them:</p>
+  <ul>
+    <li><strong>Seeing is seeing structure.</strong> Counting tallies instances; seeing recovers the node and its relations.</li>
+    <li><strong>The occupant matters at the margin.</strong> The node sets most of the outcome; the individual effect is the residual, carried forward as V → I′.</li>
+  </ul>
+  <blockquote><strong>Question:</strong> when does individual-level seeing change a prediction that role-level structure already made?</blockquote>
+  <p class="coen-note">Registered in the ledger as C-1 (Cross-domain). It also bears on the sovereign layer’s individual-treatment-effect claim.</p>
 </section>
 
 
