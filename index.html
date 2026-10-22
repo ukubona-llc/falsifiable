@@ -250,6 +250,34 @@ code{font-size:.85em}.rb a{color:var(--acc)}
 <p class="f">Left open: whether the page’s title should be “Absurdism” or “Collision,” depending on whether the person in the house is allowed back into the model.</p>
 </div></details>
 </template>
+<template id="nodes-tpl"><h1>Nodes</h1>
+<p class="sub">A life as a ledger of places · node ≫ occupant · years spent, in order</p>
+<div class="card" style="overflow-x:auto">
+<table style="border-collapse:collapse;width:100%;font-size:.95rem">
+<tr><th style="text-align:left">Rung</th><th style="text-align:left">Symbol</th><th style="text-align:left">Node</th><th style="text-align:right">Years</th><th style="text-align:right">Share</th><th style="text-align:right">Cum.</th></tr>
+<tr><td><span class="chip" style="background:var(--r1)">I</span></td><td>P<sub>i</sub></td><td><b>Kampala</b></td><td style="text-align:right">26</td><td style="text-align:right">56.5%</td><td style="text-align:right">26</td></tr>
+<tr><td><span class="chip" style="background:var(--r2)">II</span></td><td>R<sub>ij</sub></td><td><b>Baltimore</b></td><td style="text-align:right">19</td><td style="text-align:right">41.3%</td><td style="text-align:right">45</td></tr>
+<tr><td><span class="chip" style="background:var(--r3)">III</span></td><td>A<sub>ijk</sub>, Γ<sub>ijk</sub></td><td><b>Virginia</b></td><td style="text-align:right">0.5</td><td style="text-align:right">1.1%</td><td style="text-align:right">45.5</td></tr>
+<tr><td><span class="chip" style="background:var(--r4)">IV</span></td><td>Collisions</td><td><b>Staten Island</b></td><td style="text-align:right">0.3</td><td style="text-align:right">0.7%</td><td style="text-align:right">45.8</td></tr>
+<tr><td><span class="chip" style="background:var(--r5)">V → I′</span></td><td>Allocation → I′</td><td><b>Nairobi</b></td><td style="text-align:right">0.2</td><td style="text-align:right">0.4%</td><td style="text-align:right">46</td></tr>
+<tr><td colspan="3"><b>Total</b></td><td style="text-align:right"><b>46</b></td><td style="text-align:right"><b>100%</b></td><td></td></tr>
+</table></div>
+<p class="f">The ledger closes: the five durations sum to the age of the occupant. Rung numerals and places are the author’s; the symbol column is the notation’s own vocabulary.</p>
+
+<div class="lab">The whole ledger · 46 years</div>
+<div style="display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)"><div title="Kampala · 26 yr" style="flex:26 0 0;background:var(--r1)"></div><div title="Baltimore · 19 yr" style="flex:19 0 0;background:var(--r2)"></div><div title="Virginia · 0.5 yr" style="flex:0.5 0 0;background:var(--r3)"></div><div title="Staten Island · 0.3 yr" style="flex:0.3 0 0;background:var(--r4)"></div><div title="Nairobi · 0.2 yr" style="flex:0.2 0 0;background:var(--r5)"></div></div>
+<div class="lab">The last 1.0 year, zoomed (III · IV · V)</div>
+<div style="display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)"><div title="Virginia · 0.5 yr" style="flex:0.5 0 0;background:var(--r3)"></div><div title="Staten Island · 0.3 yr" style="flex:0.3 0 0;background:var(--r4)"></div><div title="Nairobi · 0.2 yr" style="flex:0.2 0 0;background:var(--r5)"></div></div>
+<p class="f">Kampala and Baltimore are 45 of the 46 years (97.8%). The three nodes after them share the last 1.0 year (2.2%). Hover a segment for its place and duration.</p>
+
+<div class="lab">Reading</div>
+<ul>
+<li>The two long nodes are the whole body of the record. The three short ones are sampling: each a few months, each a different milieu.</li>
+<li>V is written V → I′. The ledger’s last node is also the first line of the next one, so the total is still open: its duration is the only entry that can grow.</li>
+<li>Node ≫ occupant: each row names a place with a duration, and says nothing about who stood in it. Swap in another occupant and the structure of the ledger is unchanged.</li>
+</ul>
+<p class="f">Left open: the next node’s duration and where I′ ends. Those cells are unwritten, not blank by oversight.</p>
+</template>
 <main id="view"></main>
 <template id="rounds-tpl"><details class="rd"><summary><span class="chip" style="background:var(--acc)">R0</span> <b>Seed</b> <span class="mut">· the Pivot episode, the pentad, the ladder, the ask</span></summary><div class="rb"><div class="lab">Prompt</div><blockquote><p>https://www.youtube.com/watch?v=TRnM1ngRCaU</p>
 <h4>Why Elon’s "Flying" Roadster Stunt Is Pure Distraction</h4>
@@ -1312,6 +1340,7 @@ princeton(){return `<h1>Princeton</h1>
 </div>`},
 coens(){return document.getElementById("coens-tpl").innerHTML},
 absurdism(){return document.getElementById("absurdism-tpl").innerHTML},
+nodes(){return document.getElementById("nodes-tpl").innerHTML},
 plumbing(){return `<h1>Plumbing</h1>
 <p class="sub">The user-generative engine is I · P<sub>i</sub>. The plumbing is the I → V → I′ loop. Node ≫ occupant. Flow is universal.</p>
 <div class="card">
@@ -1329,7 +1358,7 @@ function star(){const c=load(),mx=Math.max(...c);const P=[0,1,2,3,4].map(i=>{con
 const E=[[0,2],[2,4],[4,1],[1,3],[3,0]];
 return `<svg viewBox="0 0 500 430" width="100%" style="max-width:520px;display:block;margin:auto">${E.map(e=>`<line x1="${P[e[0]][0]}" y1="${P[e[0]][1]}" x2="${P[e[1]][0]}" y2="${P[e[1]][1]}" stroke="var(--acc)" stroke-width="2"/>`).join("")}${P.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${12+18*c[i]/mx}" fill="${RC[i]}"/><text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" style="fill:#fff;font-weight:700">${RG[i][0]}</text><text x="${p[0]}" y="${p[1]+(i<1?-34:i<3?(i==1?-34:44):44)}" text-anchor="middle">${RG[i][1]}</text>`).join("")}</svg>`}
 const S={dom:"All"};
-const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["plumbing","⚙","Plumbing"],["append","+","Append"],["rounds","❡","Rounds"]];
+const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["nodes","⌖","Nodes"],["plumbing","⚙","Plumbing"],["append","+","Append"],["rounds","❡","Rounds"]];
 function render(){const k=location.hash.slice(1),v=V[k]?k:"pentad";document.getElementById("view").innerHTML=V[v]();
 document.getElementById("grid").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${n[0]===v?"on":""}"><b>${n[1]}</b>${n[2]}</a>`).join("");
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{S.dom=b.dataset.d;render()});
