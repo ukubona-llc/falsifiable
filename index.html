@@ -589,12 +589,144 @@ append(){return `<h1>Append a row</h1><p class="sub">Rows save in this browser o
 <label>Deadline (optional)</label><input type="date" name="dl">
 <label>If wrong, we will change</label><input type="text" name="chg" required>
 <label>Rungs where it could be decided</label><div class="rg">${RG.map((r,i)=>`<label><input type="checkbox" name="r" value="${i+1}"> ${r[0]} ${r[1]}</label>`).join("")}</div>
-<button class="go">Append to ledger</button></form>`}};
+<button class="go">Append to ledger</button></form>`},
+princeton(){return `<h1>Princeton</h1>
+<p class="sub">The occupant of a node is less informative than the structure of the collisions in which that node participates. The ladder matters because those collisions generate consequences that become the starting conditions for the next round.</p>
+
+<div class="card">
+<p>Your Trump–Iran–Ukraine–Russia example is a particularly good illustration because the actors’ intentions, the immediate military events, the energy market, and the eventual distribution of economic costs do not sit at the same level of analysis.</p>
+<p>The critical insight is that a system can generate an outcome that nobody intended, and that becomes intelligible only after the causal sequence has unfolded.</p>
+<p>But there is a second insight: once we understand the sequence retrospectively, we should be able to construct prospective predictions that could prove us wrong.</p>
+<p>That is where the falsifiable ladder, the pentad, and the collision notation come together.</p>
+</div>
+
+<h2>1 · The ladder: from event to consequence to prediction</h2>
+<p>The ladder is a disciplined way of converting events into testable expectations, then allowing the consequences to correct the model. It is not a claim that history advances neatly through five stages.</p>
+
+<div class="wrap"><table>
+<thead><tr><th>Rung</th><th>Name</th><th>Question</th><th>What it holds</th></tr></thead>
+<tbody>
+<tr><td><span class="chip" style="background:var(--r1)">I</span></td><td><b>Ontology</b></td><td>What happened?</td><td>The event stream: military strikes, oil shipments, sanctions decisions, price movements.</td></tr>
+<tr><td><span class="chip" style="background:var(--r2)">II</span></td><td><b>Epistemology</b></td><td>What do we think it means?</td><td>Competing explanations: coercion, deterrence, energy-market disruption, strategic opportunism.</td></tr>
+<tr><td><span class="chip" style="background:var(--r3)">III</span></td><td><b>Witness gate</b></td><td>What would discriminate among explanations?</td><td>Observable indicators, competing hypotheses, thresholds, and conditions under which each hypothesis fails.</td></tr>
+<tr><td><span class="chip" style="background:var(--r4)">IV</span></td><td><b>Relativistic cost</b></td><td>What alternative futures are possible?</td><td>Simulated pathways, feedback loops, delays, strategic responses, and counterfactuals.</td></tr>
+<tr><td><span class="chip" style="background:var(--r5)">V</span></td><td><b>Newtonian cost</b></td><td>What actually happens?</td><td>Material consequences, irreversible decisions, realized losses and gains, and the next event stream.</td></tr>
+</tbody>
+</table></div>
+
+<p class="mut">The loop matters: <code>V<sub>t</sub> → I<sub>t+1</sub></code>. Today’s realized consequence becomes tomorrow’s new initial condition.</p>
+
+<h2>2 · Collision notation is the real engine</h2>
+<div class="card">
+<p style="font-size:1.05rem;text-align:center;margin:.6em 0"><code>Collisions (Milieu<sub>t</sub>, P<sub>it</sub>, R<sub>ijt</sub>, A<sub>ijkt</sub>, Γ<sub>ijkt</sub>)</code></p>
+</div>
+<ul>
+<li><b>Milieu<sub>t</sub></b> — the environment at time <i>t</i>: prices, institutions, geography, military capabilities, constraints.</li>
+<li><b>P<sub>it</sub></b> — position <i>i</i> and its occupant at time <i>t</i>.</li>
+<li><b>R<sub>ijt</sub></b> — the relationship or coupling between positions <i>i</i> and <i>j</i>.</li>
+<li><b>A<sub>ijkt</sub></b> — an action or interaction involving the indexed positions.</li>
+<li><b>Γ<sub>ijkt</sub></b> — the relevant goals, incentives, or strategic objectives.</li>
+</ul>
+<p>The collision is not a synonym for the node, and the node’s identity does not determine the collision’s outcome. A leader matters because of the actions they can take, the relationships through which those actions propagate, the constraints they face, and the responses those actions elicit.</p>
+<p>Change the occupant while holding the structure approximately fixed, and some dynamics may persist. Change the relationships while keeping the same occupants, and the system may behave very differently.</p>
+<p>This is why a model that merely asks “What will Trump do?” is less powerful than one that asks:</p>
+<blockquote>Given Trump’s incentives, the available military options, Iran’s response, Russia’s energy position, Ukraine’s requirements, and the relevant market and sanctions constraints, what outcomes become more or less probable?</blockquote>
+<p>The latter is a model of conditional causation rather than personality-driven storytelling.</p>
+
+<h2>3 · The Trump–Iran–Ukraine–Russia example: the ladder in motion</h2>
+<div class="cols">
+<div class="card"><span class="chip" style="background:var(--r1)">1</span> <b>Trump and Iran</b><p class="mut">Military action changes the strategic environment. Iran responds, other states adjust, and the conflict creates new risks for energy production, shipping, and regional security.</p></div>
+<div class="card"><span class="chip" style="background:var(--r2)">2</span> <b>Iran and the wider energy system</b><p class="mut">Supply risks, shipping disruptions, insurance costs, and expectations change. Magnitude and direction depend on actual disruption and available substitutes.</p></div>
+<div class="card"><span class="chip" style="background:var(--r3)">3</span> <b>Russia and the oil market</b><p class="mut">Higher prices, redirected demand, or changes in sanctions enforcement could improve Russian oil revenues—subject to discounts, transport costs, production constraints, and the actual sanctions regime.</p></div>
+<div class="card"><span class="chip" style="background:var(--r4)">4</span> <b>Russia, Ukraine, and US policy</b><p class="mut">Additional Russian revenue could increase fiscal or military capacity. Higher energy costs could pressure US consumers and firms. Neither military advantage nor policy reversal follows automatically.</p></div>
+</div>
+<p>This is a candidate causal pathway, not a verified account of every current development. In particular, any claim about a specific US decision to ease sanctions or purchase Russian oil needs independent verification.</p>
+<p>The eventual outcome could be an unintended benefit to Russia from a policy initiated by Trump against Iran. But the benefit is mediated by several contingent relationships. Iran need not intend to help Russia. Trump need not intend to help Russia. And Russia need not control the whole sequence. The system produces the outcome through the interaction of its components.</p>
+<p>That is precisely why retrospective path-dependency is so revealing: once the events have occurred, we can reconstruct the chain of dependencies. But reconstructing a chain after the fact does not establish that the chain was inevitable or that we could have predicted its exact realization beforehand.</p>
+
+<h2>4 · From Constructal Law to falsifiable prediction</h2>
+<p>Constructal Law concerns the tendency of flow systems to evolve configurations that facilitate access to flows. It provides a way to think about pathways, constraints, and changing architectures. It does not, by itself, predict which specific geopolitical event will occur.</p>
+<p>The operational move is to treat the system as a weighted relationship matrix:</p>
+<div class="card" style="text-align:center">
+<code>W<sub>t</sub> = [w<sub>ij,t</sub>]</code>
+<p class="f" style="margin-top:8px">where <i>w<sub>ij,t</sub></i> measures the strength of a specified relationship (trade exposure, military dependence, diplomatic influence, or causal effect—distinct quantities that must not be conflated).</p>
+</div>
+<p>The weights change as collisions occur:</p>
+<div class="card" style="text-align:center"><code>W<sub>t+1</sub> = F(W<sub>t</sub>, M<sub>t</sub>, A<sub>t</sub>, ε<sub>t</sub>)</code></div>
+<p>and the system’s next state depends on both its existing configuration and the new interactions:</p>
+<div class="card" style="text-align:center"><code>X<sub>t+1</sub> = H(X<sub>t</sub>, W<sub>t</sub>, A<sub>t</sub>, ε<sub>t</sub>)</code></div>
+<p class="mut">These are proposed modeling equations, not established empirical laws. Their value depends on specifying measurable variables, estimating the relationships, and testing their performance. We need not predict every action of every actor. We can predict the behavior of selected pathways and the conditions under which those predictions break.</p>
+
+<h2>5 · Three predictions we could actually test</h2>
+<p>The original narrative is one long chain. A falsifiable framework must allow the chain to break at any link.</p>
+
+<details class="rd" open><summary><span class="chip" style="background:var(--r1)">H1</span> <b>An energy shock benefits Russian oil revenues</b></summary>
+<div class="rb">
+<p><b>Prediction.</b> Conditional on a measurable supply disruption, Russian realized oil revenue rises over a prespecified horizon relative to a defined baseline, after accounting for export volumes, discounts, shipping costs, and sanctions.</p>
+<p><b>Falsifier.</b> The predicted increase does not occur, or the effect disappears after accounting for those factors.</p>
+<p class="f"><em>Critical control:</em> Specify the horizon, revenue measure, baseline, and minimum effect size before observing the outcome.</p>
+</div></details>
+
+<details class="rd"><summary><span class="chip" style="background:var(--r2)">H2</span> <b>Russian oil windfalls translate into strategic capacity</b></summary>
+<div class="rb">
+<p><b>Prediction.</b> An identifiable, sustained increase in net oil revenue is followed by a measurable increase in a prespecified indicator of Russian fiscal or military capacity, relative to a credible counterfactual.</p>
+<p><b>Falsifier.</b> The expected change fails to materialize within the specified period, or the relationship is too weak to meet the preregistered threshold.</p>
+<p class="f"><em>Critical control:</em> Account for budget allocations, production constraints, competing expenditures, and the lag between revenue and capacity.</p>
+</div></details>
+
+<details class="rd"><summary><span class="chip" style="background:var(--r3)">H3</span> <b>Energy-cost pressure changes US policy</b></summary>
+<div class="rb">
+<p><b>Prediction.</b> Under specified conditions, a measurable increase in domestic energy costs raises the probability of a particular policy adjustment within a defined period.</p>
+<p><b>Falsifier.</b> The adjustment does not occur at the predicted rate, or a model incorporating energy pressure does not improve out-of-sample prediction over a baseline model.</p>
+<p class="f"><em>Critical control:</em> Distinguish correlation from causation and account for elections, inflation, strategic objectives, legislative constraints, and other policy drivers.</p>
+</div></details>
+
+<p>Hypothesis 1 could succeed while Hypothesis 2 fails. Hypotheses 1 and 2 could both succeed while Hypothesis 3 fails. Otherwise we have merely constructed a story that can explain anything after it happens.</p>
+
+<h2>6 · Kaufmann and Benacerraf: the philosophical scaffolding</h2>
+<div class="cols">
+<div class="card"><b>Walter Kaufmann</b><p class="mut">The human predicament, interpretation, conflicting values, and the danger of pretending that the world obeys a single, frictionless moral narrative. Useful for generating rival interpretations of the same collision.</p></div>
+<div class="card"><b>Paul Benacerraf</b><p class="mut">Formal reasoning, logical structure, and the demand that claims be sufficiently precise to evaluate. Useful for converting interpretations into explicit propositions, measurable variables, and tests.</p></div>
+</div>
+<p>Wittgenstein bridges them. The terms we use—aggression, deterrence, windfall, victory, strategic benefit—belong to different language games. They can appear to describe the same event while referring to different criteria of success.</p>
+<blockquote>Russia receiving a higher price for its oil is not identical to Russia earning greater net revenue; greater net revenue is not identical to improved military effectiveness; improved military effectiveness is not identical to winning the war. Every transition requires its own evidential bridge.</blockquote>
+<p>Formalization disciplines interpretation without pretending to eliminate it.</p>
+
+<h2>7 · What Ukubona is reaching toward</h2>
+<p>The central contribution is not simply a pentad, a network model, or a prediction engine. It is an architecture that makes the movement from observation to commitment accountable.</p>
+
+<div class="lab">The falsifiable collision architecture</div>
+<ol>
+<li><b>Observe</b> — preserve the events and their provenance.</li>
+<li><b>Compress</b> — construct a manageable representation of the state space and its weighted relationships.</li>
+<li><b>Challenge</b> — state competing explanations, identify discriminating observations, and precommit to failure conditions.</li>
+<li><b>Simulate</b> — generate several plausible paths, estimate their probabilities and costs, and expose the assumptions that distinguish them.</li>
+<li><b>Commit</b> — select an action or forecast, record its rationale and timestamp, then compare the outcome against the original prediction.</li>
+</ol>
+
+<p>This is where the append-only idea becomes essential. A forecast should not be silently rewritten after the world changes. The original forecast, its assumptions, subsequent revisions, and the eventual outcome should remain distinguishable. Corrections and redactions may be necessary, but the audit trail should preserve what was claimed and when. Otherwise, hindsight destroys the very evidence needed to evaluate predictive intelligence.</p>
+<p>The ladder should not force a complete five-stage traversal every time. Cheap, high-confidence decisions can use compressed pathways; consequential or high-regret decisions should trigger deeper simulation and scrutiny. The architecture allocates deliberation according to the cost of being wrong.</p>
+
+<div class="lab">The decisive distinction</div>
+<div class="cols">
+<div class="card"><b>1 · Path reconstruction</b><p class="mut">Given the events that occurred, can we explain how one state led to another?</p><p class="f">Retrospective explanation.</p></div>
+<div class="card"><b>2 · Path prediction</b><p class="mut">Given the current state and relationships, can we assign defensible probabilities to future pathways?</p><p class="f">Forecasting.</p></div>
+<div class="card"><b>3 · Path intervention</b><p class="mut">If we change an action or relationship, can we estimate how the distribution of future outcomes changes?</p><p class="f">Causal decision-making.</p></div>
+</div>
+<p>Success at the first does not establish success at the second, and success at the second does not establish success at the third.</p>
+
+<div class="card" style="margin-top:1.6em">
+<p><b>The ladder</b> is how we move from history to testable futures.<br>
+<b>The collisions</b> are how the world generates those futures.<br>
+<b>The weights</b> are how we represent the dependencies.<br>
+<b>Falsifiability</b> is how we find out whether we understood any of it.</p>
+<p style="margin-bottom:0">And the final criterion is brutally simple: before the next collision, write down what your framework expects to happen, why, by when, with what uncertainty, and what observation would prove it wrong.</p>
+</div>`}};
 function star(){const c=load(),mx=Math.max(...c);const P=[0,1,2,3,4].map(i=>{const a=(-90+72*i)*Math.PI/180;return[250+130*Math.cos(a),210+130*Math.sin(a)]});
 const E=[[0,2],[2,4],[4,1],[1,3],[3,0]];
 return `<svg viewBox="0 0 500 430" width="100%" style="max-width:520px;display:block;margin:auto">${E.map(e=>`<line x1="${P[e[0]][0]}" y1="${P[e[0]][1]}" x2="${P[e[1]][0]}" y2="${P[e[1]][1]}" stroke="var(--acc)" stroke-width="2"/>`).join("")}${P.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${12+18*c[i]/mx}" fill="${RC[i]}"/><text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" style="fill:#fff;font-weight:700">${RG[i][0]}</text><text x="${p[0]}" y="${p[1]+(i<1?-34:i<3?(i==1?-34:44):44)}" text-anchor="middle">${RG[i][1]}</text>`).join("")}</svg>`}
 const S={dom:"All"};
-const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["append","+","Append"],["rounds","❡","Rounds"]];
+const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["append","+","Append"],["rounds","❡","Rounds"]];
 function render(){const k=location.hash.slice(1),v=V[k]?k:"pentad";document.getElementById("view").innerHTML=V[v]();
 document.getElementById("grid").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${n[0]===v?"on":""}"><b>${n[1]}</b>${n[2]}</a>`).join("");
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{S.dom=b.dataset.d;render()});
