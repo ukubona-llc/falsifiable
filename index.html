@@ -292,6 +292,45 @@ code{font-size:.85em}.rb a{color:var(--acc)}
 <p>The dropout-founder node never paid off through the costume. It paid off through its edges: the R<sub>ij</sub> to angels, a peer network, a milieu that funds lottery tickets. So the entry reads: <strong>a role’s payoff transfers to a new occupant only if its R<sub>ij</sub> transfer with it.</strong> Here the occupant took the costume without the edges, which is why the same title returns a different allocation: runway funded by revenue, not by a round. The test is plain. Count the VC edges that appear. If the role pays off without them, node ≫ occupant held and the edges didn’t matter. If it doesn’t, they did, and the script was never about the hoodie.</p>
 <p class="f">Left open: the next node’s duration and where I′ ends. Those cells are unwritten, not blank by oversight.</p>
 </template>
+<template id="chief-tpl"><h1>Chief of Staff</h1>
+<p class="sub">The gate · node ≫ occupant · who holds the schedule, the staff and the door to the principal</p>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:var(--bg);margin:1rem 0">
+<iframe src="https://www.youtube.com/embed/ie_abNOifsA" title="Nick Fuentes on Susie Wiles" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<p class="f">Source note: this is commentary by Nick Fuentes, a far-right streamer, posted Oct 22, 2026. The channel’s description frames it as asking whether Susie Wiles is about to lose her position, and it also mentions friction around advisers close to her and questions about outside consulting work. Those are the channel’s claims; this page has not checked them.</p>
+
+<div class="lab">The node</div>
+<p>The White House chief of staff controls the schedule, the staff pipeline and the door to the principal. It is the rung-II node of the administration: nearly everything the president sees and decides passes through its R<sub>ij</sub>. Whoever holds it is less important than what the node does to every flow that must cross it.</p>
+
+<div class="lab">Occupants of the node under one principal</div>
+<div class="card" style="overflow-x:auto">
+<table style="border-collapse:collapse;width:100%;font-size:.95rem">
+<tr><th style="text-align:left">Occupant</th><th style="text-align:left">Term</th><th style="text-align:right">≈ Months</th></tr>
+<tr><td>Reince Priebus</td><td>Jan 2017 – Jul 2017</td><td style="text-align:right">6</td></tr>
+<tr><td>John Kelly</td><td>Jul 2017 – Jan 2019</td><td style="text-align:right">17</td></tr>
+<tr><td>Mick Mulvaney (acting)</td><td>Jan 2019 – Mar 2020</td><td style="text-align:right">15</td></tr>
+<tr><td>Mark Meadows</td><td>Mar 2020 – Jan 2021</td><td style="text-align:right">10</td></tr>
+<tr><td><b>Susie Wiles</b></td><td>Jan 20, 2025 – (open)</td><td style="text-align:right"><b>21+</b></td></tr>
+</table></div>
+<p class="f">Five occupants in the node across two terms. Tenures are approximate and taken from the public record, not from the video. The first term had four chiefs of staff; Wiles is the longest-serving and the first woman in the role.</p>
+
+<div class="lab">What was reported this week, as claims</div>
+<ul>
+<li>Politico reported on Oct 15 that Trump had been asking allies about replacing Wiles and had discussed possible successors.</li>
+<li>Trump denied it the next day. He called her his “loyal and longest serving Chief of Staff,” said she has his “COMPLETE confidence,” and told reporters there was “zero chance” he would replace her.</li>
+<li>Names floated as possible successors differ by outlet: Stephen Miller and Randy Levine in one account, Steve Witkoff and Bill Pulte in another. Semafor reported that nearly a dozen people close to the president doubted serious friction.</li>
+<li>Some coverage ties the speculation to midterm pressure, and one outlet says betting markets price in a departure by year’s end. That is the market’s read, not a fact about the White House.</li>
+</ul>
+<p class="f">Checked Oct 22, 2026. A denial and a report that points the other way can both be true at the same time, which is why this entry stays open.</p>
+
+<div class="lab">A draft entry (window and threshold yours)</div>
+<div class="card">
+<p><b>Claim:</b> the node outlasts its occupant. If Wiles leaves, the role persists with a new occupant, and what changes is who holds R<sub>ij</sub>, not that the node is the choke point.<br>
+<b>Window:</b> to be set by the author, for example through the midterm cycle.<br>
+<b>Falsifier:</b> a public announcement of Wiles’s departure, or a named successor, inside the window. If she stays, the claim about the occupant (the reports) fails, and the claim about the node is untouched.</p>
+</div>
+<p class="f">Left open: the window, and whether a departure would be a V (allocation) outcome or a new collision. Neither is filled in here.</p>
+</template>
 <main id="view"></main>
 <template id="rounds-tpl"><details class="rd"><summary><span class="chip" style="background:var(--acc)">R0</span> <b>Seed</b> <span class="mut">· the Pivot episode, the pentad, the ladder, the ask</span></summary><div class="rb"><div class="lab">Prompt</div><blockquote><p>https://www.youtube.com/watch?v=TRnM1ngRCaU</p>
 <h4>Why Elon’s "Flying" Roadster Stunt Is Pure Distraction</h4>
@@ -1355,6 +1394,7 @@ princeton(){return `<h1>Princeton</h1>
 coens(){return document.getElementById("coens-tpl").innerHTML},
 absurdism(){return document.getElementById("absurdism-tpl").innerHTML},
 nodes(){return document.getElementById("nodes-tpl").innerHTML},
+chief(){return document.getElementById("chief-tpl").innerHTML},
 plumbing(){return `<h1>Plumbing</h1>
 <p class="sub">The user-generative engine is I · P<sub>i</sub>. The plumbing is the I → V → I′ loop. Node ≫ occupant. Flow is universal.</p>
 <div class="card">
@@ -1372,7 +1412,7 @@ function star(){const c=load(),mx=Math.max(...c);const P=[0,1,2,3,4].map(i=>{con
 const E=[[0,2],[2,4],[4,1],[1,3],[3,0]];
 return `<svg viewBox="0 0 500 430" width="100%" style="max-width:520px;display:block;margin:auto">${E.map(e=>`<line x1="${P[e[0]][0]}" y1="${P[e[0]][1]}" x2="${P[e[1]][0]}" y2="${P[e[1]][1]}" stroke="var(--acc)" stroke-width="2"/>`).join("")}${P.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${12+18*c[i]/mx}" fill="${RC[i]}"/><text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" style="fill:#fff;font-weight:700">${RG[i][0]}</text><text x="${p[0]}" y="${p[1]+(i<1?-34:i<3?(i==1?-34:44):44)}" text-anchor="middle">${RG[i][1]}</text>`).join("")}</svg>`}
 const S={dom:"All"};
-const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["nodes","⌖","Nodes"],["plumbing","⚙","Plumbing"],["append","+","Append"],["rounds","❡","Rounds"]];
+const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["nodes","⌖","Nodes"],["chief","♜","Chief of Staff"],["plumbing","⚙","Plumbing"],["append","+","Append"],["rounds","❡","Rounds"]];
 function render(){const k=location.hash.slice(1),v=V[k]?k:"pentad";document.getElementById("view").innerHTML=V[v]();
 document.getElementById("grid").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${n[0]===v?"on":""}"><b>${n[1]}</b>${n[2]}</a>`).join("");
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{S.dom=b.dataset.d;render()});
