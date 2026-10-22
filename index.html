@@ -526,211 +526,7 @@ supersedes: null
 <li>App-waffle grid: top-right corner -- no tabs on page, only in grid</li>
 <li>Pentadics: tables, figures, diagrams</li>
 </ol></blockquote></div></details></template>
-<script>
-const TODAY=new Date();
-const RG=[
-["I","Principal","P_i","Human","Carbon, silicon","Holds the objective, bears the consequence, keeps the final commit."],
-["II","Representation","R_ij","Algorithm","Kin-Network","Fixed rules, permissions and stored models of the world. Mode A (FastAPI)."],
-["III","Specialist","A_ijk, Γ_ijk","SLM","Professional","A small specialist that acts in one domain and can be copied into other settings."],
-["IV","Collisions","Milieu_t, P_it, R_ijt, A_ijkt, Γ_ijkt","LLM","Inherent-Adaptive","Brings many hypotheses from different domains into contact with the current setting."],
-["V","Allocation","Budget, Payoff, Survival, Graveyard, Unknowns","Agents","Bejan’s constructal law","Many LLM-backed workers spend budget; the ledger records what paid, survived or died."]];
-const RC=["var(--r1)","var(--r2)","var(--r3)","var(--r4)","var(--r5)"];
-// id, domain, as-of, claim, falsifier, rungs, deadline, if-wrong
-const SEED=[
-["M-1","Musk","2026-10-21","Next-gen Roadster enters production in 2028.","No verifiable production start or deliveries by end of 2028.",[5],"2028-12-31",""],
-["M-2","Musk","2026-10-21","Demonstrated cold-gas thruster and suction system ships on production Roadsters.","Production cars ship without thrusters able to reproduce the demo maneuvers.",[3,5],"2028-12-31",""],
-["M-3","Musk","2026-10-21","Roadster with thrusters is street-legal in major jurisdictions, or a clear regulatory path exists.","No US or EU approval for road use of the thruster features at production start.",[2,5],"2028-12-31",""],
-["M-4","Musk","2026-10-21","One SpaceX share to every kid in America in 2027, “the first of many.”","By end of 2027, no verifiable transfer to a population near ~70M under-18s, or no further rounds.",[5],"2027-12-31",""],
-["M-5","Musk","2026-10-21","The giveaway comes from personal holdings and starts a repeated pattern.","Only a one-off token gesture, or most children receive nothing of material value.",[5],"2027-12-31",""],
-["M-6","Musk","2026-10-21","Roadster stunt and share pledge are product or vision signals, not pure distraction.","Roadster stays a slipping halo project while core Tesla timelines slip relative to attention generated.",[4],null,""],
-["M-7","Musk","pattern","Unsupervised robotaxi reaches broad commercial deployment on stated timelines.","Supervised-only operation past successive deadline windows.",[5],null,""],
-["M-8","Musk","pattern","Crewed Mars timelines hold on the windows repeatedly floated.","No crewed architecture advancing beyond Starship iterative testing on the stated horizons.",[5],null,""],
-["W-1","Mearsheimer","2026-10-21","Iran war: US economic strangulation fails to force surrender.","Iran capitulates under the blockade strategy.",[4,5],null,""],
-["W-2","Mearsheimer","2026-10-21","Coercion failure pushes Iran toward nuclear weapons.","Iran forgoes weapons despite failed coercion.",[4,5],null,""],
-["W-3","Mearsheimer","2026-10-21","Saudi Arabia cannot win against the Houthis despite horizontal escalation.","A decisive Saudi victory.",[4,5],null,""],
-["W-4","Mearsheimer","2026-10-21","Hostile neighbors plus no US guarantee drive Saudi nuclear ambitions.","Saudi Arabia shows no nuclear pursuit under those conditions.",[4,5],null,""],
-["W-5","Mearsheimer","2026-10-21","Russia holds ~20% of Ukraine; the remainder becomes a dysfunctional rump.","Settlement or battlefield change that reverses either condition.",[4,5],null,""],
-["W-6","Mearsheimer","2026-10-21","US handling of the three wars solidifies an anti-US Eurasian bloc.","The bloc fractures or realigns.",[5],null,""],
-["AF-011","Cross-domain","2026-10-21","First-week attention is a poor proxy for delivery of the promised capability.","Attention adds ≥0.10 out-of-sample R² to predicting verified delivery, in two held-out cohorts.",[4],null,"Stop reading spectacle as signal"],
-["AF-012","Cross-domain","2026-10-21","Renewables exceed coal in global electricity generation in 2026.","Renewables do not exceed coal, same source and definitions.",[4,5],"2027-12-31",""],
-["AF-013","Cross-domain","2026-10-21","At least two of US–Iran, Saudi–Houthi, Russia–Ukraine reach a 12-month frozen conflict.","Fewer than two qualify by 2028-12-31; unclear cases are INCONCLUSIVE.",[4,5],"2028-12-31",""],
-["AF-014","Cross-domain","2026-10-21","The five-rung architecture beats simpler models on prediction and intervention quality.","Fails to improve held-out prediction or decision quality by 10%, or gains vanish after cost.",[1,2,3,4,5],"2028-10-21","Revise or discard the architecture"],
-["AF-015","Cross-domain","2026-10-21","Explicit probabilities, deadlines and postmortems improve calibration over narrative-only talk.","Ledger group fails to reach ≥15% lower mean Brier score.",[5],"2028-10-21",""],
-["C-1","Cross-domain","2026-10-22","Individual-level information (the occupant) improves prediction beyond role-level structure (the node).","Adding occupant-level features improves held-out prediction by less than 10% over a role-only model on pre-coded decisive turns or treatment-effect cohorts.",[1,4],"2028-10-22","Treat the occupant as noise; keep the role-level model"]];
-let USER=[];try{USER=JSON.parse(localStorage.getItem("ukb-ledger")||"[]")}catch(e){}
-const all=()=>SEED.concat(USER);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const chips=r=>r.map(i=>`<span class="chip" style="background:${RC[i-1]}">${RG[i-1][0]}</span>`).join("");
-const days=d=>Math.round((new Date(d)-TODAY)/864e5);
-function status(r){if(!r[6])return["OPEN · pattern","var(--mut)"];const n=days(r[6]);return n<0?["EXPIRED—UNRESOLVED","var(--r1)"]:["OPEN · "+n+" days","var(--r3)"]}
-const load=()=>{const c=[0,0,0,0,0];all().forEach(r=>r[5].forEach(i=>c[i-1]++));return c};
-
-const V={
-pentad(){return `<h1>Pentadics</h1><p class="sub">Five rungs; every claim is routed to the rung where it would be decided.</p>
-<h2>Table · the ladder</h2><div class="wrap"><table><tr><th>Rung</th><th>Substrate</th><th>Domain</th><th>Role · operator</th><th>What it does here</th></tr>
-${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}</span></td><td>${r[3]}</td><td>${r[4]}</td><td><b>${r[1]}</b><div class="f">${r[2]}</div></td><td>${r[5]}</td></tr>`).join("")}</table></div>
-<h2>Diagram · the pentagram</h2><div class="card">${star()}<p class="f">Edges join non-adjacent rungs: I↔III, III↔V, V↔II, II↔IV, IV↔I. Node size is the number of ledger rows touching that rung.</p></div>`},
-ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
-return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
-<div class="filters">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
-<div class="wrap"><table><tr><th>ID</th><th>Claim and falsifier</th><th>Rungs</th><th>Status</th></tr>
-${all().filter(r=>f==="All"||r[1]===f).map(r=>{const s=status(r);return `<tr><td><b>${esc(r[0])}</b><div class="f">${esc(r[1])}<br>${esc(r[2])}</div></td><td>${esc(r[3])}<div class="f"><em>Falsified if:</em> ${esc(r[4])}</div>${r[7]?`<div class="f"><em>If wrong, we change:</em> ${esc(r[7])}</div>`:""}</td><td>${chips(r[5])}</td><td class="st" style="color:${s[1]}">${s[0]}${r[6]?`<div class="f">by ${r[6]}</div>`:""}</td></tr>`}).join("")}</table></div>`},
-figures(){const c=load(),mx=Math.max(...c);
-const ax=i=>{const a=(-90+72*i)*Math.PI/180;return[150+Math.cos(a),150+Math.sin(a)]};
-const pt=(i,k)=>{const[x,y]=ax(i);return(150+(x-150)*110*k)+","+(150+(y-150)*110*k)};
-const ring=k=>[0,1,2,3,4].map(i=>pt(i,k)).join(" ");
-const radar=`<svg viewBox="0 0 300 300" width="100%" style="max-width:340px"><polygon points="${ring(1)}" fill="none" stroke="var(--line)"/><polygon points="${ring(.5)}" fill="none" stroke="var(--line)"/>${[0,1,2,3,4].map(i=>`<line x1="150" y1="150" x2="${pt(i,1).split(",")[0]}" y2="${pt(i,1).split(",")[1]}" stroke="var(--line)"/><text x="${pt(i,1.2).split(",")[0]}" y="${pt(i,1.2).split(",")[1]}" text-anchor="middle" dominant-baseline="middle">${RG[i][0]} · ${c[i]}</text>`).join("")}<polygon points="${[0,1,2,3,4].map(i=>pt(i,c[i]/mx)).join(" ")}" fill="var(--acc)" fill-opacity=".25" stroke="var(--acc)" stroke-width="2"/></svg>`;
-const t0=new Date("2026-10-01"),t1=new Date("2029-01-31"),X=d=>40+(new Date(d)-t0)/(t1-t0)*620;
-const dl=all().filter(r=>r[6]).sort((a,b)=>a[6]<b[6]?-1:1);
-const tl=`<svg viewBox="0 0 700 ${50+dl.length*20}" width="100%" style="min-width:620px">${[2027,2028,2029].map(y=>`<line x1="${X(y+"-01-01")}" x2="${X(y+"-01-01")}" y1="10" y2="${30+dl.length*20}" stroke="var(--line)"/><text class="m" x="${X(y+"-01-01")+4}" y="22">${y}</text>`).join("")}<line x1="${X(TODAY)}" x2="${X(TODAY)}" y1="10" y2="${30+dl.length*20}" stroke="var(--r1)" stroke-dasharray="3 3"/><text x="${X(TODAY)+4}" y="${44+dl.length*20}" style="fill:var(--r1)">today</text>${dl.map((r,i)=>`<circle cx="${X(r[6])}" cy="${38+i*20}" r="5" fill="${RC[Math.max(...r[5])-1]}"/><text x="${X(r[6])+9}" y="${42+i*20}">${esc(r[0])}</text>`).join("")}</svg>`;
-const lo=c[0]+c[1]+c[2],hi=c[3]+c[4];
-return `<h1>Figures</h1><p class="sub">Computed live from the ledger, including rows you append.</p><div class="cols"><div class="card"><b>Rung load</b><div style="text-align:center">${radar}</div></div><div class="card"><b>What the shape says</b><p>${hi} rung touches sit on IV–V (collisions, allocation) against ${lo} on I–III (principal, representation, specialist). The ledger audits <i>outcomes</i> far more than <i>mechanisms</i>. A row that can only die at rung V cannot tell you which rung failed.</p><p class="mut">Contribution: before a claim is registered, name the lowest rung where it could be falsified.</p></div></div>
-<h2>Timeline · deadlines</h2><div class="card" style="overflow-x:auto">${tl}<p class="f">Dot color is the highest rung the row touches.</p></div>`},
-rules(){return `<h1>Rules of the game</h1><div class="cols">
-${[["Binary and public","Delivery data, filings, transfer records or product specs decide a row. Narrative reframing does not."],["Append-only","Rows are never edited or deleted. A revision is a new row that names the one it supersedes."],["Preregistered","Metric, threshold and deadline are frozen before outcomes are known."],["Count the graveyard","Missed, withdrawn and inconvenient claims are scored, not just the survivors."],["The closing question","Not “were we right?” but “what will we do differently if we are wrong?” If nothing, it is commentary."]].map((r,i)=>`<div class="card"><span class="chip" style="background:${RC[i]}">${RG[i][0]}</span> <b>${r[0]}</b><p class="mut">${r[1]}</p></div>`).join("")}</div>
-<h2>Table · record format</h2><div class="wrap"><table><tr><th>Field</th><th>Meaning</th></tr>${[["claim","One proposition a contrary observation can refute"],["metric · threshold","Observable variable and the precommitted pass/fail line"],["deadline","YYYY-MM-DD"],["falsifier","The observation that makes the claim fail"],["status","OPEN · SURVIVED · FALSIFIED · INCONCLUSIVE · EXPIRED—UNRESOLVED"],["allocation_change","What we do differently if wrong"],["supersedes","The row this one replaces, if any"]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</table></div>`},
-rounds(){return `<h1>Rounds</h1><p class="sub">Every contributing round, in order, appended and never revised. Formatting is tidied; the wording is the original.</p><p><button class="go" style="margin:0" onclick="const d=[...document.querySelectorAll('.rd')],o=d.some(x=>!x.open);d.forEach(x=>x.open=o)">Expand or collapse all</button></p><div class="rd-list">${document.getElementById("rounds-tpl").innerHTML}</div>`},
-append(){return `<h1>Append a row</h1><p class="sub">Rows save in this browser only and cannot be edited afterward.</p><form id="f" class="card">
-<label>Domain</label><input type="text" name="dom" value="Cross-domain" required>
-<label>Claim</label><textarea name="claim" rows="2" required></textarea>
-<label>Falsified if</label><textarea name="fal" rows="2" required></textarea>
-<label>Deadline (optional)</label><input type="date" name="dl">
-<label>If wrong, we will change</label><input type="text" name="chg" required>
-<label>Rungs where it could be decided</label><div class="rg">${RG.map((r,i)=>`<label><input type="checkbox" name="r" value="${i+1}"> ${r[0]} ${r[1]}</label>`).join("")}</div>
-<button class="go">Append to ledger</button></form>`},
-princeton(){return `<h1>Princeton</h1>
-<p class="sub">The occupant of a node is less informative than the structure of the collisions in which that node participates. The ladder matters because those collisions generate consequences that become the starting conditions for the next round.</p>
-
-<div class="card">
-<p>Your Trump–Iran–Ukraine–Russia example is a particularly good illustration because the actors’ intentions, the immediate military events, the energy market, and the eventual distribution of economic costs do not sit at the same level of analysis.</p>
-<p>The critical insight is that a system can generate an outcome that nobody intended, and that becomes intelligible only after the causal sequence has unfolded.</p>
-<p>But there is a second insight: once we understand the sequence retrospectively, we should be able to construct prospective predictions that could prove us wrong.</p>
-<p>That is where the falsifiable ladder, the pentad, and the collision notation come together.</p>
-</div>
-
-<h2>1 · The ladder: from event to consequence to prediction</h2>
-<p>The ladder is a disciplined way of converting events into testable expectations, then allowing the consequences to correct the model. It is not a claim that history advances neatly through five stages.</p>
-
-<div class="wrap"><table>
-<thead><tr><th>Rung</th><th>Name</th><th>Question</th><th>What it holds</th></tr></thead>
-<tbody>
-<tr><td><span class="chip" style="background:var(--r1)">I</span></td><td><b>Ontology</b></td><td>What happened?</td><td>The event stream: military strikes, oil shipments, sanctions decisions, price movements.</td></tr>
-<tr><td><span class="chip" style="background:var(--r2)">II</span></td><td><b>Epistemology</b></td><td>What do we think it means?</td><td>Competing explanations: coercion, deterrence, energy-market disruption, strategic opportunism.</td></tr>
-<tr><td><span class="chip" style="background:var(--r3)">III</span></td><td><b>Witness gate</b></td><td>What would discriminate among explanations?</td><td>Observable indicators, competing hypotheses, thresholds, and conditions under which each hypothesis fails.</td></tr>
-<tr><td><span class="chip" style="background:var(--r4)">IV</span></td><td><b>Relativistic cost</b></td><td>What alternative futures are possible?</td><td>Simulated pathways, feedback loops, delays, strategic responses, and counterfactuals.</td></tr>
-<tr><td><span class="chip" style="background:var(--r5)">V</span></td><td><b>Newtonian cost</b></td><td>What actually happens?</td><td>Material consequences, irreversible decisions, realized losses and gains, and the next event stream.</td></tr>
-</tbody>
-</table></div>
-
-<p class="mut">The loop matters: <code>V<sub>t</sub> → I<sub>t+1</sub></code>. Today’s realized consequence becomes tomorrow’s new initial condition.</p>
-
-<h2>2 · Collision notation is the real engine</h2>
-<div class="card">
-<p style="font-size:1.05rem;text-align:center;margin:.6em 0"><code>Collisions (Milieu<sub>t</sub>, P<sub>it</sub>, R<sub>ijt</sub>, A<sub>ijkt</sub>, Γ<sub>ijkt</sub>)</code></p>
-</div>
-<ul>
-<li><b>Milieu<sub>t</sub></b> — the environment at time <i>t</i>: prices, institutions, geography, military capabilities, constraints.</li>
-<li><b>P<sub>it</sub></b> — position <i>i</i> and its occupant at time <i>t</i>.</li>
-<li><b>R<sub>ijt</sub></b> — the relationship or coupling between positions <i>i</i> and <i>j</i>.</li>
-<li><b>A<sub>ijkt</sub></b> — an action or interaction involving the indexed positions.</li>
-<li><b>Γ<sub>ijkt</sub></b> — the relevant goals, incentives, or strategic objectives.</li>
-</ul>
-<p>The collision is not a synonym for the node, and the node’s identity does not determine the collision’s outcome. A leader matters because of the actions they can take, the relationships through which those actions propagate, the constraints they face, and the responses those actions elicit.</p>
-<p>Change the occupant while holding the structure approximately fixed, and some dynamics may persist. Change the relationships while keeping the same occupants, and the system may behave very differently.</p>
-<p>This is why a model that merely asks “What will Trump do?” is less powerful than one that asks:</p>
-<blockquote>Given Trump’s incentives, the available military options, Iran’s response, Russia’s energy position, Ukraine’s requirements, and the relevant market and sanctions constraints, what outcomes become more or less probable?</blockquote>
-<p>The latter is a model of conditional causation rather than personality-driven storytelling.</p>
-
-<h2>3 · The Trump–Iran–Ukraine–Russia example: the ladder in motion</h2>
-<div class="cols">
-<div class="card"><span class="chip" style="background:var(--r1)">1</span> <b>Trump and Iran</b><p class="mut">Military action changes the strategic environment. Iran responds, other states adjust, and the conflict creates new risks for energy production, shipping, and regional security.</p></div>
-<div class="card"><span class="chip" style="background:var(--r2)">2</span> <b>Iran and the wider energy system</b><p class="mut">Supply risks, shipping disruptions, insurance costs, and expectations change. Magnitude and direction depend on actual disruption and available substitutes.</p></div>
-<div class="card"><span class="chip" style="background:var(--r3)">3</span> <b>Russia and the oil market</b><p class="mut">Higher prices, redirected demand, or changes in sanctions enforcement could improve Russian oil revenues—subject to discounts, transport costs, production constraints, and the actual sanctions regime.</p></div>
-<div class="card"><span class="chip" style="background:var(--r4)">4</span> <b>Russia, Ukraine, and US policy</b><p class="mut">Additional Russian revenue could increase fiscal or military capacity. Higher energy costs could pressure US consumers and firms. Neither military advantage nor policy reversal follows automatically.</p></div>
-</div>
-<p>This is a candidate causal pathway, not a verified account of every current development. In particular, any claim about a specific US decision to ease sanctions or purchase Russian oil needs independent verification.</p>
-<p>The eventual outcome could be an unintended benefit to Russia from a policy initiated by Trump against Iran. But the benefit is mediated by several contingent relationships. Iran need not intend to help Russia. Trump need not intend to help Russia. And Russia need not control the whole sequence. The system produces the outcome through the interaction of its components.</p>
-<p>That is precisely why retrospective path-dependency is so revealing: once the events have occurred, we can reconstruct the chain of dependencies. But reconstructing a chain after the fact does not establish that the chain was inevitable or that we could have predicted its exact realization beforehand.</p>
-
-<h2>4 · From Constructal Law to falsifiable prediction</h2>
-<p>Constructal Law concerns the tendency of flow systems to evolve configurations that facilitate access to flows. It provides a way to think about pathways, constraints, and changing architectures. It does not, by itself, predict which specific geopolitical event will occur.</p>
-<p>The operational move is to treat the system as a weighted relationship matrix:</p>
-<div class="card" style="text-align:center">
-<code>W<sub>t</sub> = [w<sub>ij,t</sub>]</code>
-<p class="f" style="margin-top:8px">where <i>w<sub>ij,t</sub></i> measures the strength of a specified relationship (trade exposure, military dependence, diplomatic influence, or causal effect—distinct quantities that must not be conflated).</p>
-</div>
-<p>The weights change as collisions occur:</p>
-<div class="card" style="text-align:center"><code>W<sub>t+1</sub> = F(W<sub>t</sub>, M<sub>t</sub>, A<sub>t</sub>, ε<sub>t</sub>)</code></div>
-<p>and the system’s next state depends on both its existing configuration and the new interactions:</p>
-<div class="card" style="text-align:center"><code>X<sub>t+1</sub> = H(X<sub>t</sub>, W<sub>t</sub>, A<sub>t</sub>, ε<sub>t</sub>)</code></div>
-<p class="mut">These are proposed modeling equations, not established empirical laws. Their value depends on specifying measurable variables, estimating the relationships, and testing their performance. We need not predict every action of every actor. We can predict the behavior of selected pathways and the conditions under which those predictions break.</p>
-
-<h2>5 · Three predictions we could actually test</h2>
-<p>The original narrative is one long chain. A falsifiable framework must allow the chain to break at any link.</p>
-
-<details class="rd" open><summary><span class="chip" style="background:var(--r1)">H1</span> <b>An energy shock benefits Russian oil revenues</b></summary>
-<div class="rb">
-<p><b>Prediction.</b> Conditional on a measurable supply disruption, Russian realized oil revenue rises over a prespecified horizon relative to a defined baseline, after accounting for export volumes, discounts, shipping costs, and sanctions.</p>
-<p><b>Falsifier.</b> The predicted increase does not occur, or the effect disappears after accounting for those factors.</p>
-<p class="f"><em>Critical control:</em> Specify the horizon, revenue measure, baseline, and minimum effect size before observing the outcome.</p>
-</div></details>
-
-<details class="rd"><summary><span class="chip" style="background:var(--r2)">H2</span> <b>Russian oil windfalls translate into strategic capacity</b></summary>
-<div class="rb">
-<p><b>Prediction.</b> An identifiable, sustained increase in net oil revenue is followed by a measurable increase in a prespecified indicator of Russian fiscal or military capacity, relative to a credible counterfactual.</p>
-<p><b>Falsifier.</b> The expected change fails to materialize within the specified period, or the relationship is too weak to meet the preregistered threshold.</p>
-<p class="f"><em>Critical control:</em> Account for budget allocations, production constraints, competing expenditures, and the lag between revenue and capacity.</p>
-</div></details>
-
-<details class="rd"><summary><span class="chip" style="background:var(--r3)">H3</span> <b>Energy-cost pressure changes US policy</b></summary>
-<div class="rb">
-<p><b>Prediction.</b> Under specified conditions, a measurable increase in domestic energy costs raises the probability of a particular policy adjustment within a defined period.</p>
-<p><b>Falsifier.</b> The adjustment does not occur at the predicted rate, or a model incorporating energy pressure does not improve out-of-sample prediction over a baseline model.</p>
-<p class="f"><em>Critical control:</em> Distinguish correlation from causation and account for elections, inflation, strategic objectives, legislative constraints, and other policy drivers.</p>
-</div></details>
-
-<p>Hypothesis 1 could succeed while Hypothesis 2 fails. Hypotheses 1 and 2 could both succeed while Hypothesis 3 fails. Otherwise we have merely constructed a story that can explain anything after it happens.</p>
-
-<h2>6 · Kaufmann and Benacerraf: the philosophical scaffolding</h2>
-<div class="cols">
-<div class="card"><b>Walter Kaufmann</b><p class="mut">The human predicament, interpretation, conflicting values, and the danger of pretending that the world obeys a single, frictionless moral narrative. Useful for generating rival interpretations of the same collision.</p></div>
-<div class="card"><b>Paul Benacerraf</b><p class="mut">Formal reasoning, logical structure, and the demand that claims be sufficiently precise to evaluate. Useful for converting interpretations into explicit propositions, measurable variables, and tests.</p></div>
-</div>
-<p>Wittgenstein bridges them. The terms we use—aggression, deterrence, windfall, victory, strategic benefit—belong to different language games. They can appear to describe the same event while referring to different criteria of success.</p>
-<blockquote>Russia receiving a higher price for its oil is not identical to Russia earning greater net revenue; greater net revenue is not identical to improved military effectiveness; improved military effectiveness is not identical to winning the war. Every transition requires its own evidential bridge.</blockquote>
-<p>Formalization disciplines interpretation without pretending to eliminate it.</p>
-
-<h2>7 · What Ukubona is reaching toward</h2>
-<p>The central contribution is not simply a pentad, a network model, or a prediction engine. It is an architecture that makes the movement from observation to commitment accountable.</p>
-
-<div class="lab">The falsifiable collision architecture</div>
-<ol>
-<li><b>Observe</b> — preserve the events and their provenance.</li>
-<li><b>Compress</b> — construct a manageable representation of the state space and its weighted relationships.</li>
-<li><b>Challenge</b> — state competing explanations, identify discriminating observations, and precommit to failure conditions.</li>
-<li><b>Simulate</b> — generate several plausible paths, estimate their probabilities and costs, and expose the assumptions that distinguish them.</li>
-<li><b>Commit</b> — select an action or forecast, record its rationale and timestamp, then compare the outcome against the original prediction.</li>
-</ol>
-
-<p>This is where the append-only idea becomes essential. A forecast should not be silently rewritten after the world changes. The original forecast, its assumptions, subsequent revisions, and the eventual outcome should remain distinguishable. Corrections and redactions may be necessary, but the audit trail should preserve what was claimed and when. Otherwise, hindsight destroys the very evidence needed to evaluate predictive intelligence.</p>
-<p>The ladder should not force a complete five-stage traversal every time. Cheap, high-confidence decisions can use compressed pathways; consequential or high-regret decisions should trigger deeper simulation and scrutiny. The architecture allocates deliberation according to the cost of being wrong.</p>
-
-<div class="lab">The decisive distinction</div>
-<div class="cols">
-<div class="card"><b>1 · Path reconstruction</b><p class="mut">Given the events that occurred, can we explain how one state led to another?</p><p class="f">Retrospective explanation.</p></div>
-<div class="card"><b>2 · Path prediction</b><p class="mut">Given the current state and relationships, can we assign defensible probabilities to future pathways?</p><p class="f">Forecasting.</p></div>
-<div class="card"><b>3 · Path intervention</b><p class="mut">If we change an action or relationship, can we estimate how the distribution of future outcomes changes?</p><p class="f">Causal decision-making.</p></div>
-</div>
-<p>Success at the first does not establish success at the second, and success at the second does not establish success at the third.</p>
-
-<div class="card" style="margin-top:1.6em">
-<p><b>The ladder</b> is how we move from history to testable futures.<br>
-<b>The collisions</b> are how the world generates those futures.<br>
-<b>The weights</b> are how we represent the dependencies.<br>
-<b>Falsifiability</b> is how we find out whether we understood any of it.</p>
-<p style="margin-bottom:0">And the final criterion is brutally simple: before the next collision, write down what your framework expects to happen, why, by when, with what uncertainty, and what observation would prove it wrong.</p>
-</div>`},
-coens(){return `<h1>Coen's</h1>
+<template id="coens-tpl"><h1>Coen's</h1>
 <p class="sub">Collisions as neural-net architecture · Apollonian vs Dionysian · node/role ≫ occupant</p>
 
 <div class="card coen-diagram-wrap" style="padding:0;overflow:hidden;margin-bottom:1.4rem">
@@ -1126,14 +922,220 @@ coens(){return `<h1>Coen's</h1>
 <iframe src="https://www.youtube.com/embed/FgzyLoSkL5k" title="Scale AI · Alexandr Wang" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 </div>
-`,
+</template>
+
+<script>
+const TODAY=new Date();
+const RG=[
+["I","Principal","P_i","Human","Carbon, silicon","Holds the objective, bears the consequence, keeps the final commit."],
+["II","Representation","R_ij","Algorithm","Kin-Network","Fixed rules, permissions and stored models of the world. Mode A (FastAPI)."],
+["III","Specialist","A_ijk, Γ_ijk","SLM","Professional","A small specialist that acts in one domain and can be copied into other settings."],
+["IV","Collisions","Milieu_t, P_it, R_ijt, A_ijkt, Γ_ijkt","LLM","Inherent-Adaptive","Brings many hypotheses from different domains into contact with the current setting."],
+["V","Allocation","Budget, Payoff, Survival, Graveyard, Unknowns","Agents","Bejan’s constructal law","Many LLM-backed workers spend budget; the ledger records what paid, survived or died."]];
+const RC=["var(--r1)","var(--r2)","var(--r3)","var(--r4)","var(--r5)"];
+// id, domain, as-of, claim, falsifier, rungs, deadline, if-wrong
+const SEED=[
+["M-1","Musk","2026-10-21","Next-gen Roadster enters production in 2028.","No verifiable production start or deliveries by end of 2028.",[5],"2028-12-31",""],
+["M-2","Musk","2026-10-21","Demonstrated cold-gas thruster and suction system ships on production Roadsters.","Production cars ship without thrusters able to reproduce the demo maneuvers.",[3,5],"2028-12-31",""],
+["M-3","Musk","2026-10-21","Roadster with thrusters is street-legal in major jurisdictions, or a clear regulatory path exists.","No US or EU approval for road use of the thruster features at production start.",[2,5],"2028-12-31",""],
+["M-4","Musk","2026-10-21","One SpaceX share to every kid in America in 2027, “the first of many.”","By end of 2027, no verifiable transfer to a population near ~70M under-18s, or no further rounds.",[5],"2027-12-31",""],
+["M-5","Musk","2026-10-21","The giveaway comes from personal holdings and starts a repeated pattern.","Only a one-off token gesture, or most children receive nothing of material value.",[5],"2027-12-31",""],
+["M-6","Musk","2026-10-21","Roadster stunt and share pledge are product or vision signals, not pure distraction.","Roadster stays a slipping halo project while core Tesla timelines slip relative to attention generated.",[4],null,""],
+["M-7","Musk","pattern","Unsupervised robotaxi reaches broad commercial deployment on stated timelines.","Supervised-only operation past successive deadline windows.",[5],null,""],
+["M-8","Musk","pattern","Crewed Mars timelines hold on the windows repeatedly floated.","No crewed architecture advancing beyond Starship iterative testing on the stated horizons.",[5],null,""],
+["W-1","Mearsheimer","2026-10-21","Iran war: US economic strangulation fails to force surrender.","Iran capitulates under the blockade strategy.",[4,5],null,""],
+["W-2","Mearsheimer","2026-10-21","Coercion failure pushes Iran toward nuclear weapons.","Iran forgoes weapons despite failed coercion.",[4,5],null,""],
+["W-3","Mearsheimer","2026-10-21","Saudi Arabia cannot win against the Houthis despite horizontal escalation.","A decisive Saudi victory.",[4,5],null,""],
+["W-4","Mearsheimer","2026-10-21","Hostile neighbors plus no US guarantee drive Saudi nuclear ambitions.","Saudi Arabia shows no nuclear pursuit under those conditions.",[4,5],null,""],
+["W-5","Mearsheimer","2026-10-21","Russia holds ~20% of Ukraine; the remainder becomes a dysfunctional rump.","Settlement or battlefield change that reverses either condition.",[4,5],null,""],
+["W-6","Mearsheimer","2026-10-21","US handling of the three wars solidifies an anti-US Eurasian bloc.","The bloc fractures or realigns.",[5],null,""],
+["AF-011","Cross-domain","2026-10-21","First-week attention is a poor proxy for delivery of the promised capability.","Attention adds ≥0.10 out-of-sample R² to predicting verified delivery, in two held-out cohorts.",[4],null,"Stop reading spectacle as signal"],
+["AF-012","Cross-domain","2026-10-21","Renewables exceed coal in global electricity generation in 2026.","Renewables do not exceed coal, same source and definitions.",[4,5],"2027-12-31",""],
+["AF-013","Cross-domain","2026-10-21","At least two of US–Iran, Saudi–Houthi, Russia–Ukraine reach a 12-month frozen conflict.","Fewer than two qualify by 2028-12-31; unclear cases are INCONCLUSIVE.",[4,5],"2028-12-31",""],
+["AF-014","Cross-domain","2026-10-21","The five-rung architecture beats simpler models on prediction and intervention quality.","Fails to improve held-out prediction or decision quality by 10%, or gains vanish after cost.",[1,2,3,4,5],"2028-10-21","Revise or discard the architecture"],
+["AF-015","Cross-domain","2026-10-21","Explicit probabilities, deadlines and postmortems improve calibration over narrative-only talk.","Ledger group fails to reach ≥15% lower mean Brier score.",[5],"2028-10-21",""],
+["C-1","Cross-domain","2026-10-22","Individual-level information (the occupant) improves prediction beyond role-level structure (the node).","Adding occupant-level features improves held-out prediction by less than 10% over a role-only model on pre-coded decisive turns or treatment-effect cohorts.",[1,4],"2028-10-22","Treat the occupant as noise; keep the role-level model"]];
+let USER=[];try{USER=JSON.parse(localStorage.getItem("ukb-ledger")||"[]")}catch(e){}
+const all=()=>SEED.concat(USER);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chips=r=>r.map(i=>`<span class="chip" style="background:${RC[i-1]}">${RG[i-1][0]}</span>`).join("");
+const days=d=>Math.round((new Date(d)-TODAY)/864e5);
+function status(r){if(!r[6])return["OPEN · pattern","var(--mut)"];const n=days(r[6]);return n<0?["EXPIRED—UNRESOLVED","var(--r1)"]:["OPEN · "+n+" days","var(--r3)"]}
+const load=()=>{const c=[0,0,0,0,0];all().forEach(r=>r[5].forEach(i=>c[i-1]++));return c};
+
+const V={
+pentad(){return `<h1>Pentadics</h1><p class="sub">Five rungs; every claim is routed to the rung where it would be decided.</p>
+<h2>Table · the ladder</h2><div class="wrap"><table><tr><th>Rung</th><th>Substrate</th><th>Domain</th><th>Role · operator</th><th>What it does here</th></tr>
+${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}</span></td><td>${r[3]}</td><td>${r[4]}</td><td><b>${r[1]}</b><div class="f">${r[2]}</div></td><td>${r[5]}</td></tr>`).join("")}</table></div>
+<h2>Diagram · the pentagram</h2><div class="card">${star()}<p class="f">Edges join non-adjacent rungs: I↔III, III↔V, V↔II, II↔IV, IV↔I. Node size is the number of ledger rows touching that rung.</p></div>`},
+ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
+return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
+<div class="filters">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
+<div class="wrap"><table><tr><th>ID</th><th>Claim and falsifier</th><th>Rungs</th><th>Status</th></tr>
+${all().filter(r=>f==="All"||r[1]===f).map(r=>{const s=status(r);return `<tr><td><b>${esc(r[0])}</b><div class="f">${esc(r[1])}<br>${esc(r[2])}</div></td><td>${esc(r[3])}<div class="f"><em>Falsified if:</em> ${esc(r[4])}</div>${r[7]?`<div class="f"><em>If wrong, we change:</em> ${esc(r[7])}</div>`:""}</td><td>${chips(r[5])}</td><td class="st" style="color:${s[1]}">${s[0]}${r[6]?`<div class="f">by ${r[6]}</div>`:""}</td></tr>`}).join("")}</table></div>`},
+figures(){const c=load(),mx=Math.max(...c);
+const ax=i=>{const a=(-90+72*i)*Math.PI/180;return[150+Math.cos(a),150+Math.sin(a)]};
+const pt=(i,k)=>{const[x,y]=ax(i);return(150+(x-150)*110*k)+","+(150+(y-150)*110*k)};
+const ring=k=>[0,1,2,3,4].map(i=>pt(i,k)).join(" ");
+const radar=`<svg viewBox="0 0 300 300" width="100%" style="max-width:340px"><polygon points="${ring(1)}" fill="none" stroke="var(--line)"/><polygon points="${ring(.5)}" fill="none" stroke="var(--line)"/>${[0,1,2,3,4].map(i=>`<line x1="150" y1="150" x2="${pt(i,1).split(",")[0]}" y2="${pt(i,1).split(",")[1]}" stroke="var(--line)"/><text x="${pt(i,1.2).split(",")[0]}" y="${pt(i,1.2).split(",")[1]}" text-anchor="middle" dominant-baseline="middle">${RG[i][0]} · ${c[i]}</text>`).join("")}<polygon points="${[0,1,2,3,4].map(i=>pt(i,c[i]/mx)).join(" ")}" fill="var(--acc)" fill-opacity=".25" stroke="var(--acc)" stroke-width="2"/></svg>`;
+const t0=new Date("2026-10-01"),t1=new Date("2029-01-31"),X=d=>40+(new Date(d)-t0)/(t1-t0)*620;
+const dl=all().filter(r=>r[6]).sort((a,b)=>a[6]<b[6]?-1:1);
+const tl=`<svg viewBox="0 0 700 ${50+dl.length*20}" width="100%" style="min-width:620px">${[2027,2028,2029].map(y=>`<line x1="${X(y+"-01-01")}" x2="${X(y+"-01-01")}" y1="10" y2="${30+dl.length*20}" stroke="var(--line)"/><text class="m" x="${X(y+"-01-01")+4}" y="22">${y}</text>`).join("")}<line x1="${X(TODAY)}" x2="${X(TODAY)}" y1="10" y2="${30+dl.length*20}" stroke="var(--r1)" stroke-dasharray="3 3"/><text x="${X(TODAY)+4}" y="${44+dl.length*20}" style="fill:var(--r1)">today</text>${dl.map((r,i)=>`<circle cx="${X(r[6])}" cy="${38+i*20}" r="5" fill="${RC[Math.max(...r[5])-1]}"/><text x="${X(r[6])+9}" y="${42+i*20}">${esc(r[0])}</text>`).join("")}</svg>`;
+const lo=c[0]+c[1]+c[2],hi=c[3]+c[4];
+return `<h1>Figures</h1><p class="sub">Computed live from the ledger, including rows you append.</p><div class="cols"><div class="card"><b>Rung load</b><div style="text-align:center">${radar}</div></div><div class="card"><b>What the shape says</b><p>${hi} rung touches sit on IV–V (collisions, allocation) against ${lo} on I–III (principal, representation, specialist). The ledger audits <i>outcomes</i> far more than <i>mechanisms</i>. A row that can only die at rung V cannot tell you which rung failed.</p><p class="mut">Contribution: before a claim is registered, name the lowest rung where it could be falsified.</p></div></div>
+<h2>Timeline · deadlines</h2><div class="card" style="overflow-x:auto">${tl}<p class="f">Dot color is the highest rung the row touches.</p></div>`},
+rules(){return `<h1>Rules of the game</h1><div class="cols">
+${[["Binary and public","Delivery data, filings, transfer records or product specs decide a row. Narrative reframing does not."],["Append-only","Rows are never edited or deleted. A revision is a new row that names the one it supersedes."],["Preregistered","Metric, threshold and deadline are frozen before outcomes are known."],["Count the graveyard","Missed, withdrawn and inconvenient claims are scored, not just the survivors."],["The closing question","Not “were we right?” but “what will we do differently if we are wrong?” If nothing, it is commentary."]].map((r,i)=>`<div class="card"><span class="chip" style="background:${RC[i]}">${RG[i][0]}</span> <b>${r[0]}</b><p class="mut">${r[1]}</p></div>`).join("")}</div>
+<h2>Table · record format</h2><div class="wrap"><table><tr><th>Field</th><th>Meaning</th></tr>${[["claim","One proposition a contrary observation can refute"],["metric · threshold","Observable variable and the precommitted pass/fail line"],["deadline","YYYY-MM-DD"],["falsifier","The observation that makes the claim fail"],["status","OPEN · SURVIVED · FALSIFIED · INCONCLUSIVE · EXPIRED—UNRESOLVED"],["allocation_change","What we do differently if wrong"],["supersedes","The row this one replaces, if any"]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</table></div>`},
+rounds(){return `<h1>Rounds</h1><p class="sub">Every contributing round, in order, appended and never revised. Formatting is tidied; the wording is the original.</p><p><button class="go" style="margin:0" onclick="const d=[...document.querySelectorAll('.rd')],o=d.some(x=>!x.open);d.forEach(x=>x.open=o)">Expand or collapse all</button></p><div class="rd-list">${document.getElementById("rounds-tpl").innerHTML}</div>`},
+append(){return `<h1>Append a row</h1><p class="sub">Rows save in this browser only and cannot be edited afterward.</p><form id="f" class="card">
+<label>Domain</label><input type="text" name="dom" value="Cross-domain" required>
+<label>Claim</label><textarea name="claim" rows="2" required></textarea>
+<label>Falsified if</label><textarea name="fal" rows="2" required></textarea>
+<label>Deadline (optional)</label><input type="date" name="dl">
+<label>If wrong, we will change</label><input type="text" name="chg" required>
+<label>Rungs where it could be decided</label><div class="rg">${RG.map((r,i)=>`<label><input type="checkbox" name="r" value="${i+1}"> ${r[0]} ${r[1]}</label>`).join("")}</div>
+<button class="go">Append to ledger</button></form>`},
+princeton(){return `<h1>Princeton</h1>
+<p class="sub">The occupant of a node is less informative than the structure of the collisions in which that node participates. The ladder matters because those collisions generate consequences that become the starting conditions for the next round.</p>
+
+<div class="card">
+<p>Your Trump–Iran–Ukraine–Russia example is a particularly good illustration because the actors’ intentions, the immediate military events, the energy market, and the eventual distribution of economic costs do not sit at the same level of analysis.</p>
+<p>The critical insight is that a system can generate an outcome that nobody intended, and that becomes intelligible only after the causal sequence has unfolded.</p>
+<p>But there is a second insight: once we understand the sequence retrospectively, we should be able to construct prospective predictions that could prove us wrong.</p>
+<p>That is where the falsifiable ladder, the pentad, and the collision notation come together.</p>
+</div>
+
+<h2>1 · The ladder: from event to consequence to prediction</h2>
+<p>The ladder is a disciplined way of converting events into testable expectations, then allowing the consequences to correct the model. It is not a claim that history advances neatly through five stages.</p>
+
+<div class="wrap"><table>
+<thead><tr><th>Rung</th><th>Name</th><th>Question</th><th>What it holds</th></tr></thead>
+<tbody>
+<tr><td><span class="chip" style="background:var(--r1)">I</span></td><td><b>Ontology</b></td><td>What happened?</td><td>The event stream: military strikes, oil shipments, sanctions decisions, price movements.</td></tr>
+<tr><td><span class="chip" style="background:var(--r2)">II</span></td><td><b>Epistemology</b></td><td>What do we think it means?</td><td>Competing explanations: coercion, deterrence, energy-market disruption, strategic opportunism.</td></tr>
+<tr><td><span class="chip" style="background:var(--r3)">III</span></td><td><b>Witness gate</b></td><td>What would discriminate among explanations?</td><td>Observable indicators, competing hypotheses, thresholds, and conditions under which each hypothesis fails.</td></tr>
+<tr><td><span class="chip" style="background:var(--r4)">IV</span></td><td><b>Relativistic cost</b></td><td>What alternative futures are possible?</td><td>Simulated pathways, feedback loops, delays, strategic responses, and counterfactuals.</td></tr>
+<tr><td><span class="chip" style="background:var(--r5)">V</span></td><td><b>Newtonian cost</b></td><td>What actually happens?</td><td>Material consequences, irreversible decisions, realized losses and gains, and the next event stream.</td></tr>
+</tbody>
+</table></div>
+
+<p class="mut">The loop matters: <code>V<sub>t</sub> → I<sub>t+1</sub></code>. Today’s realized consequence becomes tomorrow’s new initial condition.</p>
+
+<h2>2 · Collision notation is the real engine</h2>
+<div class="card">
+<p style="font-size:1.05rem;text-align:center;margin:.6em 0"><code>Collisions (Milieu<sub>t</sub>, P<sub>it</sub>, R<sub>ijt</sub>, A<sub>ijkt</sub>, Γ<sub>ijkt</sub>)</code></p>
+</div>
+<ul>
+<li><b>Milieu<sub>t</sub></b> — the environment at time <i>t</i>: prices, institutions, geography, military capabilities, constraints.</li>
+<li><b>P<sub>it</sub></b> — position <i>i</i> and its occupant at time <i>t</i>.</li>
+<li><b>R<sub>ijt</sub></b> — the relationship or coupling between positions <i>i</i> and <i>j</i>.</li>
+<li><b>A<sub>ijkt</sub></b> — an action or interaction involving the indexed positions.</li>
+<li><b>Γ<sub>ijkt</sub></b> — the relevant goals, incentives, or strategic objectives.</li>
+</ul>
+<p>The collision is not a synonym for the node, and the node’s identity does not determine the collision’s outcome. A leader matters because of the actions they can take, the relationships through which those actions propagate, the constraints they face, and the responses those actions elicit.</p>
+<p>Change the occupant while holding the structure approximately fixed, and some dynamics may persist. Change the relationships while keeping the same occupants, and the system may behave very differently.</p>
+<p>This is why a model that merely asks “What will Trump do?” is less powerful than one that asks:</p>
+<blockquote>Given Trump’s incentives, the available military options, Iran’s response, Russia’s energy position, Ukraine’s requirements, and the relevant market and sanctions constraints, what outcomes become more or less probable?</blockquote>
+<p>The latter is a model of conditional causation rather than personality-driven storytelling.</p>
+
+<h2>3 · The Trump–Iran–Ukraine–Russia example: the ladder in motion</h2>
+<div class="cols">
+<div class="card"><span class="chip" style="background:var(--r1)">1</span> <b>Trump and Iran</b><p class="mut">Military action changes the strategic environment. Iran responds, other states adjust, and the conflict creates new risks for energy production, shipping, and regional security.</p></div>
+<div class="card"><span class="chip" style="background:var(--r2)">2</span> <b>Iran and the wider energy system</b><p class="mut">Supply risks, shipping disruptions, insurance costs, and expectations change. Magnitude and direction depend on actual disruption and available substitutes.</p></div>
+<div class="card"><span class="chip" style="background:var(--r3)">3</span> <b>Russia and the oil market</b><p class="mut">Higher prices, redirected demand, or changes in sanctions enforcement could improve Russian oil revenues—subject to discounts, transport costs, production constraints, and the actual sanctions regime.</p></div>
+<div class="card"><span class="chip" style="background:var(--r4)">4</span> <b>Russia, Ukraine, and US policy</b><p class="mut">Additional Russian revenue could increase fiscal or military capacity. Higher energy costs could pressure US consumers and firms. Neither military advantage nor policy reversal follows automatically.</p></div>
+</div>
+<p>This is a candidate causal pathway, not a verified account of every current development. In particular, any claim about a specific US decision to ease sanctions or purchase Russian oil needs independent verification.</p>
+<p>The eventual outcome could be an unintended benefit to Russia from a policy initiated by Trump against Iran. But the benefit is mediated by several contingent relationships. Iran need not intend to help Russia. Trump need not intend to help Russia. And Russia need not control the whole sequence. The system produces the outcome through the interaction of its components.</p>
+<p>That is precisely why retrospective path-dependency is so revealing: once the events have occurred, we can reconstruct the chain of dependencies. But reconstructing a chain after the fact does not establish that the chain was inevitable or that we could have predicted its exact realization beforehand.</p>
+
+<h2>4 · From Constructal Law to falsifiable prediction</h2>
+<p>Constructal Law concerns the tendency of flow systems to evolve configurations that facilitate access to flows. It provides a way to think about pathways, constraints, and changing architectures. It does not, by itself, predict which specific geopolitical event will occur.</p>
+<p>The operational move is to treat the system as a weighted relationship matrix:</p>
+<div class="card" style="text-align:center">
+<code>W<sub>t</sub> = [w<sub>ij,t</sub>]</code>
+<p class="f" style="margin-top:8px">where <i>w<sub>ij,t</sub></i> measures the strength of a specified relationship (trade exposure, military dependence, diplomatic influence, or causal effect—distinct quantities that must not be conflated).</p>
+</div>
+<p>The weights change as collisions occur:</p>
+<div class="card" style="text-align:center"><code>W<sub>t+1</sub> = F(W<sub>t</sub>, M<sub>t</sub>, A<sub>t</sub>, ε<sub>t</sub>)</code></div>
+<p>and the system’s next state depends on both its existing configuration and the new interactions:</p>
+<div class="card" style="text-align:center"><code>X<sub>t+1</sub> = H(X<sub>t</sub>, W<sub>t</sub>, A<sub>t</sub>, ε<sub>t</sub>)</code></div>
+<p class="mut">These are proposed modeling equations, not established empirical laws. Their value depends on specifying measurable variables, estimating the relationships, and testing their performance. We need not predict every action of every actor. We can predict the behavior of selected pathways and the conditions under which those predictions break.</p>
+
+<h2>5 · Three predictions we could actually test</h2>
+<p>The original narrative is one long chain. A falsifiable framework must allow the chain to break at any link.</p>
+
+<details class="rd" open><summary><span class="chip" style="background:var(--r1)">H1</span> <b>An energy shock benefits Russian oil revenues</b></summary>
+<div class="rb">
+<p><b>Prediction.</b> Conditional on a measurable supply disruption, Russian realized oil revenue rises over a prespecified horizon relative to a defined baseline, after accounting for export volumes, discounts, shipping costs, and sanctions.</p>
+<p><b>Falsifier.</b> The predicted increase does not occur, or the effect disappears after accounting for those factors.</p>
+<p class="f"><em>Critical control:</em> Specify the horizon, revenue measure, baseline, and minimum effect size before observing the outcome.</p>
+</div></details>
+
+<details class="rd"><summary><span class="chip" style="background:var(--r2)">H2</span> <b>Russian oil windfalls translate into strategic capacity</b></summary>
+<div class="rb">
+<p><b>Prediction.</b> An identifiable, sustained increase in net oil revenue is followed by a measurable increase in a prespecified indicator of Russian fiscal or military capacity, relative to a credible counterfactual.</p>
+<p><b>Falsifier.</b> The expected change fails to materialize within the specified period, or the relationship is too weak to meet the preregistered threshold.</p>
+<p class="f"><em>Critical control:</em> Account for budget allocations, production constraints, competing expenditures, and the lag between revenue and capacity.</p>
+</div></details>
+
+<details class="rd"><summary><span class="chip" style="background:var(--r3)">H3</span> <b>Energy-cost pressure changes US policy</b></summary>
+<div class="rb">
+<p><b>Prediction.</b> Under specified conditions, a measurable increase in domestic energy costs raises the probability of a particular policy adjustment within a defined period.</p>
+<p><b>Falsifier.</b> The adjustment does not occur at the predicted rate, or a model incorporating energy pressure does not improve out-of-sample prediction over a baseline model.</p>
+<p class="f"><em>Critical control:</em> Distinguish correlation from causation and account for elections, inflation, strategic objectives, legislative constraints, and other policy drivers.</p>
+</div></details>
+
+<p>Hypothesis 1 could succeed while Hypothesis 2 fails. Hypotheses 1 and 2 could both succeed while Hypothesis 3 fails. Otherwise we have merely constructed a story that can explain anything after it happens.</p>
+
+<h2>6 · Kaufmann and Benacerraf: the philosophical scaffolding</h2>
+<div class="cols">
+<div class="card"><b>Walter Kaufmann</b><p class="mut">The human predicament, interpretation, conflicting values, and the danger of pretending that the world obeys a single, frictionless moral narrative. Useful for generating rival interpretations of the same collision.</p></div>
+<div class="card"><b>Paul Benacerraf</b><p class="mut">Formal reasoning, logical structure, and the demand that claims be sufficiently precise to evaluate. Useful for converting interpretations into explicit propositions, measurable variables, and tests.</p></div>
+</div>
+<p>Wittgenstein bridges them. The terms we use—aggression, deterrence, windfall, victory, strategic benefit—belong to different language games. They can appear to describe the same event while referring to different criteria of success.</p>
+<blockquote>Russia receiving a higher price for its oil is not identical to Russia earning greater net revenue; greater net revenue is not identical to improved military effectiveness; improved military effectiveness is not identical to winning the war. Every transition requires its own evidential bridge.</blockquote>
+<p>Formalization disciplines interpretation without pretending to eliminate it.</p>
+
+<h2>7 · What Ukubona is reaching toward</h2>
+<p>The central contribution is not simply a pentad, a network model, or a prediction engine. It is an architecture that makes the movement from observation to commitment accountable.</p>
+
+<div class="lab">The falsifiable collision architecture</div>
+<ol>
+<li><b>Observe</b> — preserve the events and their provenance.</li>
+<li><b>Compress</b> — construct a manageable representation of the state space and its weighted relationships.</li>
+<li><b>Challenge</b> — state competing explanations, identify discriminating observations, and precommit to failure conditions.</li>
+<li><b>Simulate</b> — generate several plausible paths, estimate their probabilities and costs, and expose the assumptions that distinguish them.</li>
+<li><b>Commit</b> — select an action or forecast, record its rationale and timestamp, then compare the outcome against the original prediction.</li>
+</ol>
+
+<p>This is where the append-only idea becomes essential. A forecast should not be silently rewritten after the world changes. The original forecast, its assumptions, subsequent revisions, and the eventual outcome should remain distinguishable. Corrections and redactions may be necessary, but the audit trail should preserve what was claimed and when. Otherwise, hindsight destroys the very evidence needed to evaluate predictive intelligence.</p>
+<p>The ladder should not force a complete five-stage traversal every time. Cheap, high-confidence decisions can use compressed pathways; consequential or high-regret decisions should trigger deeper simulation and scrutiny. The architecture allocates deliberation according to the cost of being wrong.</p>
+
+<div class="lab">The decisive distinction</div>
+<div class="cols">
+<div class="card"><b>1 · Path reconstruction</b><p class="mut">Given the events that occurred, can we explain how one state led to another?</p><p class="f">Retrospective explanation.</p></div>
+<div class="card"><b>2 · Path prediction</b><p class="mut">Given the current state and relationships, can we assign defensible probabilities to future pathways?</p><p class="f">Forecasting.</p></div>
+<div class="card"><b>3 · Path intervention</b><p class="mut">If we change an action or relationship, can we estimate how the distribution of future outcomes changes?</p><p class="f">Causal decision-making.</p></div>
+</div>
+<p>Success at the first does not establish success at the second, and success at the second does not establish success at the third.</p>
+
+<div class="card" style="margin-top:1.6em">
+<p><b>The ladder</b> is how we move from history to testable futures.<br>
+<b>The collisions</b> are how the world generates those futures.<br>
+<b>The weights</b> are how we represent the dependencies.<br>
+<b>Falsifiability</b> is how we find out whether we understood any of it.</p>
+<p style="margin-bottom:0">And the final criterion is brutally simple: before the next collision, write down what your framework expects to happen, why, by when, with what uncertainty, and what observation would prove it wrong.</p>
+</div>`},
+coens(){return document.getElementById("coens-tpl").innerHTML},
 plumbing(){return `<h1>Plumbing</h1>
 <p class="sub">The user-generative engine is I · P<sub>i</sub>. The plumbing is the I → V → I′ loop. Node ≫ occupant. Flow is universal.</p>
 <div class="card">
 <p>"Plumbing of the user-generated internet." That truly is "the blueprint for the modern world."</p>
 <p>The user-generative engine is <strong>I · P<sub>i</sub></strong>. The plumbing is the <strong>I → V → I′</strong> that I've been struggling with in a completely different domain — but that reaffirms our Benacerraf reading: <em>node ≫ occupant</em>. Or: flow is universal, and so we can just flip the <em>i = 1, 2, …, n</em> set of P<sub>i</sub> and have the same plumbing. Little tiny variation in sensors, bandwidth, etc., but the same fucking plumbing.</p>
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:var(--bg);margin:1rem 0">
-<iframe src="https://www.youtube.com/embed/4PNxwoR-s0s" title="The Plumbing of the Internet" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/nPBlWOnY4Ts" title="The Plumbing of the Internet" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 <p class="f">BYU CPMS Lecture · Chris Chase · “The Plumbing of the Internet” (2016). The physical and protocol layers that make user-generated activity possible are themselves the universal structure; the occupants (platforms, users, apps) come and go.</p>
 </div>
@@ -1159,4 +1161,4 @@ try{const t=localStorage.getItem("ukb-theme");if(t)document.documentElement.data
 render();
 </script>
 </body>
-</html>   
+</html>
