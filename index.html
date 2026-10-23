@@ -111,11 +111,18 @@ code{font-size:.85em}.rb a{color:var(--acc)}
 <ul>
 <li>E2 G2 C♯3 B3 is the 3rd, 5th, 7th and 9th of A9 with the root left to the bass (organ pedal). In G it is V9/V. The same pitch set also reads as Em6 and as C♯ø7.</li>
 <li>Reported GPT-6 results: “Em6” without Think and “Em6 or C♯ø7” with Think. Four runs per setting on eight accounts, identical within each setting.</li>
-<li>Neither setting named the rootless A9. Claude’s first answer missed it too, and an earlier key ranking placed G major fourth. Both were corrected once the key arrived.</li>
+<li>Neither GPT setting named the rootless A9. Claude named it; an earlier key ranking had placed G major fourth. The sheet-music ground truth confirmed Claude (see footnote).</li>
 <li>The chord that closes the phrase uses the same E-G-B material that opened it. The D has gone and the bass has moved from E to G. That is I′: the same material, seen again and not repeated.</li>
 </ul>
 <p>What this supports: label quality caps gate quality. With the key and the neighbouring chords, a rules engine can enumerate candidate roots, score them against the key and return A9 as V9/V without an LLM. What it does not show: one example proves little, and harmony is an unusually rule-dense domain. Attendance, nephron counts and district planning may not be.</p>
 <p class="f">Untested: why the eight runs matched. Near-deterministic decoding and a response cache both predict it. Trivial rewordings of the prompt would separate them.</p>
+
+<div class="lab">Footnote · ground truth and the hymn</div>
+<div class="card">
+<p>Our analysis begins on beat 8 — the rootless A9 that carries G and C♯, a tritone. From a diatonic perspective a tritone means only one thing: it is a V7 chord. That is why we read it as A9. The circle of fifths then falls out deterministically: Em7 → rootless A9 (on the fifth) → D7 (on the third) → G6.</p>
+<p>Claude named the rootless A9; the author and GPT (Think and non-Think) both erred toward Em6 ± C♯ø7. Once the sheet music was consulted, Claude’s reading was confirmed.</p>
+<p>The piece is <em>Christ Is Our Corner-Stone</em> by Samuel Sebastian Wesley, in G major (which contains no A dominant as a native chord). Humming the first seven beats of the melody (not the harmony) to parents produced, in unison, the completion “Blessed are the pure in heart.” The two melodies are identical for those seven beats, almost: Wesley’s setting inserts a higher leap on the seventh beat. Wesley was born in 1810; <em>Blessed Are the Pure in Heart</em> was composed around 1790. A hymn-singing household already carried the earlier tune in its subconscious.</p>
+</div>
 
 <div class="lab">Why the fifth</div>
 <p>A step of seven semitones is coprime to twelve, so repeating it visits every pitch class. Seven consecutive steps give the diatonic scale and twelve give the chromatic one. Among generators that reach all twelve, it has the simplest ratio (3:2). Twelve pure fifths overshoot seven octaves by about 23 cents, and equal temperament closes the circle, which is why the geodesic is a closed loop only under 12TET.</p>
