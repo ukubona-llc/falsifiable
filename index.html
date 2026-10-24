@@ -117,6 +117,24 @@ code{font-size:.85em}.rb a{color:var(--acc)}
 <div class="lab">Company, not conclusion</div>
 <div class="card"><p style="margin:0">Bach, Wesley, Chopin, Wang, Coen and Benacerraf share one device: the same thing under a different label. That justifies reading them side by side. It does not show that one influenced another. Documented: Wesley championed Bach, Chopin revered him. Unchecked: every note comparison above is from the listener’s hearing, not from the scores.</p></div>
 </template>
+<template id="spiral-tpl"><h1>Spiral</h1>
+<p class="sub">I → V → I′ · close · open · close</p>
+<img src="ukhona/pentad-spiral.svg" alt="The pentad as a spiral: the Engine fans into several paths, one is sampled, the specialist closes, the milieu opens, the enterprise closes at a higher level, and I′ lands outside I" style="width:100%;max-width:760px;display:block;margin:12px auto;border-radius:12px">
+<p class="f">Topological, not syntactic: the sampled path is one of several that leave the Engine, the open bundle is IV, and Δ is the gap between I and I′.</p>
+
+<p>Mapped one-to-one onto the pentad:</p>
+<div class="wrap"><table>
+<tr><th>Node</th><th>Layer</th><th>Why it fits</th><th>Typical break</th></tr>
+<tr><td><b>I. Engine</b></td><td><b>Individual</b></td><td>The person is the generator: body, prior, habits</td><td>Never acts on its own priors</td></tr>
+<tr><td><b>II. Sample &amp; Closed Prediction</b></td><td><b>Family</b></td><td>A small closed sample that predicts (“this runs in us”)</td><td>Family lore stays unfalsified</td></tr>
+<tr><td><b>III. Specialist &amp; Error</b></td><td><b>Professional</b></td><td>Labels, thresholds, diagnoses, and the measured miss</td><td>Professional defends the label</td></tr>
+<tr><td><b>IV. Generalist &amp; Reopen (SoftMax)</b></td><td><b>Milieu</b></td><td>The wider environment, where all alternatives are still alive</td><td>Milieu never converges (endless discourse)</td></tr>
+<tr><td><b>V. Organization → I′ (ArgMax)</b></td><td><b>Enterprise</b></td><td>Commits to one policy or product and encodes it</td><td>Enterprise doesn’t write back to the individual</td></tr>
+</table></div>
+
+<p><b>The loop:</b> Enterprise (V) only counts as learning if it returns as a changed Individual (I′). The close → open → close pattern becomes Family and Professional close, Milieu opens, and Enterprise closes at scale.</p>
+<p><b>Where it bites:</b> the Professional → Milieu step. The specialist’s threshold is the hardest thing to reopen, and your clinical work (eGFR cutoffs, diagnosis as cache) sits exactly there.</p>
+</template>
 <template id="cortical-tpl"><h1>Cortical</h1>
 <p class="sub">Subcortical biomimicry first, cortex on escalation · an audit of the session with the corrections left in</p>
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:var(--bg);margin:1rem 0">
@@ -2341,6 +2359,7 @@ coens(){return document.getElementById("coens-tpl").innerHTML},
 absurdism(){return document.getElementById("absurdism-tpl").innerHTML},
 llewyn(){return document.getElementById("llewyn-tpl").innerHTML},
 labels(){return document.getElementById("labels-tpl").innerHTML},
+spiral(){return document.getElementById("spiral-tpl").innerHTML},
 cortical(){return document.getElementById("cortical-tpl").innerHTML},
 hypomania(){return document.getElementById("hypomania-tpl").innerHTML},
 dangerous(){return document.getElementById("dangerous-tpl").innerHTML},
@@ -2376,7 +2395,7 @@ try{localStorage.setItem("ukb-escape",JSON.stringify(ESCLOG))}catch(e){}
 document.getElementById("esc-log").innerHTML=escLogHTML()}
 function escClear(){if(!confirm("Clear the demo log from this browser?"))return;ESCLOG=[];try{localStorage.removeItem("ukb-escape")}catch(e){}document.getElementById("esc-log").innerHTML=escLogHTML()}
 const S={dom:"All"};
-const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["llewyn","♪","Llewyn"],["labels","⌘","Labels"],["nodes","⌖","Nodes"],["chief","♜","The Gate"],["plumbing","⚙","Plumbing"],["cortical","Ψ","Cortical"],["hypomania","⚡","Hypomania"],["dangerous","⚠","Dangerous"],["escape","↯","Escape"],["flourishing","✿","Flourishing"],["append","+","Append"],["rounds","❡","Rounds"]];
+const NAV=[["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["llewyn","♪","Llewyn"],["labels","⌘","Labels"],["spiral","⟳","Spiral"],["nodes","⌖","Nodes"],["chief","♜","The Gate"],["plumbing","⚙","Plumbing"],["cortical","Ψ","Cortical"],["hypomania","⚡","Hypomania"],["dangerous","⚠","Dangerous"],["escape","↯","Escape"],["flourishing","✿","Flourishing"],["append","+","Append"],["rounds","❡","Rounds"]];
 function render(){const k=location.hash.slice(1),v=V[k]?k:"pentad";document.getElementById("view").innerHTML=V[v]();
 document.getElementById("grid").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${n[0]===v?"on":""}"><b>${n[1]}</b>${n[2]}</a>`).join("");
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{S.dom=b.dataset.d;render()});
