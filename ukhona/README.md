@@ -1,0 +1,19 @@
+- Moses (Prophet Mbonye)
+- SMACK (S1 when we were in S6)
+- Played rugby
+- Knowns Arinaitwe, Tendo, Ntege
+- Ellis Kataza
+- Has been teetotle for 11 months (making a year in Nov)
+- Mind is as scattered as mine
+- But he has grounded ideas that he will share
+   - Security
+   - Help picking kids from school
+   - Condoms / Test-kits on demand
+   - etc
+- NPA / Ministry-of-Education Infrastructure
+   - Platform anyone in Uganda may use
+   - They dropdown menu
+   - Application material, vacancies, menues, etc
+- Delivery in real-time (Eg with bodas)
+- Worked for MTN, Warid, Breweries
+- Like Mark, regrets not following through on big ideas 
