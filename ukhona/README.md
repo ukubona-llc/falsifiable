@@ -17,3 +17,9 @@
 - Delivery in real-time (Eg with bodas)
 - Worked for MTN, Warid, Breweries
 - Like Mark, regrets not following through on big ideas 
+- Met Abe's niece, sisters -- Sarah's birthday
+- Niece is in computer science (not medicine)
+- She's doing a data science course
+- Told her about plumbing & flows
+- Very excited
+- Call Abe
