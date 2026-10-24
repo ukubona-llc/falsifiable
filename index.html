@@ -25,7 +25,7 @@ p.sub,.mut{color:var(--mut)}
 .btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;display:grid;place-items:center;font-size:18px;padding:0}
 #theme{right:14px}#waffle{right:62px}
 .dots{display:grid;grid-template-columns:repeat(3,5px);gap:3px}.dots i{width:5px;height:5px;border-radius:50%;background:currentColor}
-#grid{position:fixed;right:14px;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:19;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;display:none;grid-template-columns:repeat(3,84px);gap:8px;box-shadow:0 8px 30px rgba(0,0,0,.18)}
+#grid{max-height:calc(100vh - 80px);overflow-y:auto;position:fixed;right:14px;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:19;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;display:none;grid-template-columns:repeat(3,84px);gap:8px;box-shadow:0 8px 30px rgba(0,0,0,.18)}
 #grid.open{display:grid}
 #grid a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:12px;text-decoration:none;color:var(--fg);font:600 12px system-ui,sans-serif}
 #grid a:hover,#grid a.on{background:color-mix(in srgb,var(--acc) 14%,transparent)}
