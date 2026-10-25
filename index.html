@@ -149,25 +149,54 @@ code{font-size:.85em}.rb a{color:var(--acc)}
 <p class="f">The school's pentad is its own canonical order. Mapping it onto the layers above is this tab’s reading, not a result.</p>
 
 <div class="lab">Client education and onboarding</div>
-<div class="card"><p style="margin-top:0">The platform where clients learn the pentad and get onboarded is the digital twin school. Start there.</p>
+<div class="card"><p style="margin-top:0">Ukubona LLC’s School and Client Onboarding Platform is where clients learn the pentad and get onboarded. Start there.</p>
 <a class="go" style="display:inline-block;text-decoration:none;margin-top:0" href="https://j-digital-twin.onrender.com/" target="_blank" rel="noopener">Open the client platform ↗</a>
 <p class="f" style="margin-bottom:0">j-digital-twin.onrender.com</p></div>
+
+<div class="lab">The spiral as a credit-risk engine</div>
+<img class="coen-diagram" src="ukhona/pentad-spiral-credit.svg" alt="The spiral as a credit-risk engine: risk differential, credit spread, haircut, margin call as a hard wall across a live bundle, forced liquidation, and I′ as the new risk premium" style="width:100%;max-width:760px;display:block;margin:12px auto;border-radius:12px">
+<div class="wrap"><table>
+<tr><th>Node</th><th>Financial mechanics</th><th>Epistemic spiral</th><th>Close / open</th></tr>
+<tr><td><b>I.</b></td><td>r<sub>eff</sub> − r<sub>f</sub>, the excess cost of exposure over the risk-free benchmark</td><td>Noise</td><td>—</td></tr>
+<tr><td><b>II.</b></td><td>Credit spread, the market’s price for perceived credit risk</td><td>Signal</td><td>close</td></tr>
+<tr><td><b>III.</b></td><td>Haircut, the reduction in collateral value the lender applies</td><td>Label</td><td>close</td></tr>
+<tr><td><b>IV.</b></td><td>Margin call, collateral no longer meets the required threshold</td><td>Threshold / consequence</td><td>wall for the lender, open for the borrower</td></tr>
+<tr><td><b>V.</b></td><td>Forced liquidation, assets sold at whatever price clears</td><td>Decisive</td><td>close</td></tr>
+<tr><td><b>I′.</b></td><td>New effective risk premium</td><td>New environment</td><td>—</td></tr>
+</table></div>
+<p><b>The chain:</b> Pricing → Measurement → Constraint → Threshold breach → Consequence.</p>
+<p><b>Two distinctions that matter:</b> the credit spread is not a cleaned-up version of noise. It is a market price that reflects expected default losses, risk premia, liquidity and other factors. A haircut is not merely a label. It is an operational constraint applied to collateral.</p>
+<p><b>IV is a wall and a bundle at once.</b> “Tetwaagala tunyonyola! Twaagala ki? Ssente!” (roughly: no explanations, we want money) is the lender’s side: the interior is not consulted. But the interior does not go away. It becomes the basis for doubling down (more collateral, another lender, an argument for time, more exposure on the conviction that the thesis holds), and each of those keeps several futures alive. SoftMax survives inside the hard constraint.</p>
+<p><b>The spiral is endogenous.</b> When many borrowers hit the same threshold, the open options collapse into the same sale at V. Forced liquidation can widen spreads, lower collateral values, raise haircuts and trigger further margin calls. The decisive event generates the conditions for the next round of noise, which is why I′ lands outside I.</p>
+<p><b>A hypothesis for the ledger, not a result:</b> under explanation-free margin regimes, borrowers double down more often than under negotiated ones, and the extra doubling down predicts larger forced liquidations. Falsified if doubling-down rates and liquidation size do not differ between the two regimes.</p>
+<p class="f">The margin-spiral and fire-sale literature (Brunnermeier and Pedersen is the usual reference) is cited from recall and has not been pulled and checked.</p>
 </template>
 <template id="compression-tpl"><h1>Compression</h1>
 <p class="sub">Interiority → Role, Node → Escape → Reconfigure Structure → Flourishing ↺ I′ · the epilogue, and a cheatsheet for the whole stack</p>
 
+<div class="lab">Preface · the odyssey</div>
+<p>The loop was first drawn from a life. This is how the <a href="https://ukubona-llc.github.io/trial/" target="_blank" rel="noopener" style="color:var(--acc)">Trial page</a> opens:</p>
+<pre><code>I. Kampala, 26
+II. Baltimore, 19
+III. Virginia, 0.5
+IV. Staten Island, 0.3
+V. Nairobi -&gt; I', 0.2</code></pre>
+<p>Years in each place, summing to 46. Nairobi returns to Kampala, and the traveller who arrives is MD, MPH, PhDc, with Ukubona LLC: the same place and a changed person. That difference between I and I′ is the Δ in the spiral below.</p>
+<p>T. S. Eliot’s <i>Little Gidding</i> says the same thing as the close of a meditation on exploring: the end of all the exploring is to arrive back where we started, and to know the place for the first time. The lines are in the <a href="https://www.columbia.edu/itc/history/winter/w3206/edit/tseliotlittlegidding.html" target="_blank" rel="noopener" style="color:var(--acc)">full text of the poem</a>.</p>
+
+<div class="lab">Epilogue</div>
 <div class="card"><p style="margin:0"><b>The compression.</b> One loop carries everything on this site. A person (I) is represented as a role in a kin network (II), escapes through a profession that labels them (III), meets a milieu where all those structures collide (IV), and what the enterprise allocates at the end (V) returns as a changed person (I′). Close, open, close, and the second close lands outside the first. Everything below is that sentence at three zoom levels: a table, a figure and a diagram.</p></div>
 
 <div class="lab">The table · one row per node</div>
 <div class="wrap"><table>
 <tr><th>Node</th><th>Layer</th><th>Object</th><th>Where it lives now</th><th>Typical break</th></tr>
 <tr><td><b>I. Interiority</b><div class="f">Music · Dionysian</div></td><td>Sovereign, Human</td><td>Principal<sub>ti</sub></td><td>Ukubona Self</td><td>Never acts on its own priors</td></tr>
-<tr><td><b>II. Role, Node</b><div class="f">Statistics · Apollonian</div></td><td>Family, Kin-Network</td><td>Representation<sub>tij</sub></td><td>Dr. K’s School and the client platform</td><td>Family lore stays unfalsified</td></tr>
+<tr><td><b>II. Role, Node</b><div class="f">Statistics · Apollonian</div></td><td>Family, Kin-Network</td><td>Representation<sub>tij</sub></td><td><a href="https://j-digital-twin.onrender.com/" target="_blank" rel="noopener" style="color:var(--acc)">Ukubona LLC’s School and Client Onboarding Platform</a></td><td>Family lore stays unfalsified</td></tr>
 <tr><td><b>III. Escape</b><div class="f">Adaptation · Labelling/Tragedy</div></td><td>Profession</td><td>Agent<sub>tijk</sub> &amp; Gamete<sub>tijk</sub></td><td>Ukubona Clinical, Donor Followup</td><td>Professional defends the label</td></tr>
 <tr><td><b>IV. Reconfigure Structure</b><div class="f">Regulation · Progress-Conservativism</div></td><td>Milieu</td><td>Collision(Milieu<sub>t</sub>, P<sub>ti</sub>, R<sub>tij</sub>, A<sub>tijk</sub>, Γ<sub>tijk</sub>)</td><td>The multi-model roundtable archive</td><td>Milieu never converges (endless discourse)</td></tr>
 <tr><td><b>V. Flourishing → I′</b><div class="f">Technology</div></td><td>Enterprise</td><td>Allocation(Budget<sub>t</sub>, Payout<sub>t</sub>, Survival<sub>t</sub>, Graveyard<sub>t</sub>, Unknown<sub>t</sub>)</td><td>The enterprise digital twin (T540), the Ugandan government pilots</td><td>Enterprise doesn’t write back to the individual</td></tr>
 </table></div>
-<p class="f">The “Where it lives now” column is a reading, not a registry. II is the loosest fit: the school and client platform teach all five nodes, and are placed at II because they are where a client first becomes a representation.</p>
+<p class="f">The “Where it lives now” column is a reading, not a registry. II is the loosest fit: the School and Client Onboarding Platform teaches all five nodes, and is placed at II because it is where a client first becomes a representation.</p>
 
 <div class="lab">The figure · the loop as a spiral</div>
 <img class="coen-diagram" src="ukhona/pentad-spiral.svg" alt="The pentad as a spiral: the Engine fans into several paths, one is sampled, the specialist closes, the milieu opens, the enterprise closes at a higher level, and I′ lands outside I" style="width:100%;max-width:760px;display:block;margin:12px auto;border-radius:12px">
