@@ -3145,7 +3145,50 @@ return `<h1>Figures</h1><p class="sub">Computed live from the ledger, including 
 <h2>Timeline · deadlines</h2><div class="card" style="overflow-x:auto">${tl}<p class="f">Dot color is the highest rung the row touches.</p></div>`},
 rules(){return `<h1>Rules of the game</h1><div class="cols">
 ${[["Binary and public","Delivery data, filings, transfer records or product specs decide a row. Narrative reframing does not."],["Append-only","Rows are never edited or deleted. A revision is a new row that names the one it supersedes."],["Preregistered","Metric, threshold and deadline are frozen before outcomes are known."],["Count the graveyard","Missed, withdrawn and inconvenient claims are scored, not just the survivors."],["The closing question","Not “were we right?” but “what will we do differently if we are wrong?” If nothing, it is commentary."]].map((r,i)=>`<div class="card"><span class="chip" style="background:${RC[i]}">${RG[i][0]}</span> <b>${r[0]}</b><p class="mut">${r[1]}</p></div>`).join("")}</div>
-<h2>Table · record format</h2><div class="wrap"><table><tr><th>Field</th><th>Meaning</th></tr>${[["claim","One proposition a contrary observation can refute"],["metric · threshold","Observable variable and the precommitted pass/fail line"],["deadline","YYYY-MM-DD"],["falsifier","The observation that makes the claim fail"],["status","OPEN · SURVIVED · FALSIFIED · INCONCLUSIVE · EXPIRED—UNRESOLVED"],["allocation_change","What we do differently if wrong"],["supersedes","The row this one replaces, if any"]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</table></div>`},
+<h2>Table · record format</h2><div class="wrap"><table><tr><th>Field</th><th>Meaning</th></tr>${[["claim","One proposition a contrary observation can refute"],["metric · threshold","Observable variable and the precommitted pass/fail line"],["deadline","YYYY-MM-DD"],["falsifier","The observation that makes the claim fail"],["status","OPEN · SURVIVED · FALSIFIED · INCONCLUSIVE · EXPIRED—UNRESOLVED"],["allocation_change","What we do differently if wrong"],["supersedes","The row this one replaces, if any"]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</table></div>
+<h2>Case study · The Roadster deposit <span class="chip" style="background:var(--r5)">OPEN</span></h2>
+<p class="sub">A prediction still open, with dates we can demand. Compressed from the V → I′ reading of the Autoblog piece (Roy Robles, 25 Oct 2026). Rows M-1 to M-3 in the ledger are the parent claims; this case tightens them with interim dates. Dates 1 and 2 below are ours, not Tesla's commitments.</p>
+<figure style="margin:1.3rem 0;padding:16px 22px;border-left:4px solid var(--acc);background:var(--card);border-radius:0 12px 12px 0"><blockquote style="margin:0;padding:0;border:0;color:var(--fg);font-size:1.25rem;font-style:italic;line-height:1.35">“actually lands in a customer’s driveway with all its advertised features intact”</blockquote><figcaption class="f" style="margin-top:6px">The article’s own condition for dropping skepticism. It is the settlement test below, and it is where V → I′ became visible.</figcaption></figure>
+
+<h3>Table · the ladder applied</h3>
+<div class="wrap"><table><tr><th>Rung</th><th>Role · operator</th><th>In this case</th></tr>
+${[
+["Principal · P_i","The depositor. Holds the objective, bears the consequence, keeps the commit: $50,000 on a standard reservation ($5,000 down, $45,000 within 10 days), $250,000 for the Thrust trim."],
+["Representation · R_ij","The reservation agreement. Tesla says it “cannot guarantee when your vehicle will actually be delivered or if it will be delivered,” gives only an approximate place in line, and keeps price and specs open. Reports say the deposit is refundable until a purchase agreement is signed."],
+["Specialist · A_ijk, Γ_ijk","SpaceX cold-gas thrusters (ten nozzles) and suction fans: a specialist copied from one domain, rockets, into another, a road car. The article says the physics checks out."],
+["Collisions · Milieu_t …","Stage demo against series production. Fans and skirts that drag on asphalt and ingest debris are wear items. Street-legality, price and the rest of Tesla’s timelines all collide with the same factory and the same attention."],
+["Allocation · V","Budget, Payoff, Survival, Graveyard, Unknowns (next table). The output re-enters as I′: either a customer’s driveway or another demo."]
+].map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${RG[i][0]}</span></td><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</table></div>
+
+<h3>Table · V, five columns</h3>
+<div class="wrap"><table><tr><th>Budget</th><th>Payoff</th><th>Survival</th><th>Graveyard</th><th>Unknowns</th></tr><tr>
+<td>550 lb of N₂ at 10,000 psi buys about 6.7 s of hover; the stunt used about 4 s, so about 2.7 s of slack. The budget was met on paper.</td>
+<td>Tesla gets cash now and a halo; the depositor gets a place in line. Analysts cited by the press expect only about 2,000 cars a year.</td>
+<td>Cold-gas thruster physics, per the article’s engineering check.</td>
+<td>Roadster target dates already missed: 2020, 2022, 2023, early 2025. Wear items the reveal never showed.</td>
+<td>Final price, street-legal path, final spec, build slot, refund speed.</td>
+</tr></table></div>
+
+<h3>Table · the bet, in record format</h3>
+<div class="wrap"><table><tr><th>Date</th><th>Rung</th><th>Metric · threshold</th><th>Falsifier</th></tr>
+${[
+["2027-06-30","II","Owner invited to configure, with a final price published.","No configurator invitation or no final price by this date. (Our demand date.)"],
+["2027-12-31","II · III","Production-intent spec published, thruster trim included, with a stated road-legal path. Links to M-2, M-3. (Our demand date.)","Thruster package dropped, optional-only, or still “under development” with no spec."],
+["2028-12-31","V","Settlement. First delivery to a non-employee customer that “actually lands in a customer’s driveway with all its advertised features intact.” Public delivery or registration records decide, per M-1 and M-2.","No such delivery by the deadline, or a delivered car missing the demonstrated thruster and suction capability."]
+].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</table></div>
+<p class="mut"><b>status</b> OPEN · <b>allocation_change</b> if wrong in the skeptics’ direction, stop treating Tesla dates as priced; if wrong in Tesla’s, drop the “graveyard” discount on the next row · <b>supersedes</b> none.</p>
+
+<h3>Table · ways to hold the position</h3>
+<div class="wrap"><table><tr><th>Position</th><th>Pays when</th><th>Catch</th></tr>
+${[
+["Don’t deposit","Never loses on this claim.","Gives up the place in line."],
+["Existing depositor: demand the refund","Reservation is refundable until a purchase agreement is signed, as reported.","Check the agreement. One German page marks only the first €5,000 as clearly refundable, and an earlier depositor reportedly waited weeks for part of his."],
+["Side wager, escrowed, with the three dates above","Settles on public records at 2028-12-31.","Needs a named counterparty and a neutral holder. Wagering rules and enforceability vary by jurisdiction."],
+["Short Tesla stock","Falls for any reason.","Basis risk: the Roadster is too small to move earnings, so a short pays on sentiment, not on this claim. Losses on a short are unbounded, and a margin call ignores whether the physics is right."]
+].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table></div>
+<p class="f">Facts and structure, not financial advice.</p>
+<p><em>Tetwaagala tunyonyola, twaagala ki?</em> The physics clears the first pass through the loop. The demand is for the second.</p>
+`},
 rounds(){return `<h1>Rounds</h1><p class="sub">Every contributing round, in order, appended and never revised. Formatting is tidied; the wording is the original.</p><p><button class="go" style="margin:0" onclick="const d=[...document.querySelectorAll('.rd')],o=d.some(x=>!x.open);d.forEach(x=>x.open=o)">Expand or collapse all</button></p><div class="rd-list">${document.getElementById("rounds-tpl").innerHTML}</div>`},
 append(){return `<h1>Append a row</h1><p class="sub">Rows save in this browser only and cannot be edited afterward.</p><form id="f" class="card">
 <label>Domain</label><input type="text" name="dom" value="Cross-domain" required>
