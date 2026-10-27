@@ -1401,7 +1401,7 @@ I′. UPDATED FIELD
 <path d="M475 80 C 475 30, 345 30, 345 76" fill="none" stroke="var(--r4)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ts-ar)"/>
 <text class="m" x="410" y="26" text-anchor="middle">fast path: revise labels without a full pass</text>
 <path d="M605 140 C 605 215, 84 215, 84 144" fill="none" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ts-ar)"/>
-<text x="345" y="206" text-anchor="middle" style="fill:var(--acc);font-style:italic">I′ · next prompt, informed by end-user behavior</text>
+<text x="345" y="206" text-anchor="middle" style="fill:var(--acc);font-style:italic">I′ · each i’s next prompt, shaped by its own commit and the other N−1 collisions</text>
 <rect x="30" y="262" width="628" height="44" rx="10" fill="var(--bg)" stroke="var(--line)" stroke-width="1.5"/>
 <text x="344" y="281" text-anchor="middle" style="font-weight:700">Substrate · GitHub</text>
 <text class="m" x="344" y="297" text-anchor="middle">State<tspan dy="3" font-size="9">t</tspan><tspan dy="-3"> = Σ Event</tspan><tspan dy="3" font-size="9">i</tspan><tspan dy="-3"> · every event carries a principal ID</tspan></text>
@@ -1445,6 +1445,43 @@ I′. UPDATED FIELD
 </ol></div>
 </div>
 
+<div class="lab">Pentadic figure · I becomes a tensor, II is a slice of it</div>
+<div class="card">
+<svg viewBox="0 0 760 292" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="A stack of layers over t forms the tensor at I. Cutting one layer and sampling it through instrument j gives the N by J matrix at II. Rungs III to V act on the matrix, and N relational updates return into the tensor.">
+<defs><marker id="ts-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--mut)"/></marker></defs>
+<rect x="80" y="40" width="100" height="100" fill="none" stroke="var(--r1)" stroke-width="1.5"/>
+<rect x="60" y="60" width="100" height="100" fill="var(--acc)" fill-opacity=".14" stroke="var(--acc)" stroke-width="2"/>
+<rect x="40" y="80" width="100" height="100" fill="none" stroke="var(--r1)" stroke-width="1.5"/>
+<text class="m" x="150" y="76" >t+1</text><text class="m" x="114" y="116" style="fill:var(--acc)">t</text><text class="m" x="50" y="196">t−1</text>
+<text x="110" y="213" text-anchor="middle" style="font-weight:700">I · P<tspan dy="3" font-size="9">t,i,i′</tspan></text>
+<text class="m" x="110" y="229" text-anchor="middle">layers t · rows i · columns i′</text>
+<line x1="195" y1="120" x2="300" y2="120" stroke="var(--acc)" stroke-width="1.5" marker-end="url(#ts-ar2)"/>
+<text class="m" x="248" y="106" text-anchor="middle">cut a slice at t</text><text class="m" x="248" y="138" text-anchor="middle">sample via j</text>
+<text class="m" x="338" y="54" text-anchor="middle">1</text><text class="m" x="374" y="54" text-anchor="middle">2</text><text class="m" x="410" y="54" text-anchor="middle">⋮</text><text class="m" x="446" y="54" text-anchor="middle">J</text><text class="m" x="312" y="83" text-anchor="end">1</text><text class="m" x="312" y="119" text-anchor="end">2</text><text class="m" x="312" y="155" text-anchor="end">⋮</text><text class="m" x="312" y="191" text-anchor="end">N</text><rect x="320" y="60" width="36" height="36" fill="var(--r2)" fill-opacity="0.1" stroke="var(--line)"/><rect x="356" y="60" width="36" height="36" fill="var(--r2)" fill-opacity="0.17" stroke="var(--line)"/><rect x="392" y="60" width="36" height="36" fill="var(--r2)" fill-opacity="0.24000000000000002" stroke="var(--line)"/><rect x="428" y="60" width="36" height="36" fill="var(--r2)" fill-opacity="0.31000000000000005" stroke="var(--line)"/><rect x="320" y="96" width="36" height="36" fill="var(--r2)" fill-opacity="0.1" stroke="var(--line)"/><rect x="356" y="96" width="36" height="36" fill="var(--r2)" fill-opacity="0.17" stroke="var(--line)"/><rect x="392" y="96" width="36" height="36" fill="var(--r2)" fill-opacity="0.24000000000000002" stroke="var(--line)"/><rect x="428" y="96" width="36" height="36" fill="var(--r2)" fill-opacity="0.31000000000000005" stroke="var(--line)"/><rect x="320" y="132" width="36" height="36" fill="var(--r2)" fill-opacity="0.1" stroke="var(--line)"/><rect x="356" y="132" width="36" height="36" fill="var(--r2)" fill-opacity="0.17" stroke="var(--line)"/><rect x="392" y="132" width="36" height="36" fill="var(--r2)" fill-opacity="0.24000000000000002" stroke="var(--line)"/><rect x="428" y="132" width="36" height="36" fill="var(--r2)" fill-opacity="0.31000000000000005" stroke="var(--line)"/><rect x="320" y="168" width="36" height="36" fill="var(--r2)" fill-opacity="0.1" stroke="var(--line)"/><rect x="356" y="168" width="36" height="36" fill="var(--r2)" fill-opacity="0.17" stroke="var(--line)"/><rect x="392" y="168" width="36" height="36" fill="var(--r2)" fill-opacity="0.24000000000000002" stroke="var(--line)"/><rect x="428" y="168" width="36" height="36" fill="var(--r2)" fill-opacity="0.31000000000000005" stroke="var(--line)"/>
+<text class="m" x="392" y="42" text-anchor="middle">instrument j →</text>
+<text x="392" y="224" text-anchor="middle" style="font-weight:700">II · R<tspan dy="3" font-size="9">tij</tspan></text>
+<text class="m" x="392" y="240" text-anchor="middle">N × J matrix: the actional object</text>
+<line x1="480" y1="132" x2="544" y2="132" stroke="var(--mut)" stroke-width="1.5" marker-end="url(#ts-ar2)"/>
+<rect x="548" y="98" width="196" height="68" rx="10" fill="var(--card)" stroke="var(--r4)" stroke-width="2"/>
+<text x="646" y="126" text-anchor="middle" style="font-weight:700">III · IV · V</text><text class="m" x="646" y="146" text-anchor="middle">label · route · commit</text>
+<path d="M645 166 L645 258 L18 258 L18 130 L36 130" fill="none" stroke-linejoin="round" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ts-ar2)"/>
+<text x="380" y="278" text-anchor="middle" style="fill:var(--acc);font-style:italic">V → I′ : N relational updates written back into the tensor</text>
+</svg>
+<p class="f">Illustrative. The highlighted layer is the slice at t. Grid shading carries no data.</p>
+</div>
+
+<div class="lab">Notes · resolution (proposed): V → I′ is relational over i = 1..N</div>
+<div class="card">
+<ol style="margin:.2em 0 0;padding-left:1.2rem">
+<li><b>i is the population.</b> The prompter, the agents and the end users are all indices i = 1..N. IV is the SoftMax across them and V’s allocation is a vector over them.</li>
+<li><b>V → I′ fans out into N updates.</b> I′<sub>t+1,i</sub> depends on i’s own commit and on the collisions with every other i′. What changes in I is relational, not rewritten from inside.</li>
+<li><b>So I is a tensor.</b> It already carries (t, i), and the pairwise dependence adds a second agent index, so the unsampled source is rank three or more.</li>
+<li><b>The tensor is not actionable.</b> To act we must cut a slice (fix t or a window, choose instrument j) and sample it. The result is R<sub>tij</sub>, an N × J matrix. II is that slice, and the cut is a decision.</li>
+<li><b>The I-vs-II gate becomes a slice record.</b> Besides the provenance tag, store which t window, which j and which basis were used, so what was cut away is knowable.</li>
+</ol>
+<p class="mut" style="margin:.6em 0 0">Notation: j already indexes the instrument and k the labels, so the second agent index is written i′ here. This is the proposal from the conversation and my reading of it, not yet a decision.</p>
+</div>
+
 <div class="lab">Notes · using the table to find conflicts</div>
 <p>Every conflict in the session fell into one of four types: an <b>overloaded cell</b> (workflow III), an <b>empty cell</b> (labels missing from the AI-org and workflow lenses), a <b>misplaced object</b> (the event-stream at I), or <b>two lenses disagreeing on a stage</b> (V). A check for any new component: place it in a stage, answer that stage’s gate question, and see whether it collides.</p>
 <div class="cols">
@@ -1454,8 +1491,9 @@ I′. UPDATED FIELD
 
 <div class="lab">Still open · needs you</div>
 <ul>
-<li>What changes in I across passes?</li>
-<li>TMVES compresses tensor to scalar, but this pentad rises to rank four before it collapses. How do the two relate?</li>
+<li><s>What changes in I across passes?</s> Proposed answer above: the relational update over i = 1..N. Confirm or reverse.</li>
+<li>What fixes the slice that becomes II: the t window, the instrument j and the basis? Is the cut owned by I, by II, or by a gate between them?</li>
+<li>TMVES compresses tensor to scalar, but this pentad rises to rank four before it collapses. How do the two relate, now that the slice at II is the first compression?</li>
 <li>Is the phase-transition detector the same gate as the label-drift signal, ε<sub>FGT</sub>?</li>
 </ul>
 <div class="card"><p style="margin:0"><b>Falsifiable form (proposed, not run).</b> <b>Claim:</b> after an LLM swap at II, builds whose III labels were re-issued by an independent labeler show fewer escaped defects than builds that reuse the old labels. <b>Falsified if</b> the escaped-defect rate differs by less than a threshold fixed before the run. <b>If wrong, we change:</b> stop treating label calibration as model-specific. The threshold is a placeholder for you to set.</p></div>
