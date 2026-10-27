@@ -358,6 +358,65 @@ V.   DISTRIBUTION  the path actually taken
 <div class="card" style="margin-top:10px"><p style="margin:0"><b>G3 · A threshold, if the strong sense is claimed.</b> <b>Claim:</b> there is a measurable level of label severity or reach above which routing changes qualitatively. <b>Falsified if</b> routing changes smoothly with no breakpoint. <b>If wrong, we change:</b> use the branching sense only and drop the threshold language.</p></div>
 <p class="f">Proposed, not run. Thresholds and coding rules are placeholders to set before reading any data.</p>
 
+<div class="lab">The tree as an autoencoder · soil → roots → trunk → branches → canopy → soil′</div>
+<div class="card"><p style="margin:0">Read a tree as a flow system that compresses and then expands. Roots gather from a wide area into one channel (<b>encode</b>, area → point). The trunk is the narrowest place every unit of flow must pass: the <b>bottleneck</b>, where the cut lives. Branches fan the flow back out (<b>decode</b>, point → area), the canopy spends it, and what falls returns as soil′. That is Bejan’s two directions of tree-shaped flow joined end to end. The bifurcation sits where the trunk ends and the routes begin.</p></div>
+
+<div class="card" style="margin-top:10px">
+<svg viewBox="0 0 760 322" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Six boxes narrowing then widening like an hourglass: soil, roots, trunk as the bottleneck, branches, canopy, and soil prime. A dashed return arrow runs from soil prime back to soil.">
+<defs><marker id="ae-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--mut)"/></marker></defs>
+<g stroke="var(--mut)" stroke-width="1.5"><line x1="20" y1="48" x2="364" y2="48"/><line x1="396" y1="48" x2="740" y2="48"/></g>
+<text class="m" x="192" y="40" text-anchor="middle">encoder · area → point</text><text class="m" x="568" y="40" text-anchor="middle">decoder · point → area</text>
+<g stroke-width="2" fill="var(--card)">
+<rect x="20" y="60" width="95" height="140" rx="10" stroke="var(--r1)"/><rect x="145" y="82" width="95" height="96" rx="10" stroke="var(--r2)"/><rect x="270" y="102" width="95" height="56" rx="10" stroke="var(--r3)"/><rect x="395" y="82" width="95" height="96" rx="10" stroke="var(--r4)"/><rect x="520" y="60" width="95" height="140" rx="10" stroke="var(--r5)"/><rect x="645" y="60" width="95" height="140" rx="10" stroke="var(--acc)"/>
+</g>
+<g stroke="var(--mut)" stroke-width="1.5" marker-end="url(#ae-ar)"><line x1="116" y1="130" x2="143" y2="130"/><line x1="241" y1="130" x2="268" y2="130"/><line x1="366" y1="130" x2="393" y2="130"/><line x1="491" y1="130" x2="518" y2="130"/><line x1="616" y1="130" x2="643" y2="130"/></g>
+<g text-anchor="middle" style="font-weight:700"><text x="67" y="134">I · soil</text><text x="192" y="134">II · roots</text><text x="317" y="134">III · trunk</text><text x="442" y="134">IV · branches</text><text x="567" y="134">V · canopy</text><text x="692" y="134">I′ · soil′</text></g>
+<g text-anchor="middle"><text x="67" y="222">inputs</text><text class="m" x="67" y="237">state at t</text><text x="192" y="222">encode</text><text class="m" x="192" y="237">gather, converge</text><text x="317" y="222">bottleneck</text><text class="m" x="317" y="237">the cut (label)</text><text x="442" y="222">decode</text><text class="m" x="442" y="237">bifurcate, route</text><text x="567" y="222">allocation</text><text class="m" x="567" y="237">where flow is spent</text><text x="692" y="222">write-back</text><text class="m" x="692" y="237">litter, seed, shade</text></g>
+<path d="M692 246 C 692 318, 67 318, 67 246" fill="none" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ae-ar)"/>
+<text x="380" y="304" text-anchor="middle" style="fill:var(--acc);font-style:italic">Δ = soil′ − soil · the error absorbed</text>
+</svg>
+<p class="f" style="margin-top:8px">The width of each box is the width of the channel. Illustrative, not measured.</p>
+</div>
+
+<div class="lab">Softmax at every fork · why hindsight connects the dots</div>
+<div class="card">
+<svg viewBox="0 0 760 232" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Two panels at the same fork. Looking forward, four routes carry probabilities 0.42, 0.27, 0.19 and 0.12 as bars. Looking back, only the second route, which was not the most probable, is drawn solid; the other three are faint and unsampled.">
+<g fill="none" stroke="var(--line)" stroke-width="1.5"><rect x="12" y="8" width="360" height="216" rx="10"/><rect x="388" y="8" width="360" height="216" rx="10"/></g>
+<text x="24" y="30" style="font-weight:700">Looking forward · a distribution</text><text x="400" y="30" style="font-weight:700">Looking back · one path</text>
+<circle cx="42" cy="120" r="7" fill="var(--r3)"/><circle cx="418" cy="120" r="7" fill="var(--r3)"/>
+<g fill="none" stroke="var(--r4)" stroke-width="2">
+<path d="M42 120 C 102 120, 152 62, 212 62"/><path d="M42 120 C 102 120, 152 98, 212 98"/><path d="M42 120 C 102 120, 152 134, 212 134"/><path d="M42 120 C 102 120, 152 170, 212 170"/>
+</g>
+<g fill="var(--r5)"><rect x="224" y="55" width="109" height="14" rx="3"/><rect x="224" y="91" width="70" height="14" rx="3"/><rect x="224" y="127" width="49" height="14" rx="3"/><rect x="224" y="163" width="31" height="14" rx="3"/></g>
+<g class="m"><text x="338" y="66">0.42</text><text x="299" y="102">0.27</text><text x="278" y="138">0.19</text><text x="260" y="174">0.12</text></g>
+<g fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4">
+<path d="M418 120 C 478 120, 528 62, 588 62"/><path d="M418 120 C 478 120, 528 134, 588 134"/><path d="M418 120 C 478 120, 528 170, 588 170"/>
+</g>
+<path d="M418 120 C 478 120, 528 98, 588 98 L 700 98" fill="none" stroke="var(--r4)" stroke-width="3.5"/>
+<g fill="var(--line)"><circle cx="588" cy="62" r="4"/><circle cx="588" cy="134" r="4"/><circle cx="588" cy="170" r="4"/></g><circle cx="588" cy="98" r="6" fill="var(--r5)"/>
+<text x="600" y="82" style="font-weight:700">the path taken</text><text class="m" x="600" y="118">a draw: p = 0.27, not the argmax</text>
+<text class="m" x="400" y="210">unsampled branches live in V’s graveyard</text>
+</svg>
+<p class="f" style="margin-top:8px">Same fork, two vantage points. Backward, the realized path reads as the obvious one. Forward, it was one draw from a distribution.</p>
+</div>
+<p>At each fork the system does not pick a route; it assigns a weight to each, the way softmax turns relative advantages into probabilities. What actually happens is a <b>draw</b>, and the draw conditions the next fork’s distribution: that is path-dependency, and it is the write-back at I′. Looking backward, you see only the sampled path, and because it happened it reads as the argmax. That is why the dots connect in hindsight and not in foresight. If the system always took the argmax it would be computable forward and the dots would connect both ways. From the observer’s side the system is not deterministic: hidden state and many interacting agents make the distribution the honest description. Structure remains, because priors shape how sharp the distribution is, so judgment is mostly calibration. Where Jobs said you can only connect the dots looking backward, this reading adds that the dots you connect are the survivors.</p>
+
+<details class="rd"><summary><b>From the session</b> · the exchange this section grew from</summary><div class="rb">
+<p><b>You:</b> For me, this is visual mnemonic and vocabulary, that invites, like a branching tree, further refinements down the road. Isn’t that what all nuance is about? All professional judgment?</p>
+<p><b>Claude:</b> Largely yes. A great deal of what we call expertise is finer discrimination: the novice sees one category and the professional sees three, each pointing to a different action. A tree is a good picture of that, and your vocabulary works that way because each term is a place to split further without redoing the rest.</p>
+<p>A branch earns its place only if it changes what someone does. This is your G1 turned on the vocabulary itself. A distinction nobody downstream acts on is an inert label, however finely it is drawn. In a constructal tree, branching continues only while the access gained is worth the cost of the extra channel. Judgment is knowing where to stop splitting as much as knowing where to split. Over-branching is the failure you’ve already named elsewhere on the page: the discourse that never converges.</p>
+<p>Expertise also runs the other way. Experts chunk. They merge many distinctions into one fast, reliable gestalt and reopen it only when something doesn’t fit. So judgment is not a tree that only grows. It splits when a decision demands it, merges when a distinction stops paying, and writes back at I′ so the next pass starts from a revised tree. That matches your own ladder: the loop exists because the allocation at V returns as a changed I′.</p>
+<p>The five responses are a good example. They’re a first cut and should be refined by use. The empty “transform” row is where I’d expect the first real split.</p>
+</div></details>
+
+<div class="lab">Where the analogy stops</div>
+<div class="card"><p style="margin:0">An autoencoder is trained to reconstruct its input, and a tree is not. Here soil′ differs from soil on purpose, because the loop writes back, so a closer machine analogy is a recurrent or variational loop. What carries over is the bottleneck, the encode/decode symmetry, and a distribution at each fork. The tree also merges as well as splits: expert judgment chunks distinctions that stopped paying, so refinement is two-way.</p></div>
+
+<div class="lab">Falsifiables</div>
+<div class="card"><p style="margin:0"><b>H1 · Distributions beat single guesses.</b> <b>Claim:</b> at forks in a coded set of cases, calibrated probability forecasts predict the realized route better out of sample than a forecast of the single most likely route. <b>Falsified if</b> argmax forecasts match calibrated ones and the fitted probabilities sit near 0 or 1. <b>If wrong, we change:</b> treat that fork as nearly deterministic and drop the softmax language there.</p></div>
+<div class="card" style="margin-top:10px"><p style="margin:0"><b>H2 · Path dependency.</b> <b>Claim:</b> the distribution at fork 2 depends on which branch was drawn at fork 1, even for cases that looked alike at fork 1. <b>Falsified if</b> outcomes at fork 2 are independent of the fork-1 draw once the state is controlled for. <b>If wrong, we change:</b> the I′ write-back is weak in this system; remove the loop from its figure.</p></div>
+<p class="f">Proposed, not run. Thresholds and coding rules are placeholders to set before reading any data.</p>
+
 <div class="lab">The diagram · the ladder as a timeline</div>
 <div class="card">
 <svg viewBox="0 0 780 245" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Nine events in order, colored by rung: MC2 funded 2005, plea 2008, Allen dinner 2010, Villani meetings 2017, Le Maire request 2018, Epstein dies 2019, Brunel arrested 2020, Brunel dies 2022, Le Monde video 2026.">
