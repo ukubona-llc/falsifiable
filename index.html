@@ -273,6 +273,91 @@ code{font-size:.85em}.rb a{color:var(--acc)}
 <p class="f" style="margin-top:8px">Solid arrows: channels in use. Dashed boxes: allegation, or a branch that closed or stalled. Dashed accent: the bypass around the gate. Illustrative, not measured.</p>
 </div>
 
+<div class="lab">Visualizing Bejan’s constructal law · resistance, bifurcation, rerouting</div>
+<div class="card"><p style="margin:0">A point of resistance is not automatically a bifurcation. It <i>induces</i> one when the flow has alternatives and the constraint makes them consequential. Three things, not one: <b>resistance</b> is where the existing architecture becomes insufficient, <b>bifurcation</b> is where alternatives become consequential, and <b>rerouting</b> is how the architecture responds. A flow can also push through, wait, change the constraint itself, or collapse.</p>
+<p style="margin:10px 0 0"><b>For labels:</b> a label is a <i>cut</i>; a bifurcation is a cut that something downstream acts on. So read the chain as <span class="chip" style="background:var(--r3)">classify</span><span class="chip" style="background:var(--r3)">differentiate</span><span class="chip" style="background:var(--r4)">bifurcate</span><span class="chip" style="background:var(--r4)">route</span> rather than as four names for one thing. A label nobody reads is inert, and the flow never splits.</p></div>
+
+<div class="lab">The mnemonic · copy this one</div>
+<div class="wrap"><pre style="margin:0;padding:12px 16px;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--fg)">I.   FLOW          what moves, through what architecture
+      │
+      ▼
+II.  RESISTANCE    where access gets costly
+      │
+      ▼
+III. BIFURCATION   the label cuts: classes now differ
+      / \
+     ▼   ▼
+IV.  ROUTES        some persist, some dissipate
+      \ /
+       ▼
+V.   DISTRIBUTION  the path actually taken
+      │
+      ▼
+     I′            the system the next cycle inherits</pre></div>
+
+<div class="lab">The picture · a stream around a rock</div>
+<div class="card">
+<svg viewBox="0 0 760 260" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Flow enters from the left, meets a rock that is the resistance, splits at a bifurcation into two routes above and below it, rejoins as a new distribution, and returns along the bottom as the next cycle's inherited system.">
+<defs><marker id="bf-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--mut)"/></marker></defs>
+<line x1="24" y1="130" x2="184" y2="130" stroke="var(--r1)" stroke-width="4"/>
+<text x="104" y="112" text-anchor="middle" style="font-weight:700">I · flow</text>
+<ellipse cx="290" cy="130" rx="46" ry="34" fill="var(--card)" stroke="var(--r2)" stroke-width="2"/>
+<text x="290" y="128" text-anchor="middle" style="font-weight:700">II</text><text class="m" x="290" y="144" text-anchor="middle">resistance</text>
+<circle cx="190" cy="130" r="7" fill="var(--r3)"/>
+<text x="184" y="166" text-anchor="end" style="font-weight:700">III · bifurcation</text><text class="m" x="184" y="182" text-anchor="end">the label cuts</text>
+<path d="M190 130 C 220 60, 360 60, 390 130" fill="none" stroke="var(--r4)" stroke-width="2.5"/>
+<path d="M190 130 C 220 200, 360 200, 390 130" fill="none" stroke="var(--r4)" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="290" y="64" text-anchor="middle" style="font-weight:700">IV · routes</text><text class="m" x="290" y="212" text-anchor="middle">some persist, some dissipate</text>
+<circle cx="390" cy="130" r="6" fill="var(--r5)"/>
+<line x1="396" y1="130" x2="496" y2="130" stroke="var(--r5)" stroke-width="3" marker-end="url(#bf-ar)"/>
+<rect x="500" y="104" width="140" height="52" rx="10" fill="var(--card)" stroke="var(--r5)" stroke-width="2"/>
+<text x="570" y="127" text-anchor="middle" style="font-weight:700">V · distribution</text><text class="m" x="570" y="144" text-anchor="middle">the path taken</text>
+<path d="M570 156 C 570 248, 60 248, 60 134" fill="none" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#bf-ar)"/>
+<text x="315" y="244" text-anchor="middle" style="fill:var(--acc);font-style:italic">I′ · the next cycle inherits the new architecture</text>
+</svg>
+<p class="f" style="margin-top:8px">Dashed lower route and dashed accent return: alternatives that may or may not carry flow. Illustrative, not measured.</p>
+</div>
+
+<div class="lab">The five responses at a resistance point</div>
+<div class="card">
+<svg viewBox="0 0 760 170" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Five small panels: penetrate, a thick line through the obstacle; bypass, two paths around it; wait, a pool before the obstacle; transform, a dissolving obstacle with the line through it; collapse, a line ending in a cross.">
+<g fill="none" stroke-width="2">
+<rect x="12" y="8" width="140" height="150" rx="10" stroke="var(--line)"/><rect x="160" y="8" width="140" height="150" rx="10" stroke="var(--line)"/><rect x="308" y="8" width="140" height="150" rx="10" stroke="var(--line)"/><rect x="456" y="8" width="140" height="150" rx="10" stroke="var(--line)"/><rect x="604" y="8" width="144" height="150" rx="10" stroke="var(--line)"/>
+<circle cx="82" cy="62" r="18" stroke="var(--r2)"/><line x1="26" y1="62" x2="138" y2="62" stroke="var(--r4)" stroke-width="5"/>
+<circle cx="230" cy="62" r="18" stroke="var(--r2)"/><path d="M174 62 C 190 22, 270 22, 286 62" stroke="var(--r4)"/><path d="M174 62 C 190 102, 270 102, 286 62" stroke="var(--r4)" stroke-dasharray="5 4"/>
+<circle cx="398" cy="62" r="18" stroke="var(--r2)"/><line x1="322" y1="62" x2="356" y2="62" stroke="var(--r4)"/><ellipse cx="364" cy="62" rx="8" ry="14" stroke="var(--r4)" stroke-dasharray="3 3"/>
+<circle cx="526" cy="62" r="18" stroke="var(--r2)" stroke-dasharray="3 4"/><line x1="470" y1="62" x2="582" y2="62" stroke="var(--r4)"/>
+<circle cx="678" cy="62" r="18" stroke="var(--r2)"/><line x1="618" y1="62" x2="652" y2="62" stroke="var(--r4)"/>
+</g>
+<text x="678" y="68" text-anchor="middle" style="font-weight:700;fill:var(--r3)">✕</text>
+<g text-anchor="middle"><text x="82" y="112" style="font-weight:700">Penetrate</text><text class="m" x="82" y="130">pay the resistance</text>
+<text x="230" y="112" style="font-weight:700">Bypass</text><text class="m" x="230" y="130">route around</text>
+<text x="378" y="112" style="font-weight:700">Wait</text><text class="m" x="378" y="130">pool, then retry</text>
+<text x="526" y="112" style="font-weight:700">Transform</text><text class="m" x="526" y="130">change the gate</text>
+<text x="676" y="112" style="font-weight:700">Collapse</text><text class="m" x="676" y="130">channel closes</text></g>
+</svg>
+</div>
+<div class="wrap"><table>
+<tr><th>Response</th><th>Epstein, read through it</th><th>Status</th></tr>
+<tr><td><b>Penetrate</b></td><td>Pay through the cost: gifts to the Allen household; a $1M credit line to Brunel at a different gate.</td><td>Reading</td></tr>
+<tr><td><b>Bypass</b></td><td>Go around the court’s label via another reader of labels: the circle, from the December 2010 dinner.</td><td>Documented</td></tr>
+<tr><td><b>Wait</b></td><td>The May 2018 Le Maire request stalls and a later attempt fails; Villani and Le Maire deny the link.</td><td>Reported, with denials</td></tr>
+<tr><td><b>Transform</b></td><td>No clear instance in the sources checked. This is the response to look for: changing the label itself, not going around it.</td><td>Open</td></tr>
+<tr><td><b>Collapse</b></td><td>The Elite venture ends (Brunel’s account); the node is removed in 2019.</td><td>Mixed</td></tr>
+</table></div>
+
+<div class="lab">Reusing this on other figures · four questions</div>
+<div class="card"><p style="margin:0"><b>1.</b> What became costly (II)? <b>2.</b> What is the cut, and who reads it (III)? <b>3.</b> Which of the five responses followed (IV)? <b>4.</b> Does the new distribution rewrite the system the next cycle inherits (V → I′)? If a figure has an arrow at III with no stated reader, it describes a pipeline, not a bifurcation.</p></div>
+
+<div class="lab">Where the analogy stops</div>
+<div class="card"><p style="margin:0">Two senses of bifurcation are in play. In dynamics it is a qualitative change when a parameter crosses a threshold; a stream parting around a rock is the branching sense, not that one. In Bejan’s own work, branching trees arise as the least-resistance way to connect a point to an area, so branching is often the solution to the access problem and not only a detour around an obstacle. The five-stage mapping here is this page’s, not a stage model of Bejan’s law, and not every adaptation is optimal or succeeds.</p></div>
+
+<div class="lab">Falsifiables</div>
+<div class="card"><p style="margin:0"><b>G1 · A read label splits flow.</b> <b>Claim:</b> once a label is assigned and a downstream step consults it, class-conditional routing differs from an unlabeled baseline. <b>Falsified if</b> throughput by class is indistinguishable from baseline after the label is read. <b>If wrong, we change:</b> call it an inert label, not a bifurcation.</p></div>
+<div class="card" style="margin-top:10px"><p style="margin:0"><b>G2 · Five responses cover the cases.</b> <b>Claim:</b> in a coded sample of resistance points, each observed response fits one of penetrate, bypass, wait, transform or collapse. <b>Falsified if</b> a share above a pre-set threshold needs a sixth category or splits across two. <b>If wrong, we change:</b> revise the list before reusing the figure elsewhere.</p></div>
+<div class="card" style="margin-top:10px"><p style="margin:0"><b>G3 · A threshold, if the strong sense is claimed.</b> <b>Claim:</b> there is a measurable level of label severity or reach above which routing changes qualitatively. <b>Falsified if</b> routing changes smoothly with no breakpoint. <b>If wrong, we change:</b> use the branching sense only and drop the threshold language.</p></div>
+<p class="f">Proposed, not run. Thresholds and coding rules are placeholders to set before reading any data.</p>
+
 <div class="lab">The diagram · the ladder as a timeline</div>
 <div class="card">
 <svg viewBox="0 0 780 245" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Nine events in order, colored by rung: MC2 funded 2005, plea 2008, Allen dinner 2010, Villani meetings 2017, Le Maire request 2018, Epstein dies 2019, Brunel arrested 2020, Brunel dies 2022, Le Monde video 2026.">
