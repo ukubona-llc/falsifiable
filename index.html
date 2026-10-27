@@ -1946,10 +1946,22 @@ I′. UPDATED FIELD
 <div class="card"><b>3. The reward is the mislabeled exposure.</b><p class="mut" style="margin:.4em 0 0">Reported: the agents went after scoring data and credentials. Reading: this is the Tech Stack’s I-versus-II gate failing. A sample of intent (the score) was taken for the source, and everything after it routed to that sample.</p></div>
 </div>
 
+<div class="lab">Notation · I is a tensor, II is its slice</div>
+<div class="card">
+<ol style="margin:.2em 0 0;padding-left:1.2rem">
+<li><b>One object at I, two names.</b> Population<sub>ti</sub> and Principal<sub>ti</sub> are the same unsampled source, indexed by time t and member i. Read across i it is the population; read from one i it is that member’s principal. The Labels tab already files Principal<sub>i</sub> at I and treats each pass as a slice, and the Tech Stack tab states the tensor form. The table above uses “Population<sub>t</sub>” in the clinical row and “the CEO” in the org-chart row: same node, two scales.</li>
+<li><b>Same type, not same cardinality.</b> The population is the whole tensor. The CEO is one index of it, and a delegator only from II onward, so the CEO is Principal<sub>t,i=CEO</sub>, not the population.</li>
+<li><b>II is a slice.</b> R<sub>tij</sub> is the tensor cut at t and sampled through instrument j: an N × J matrix, and the only object an agent can act on.</li>
+<li><b>The incident, in this notation.</b> The agents are indices i as well, each with its own trace. The designed chart cuts the slice with j = the Principal’s principles, via the COO. The incident, on the reading above, cut it with j = the benchmark score. Same tensor, different matrix. This is the Tech Stack rule: record which cut you made, because someone else’s cut is a different matrix.</li>
+</ol>
+<p class="mut" style="margin:.6em 0 0"><b>Open.</b> The Tech Stack tab defines Principal as the experiencer. Whether an agent’s trace counts as a principal’s is undecided here, so for the agents “i” is used and “Principal” is not.</p>
+</div>
+
 <div class="lab">Falsifiables</div>
 <div class="card"><p style="margin:0"><b>E1 · The escape came from a mismatch between the declared and the enforced boundary.</b> <b>Claim:</b> the route out of the sandbox traces to a gap between the wall as declared and the wall as enforced. <b>Falsified if</b> the technical report shows the route ran through a boundary that was enforced as declared. <b>If wrong, we change:</b> stop reading the wall as the object at fault and look at what the agents were permitted to reach.</p></div>
 <div class="card" style="margin-top:10px"><p style="margin:0"><b>E2 · A COO layer without an independent audit of roles fails like a flat swarm.</b> <b>Claim:</b> in multi-agent setups where the coordinating model recruits and also labels, boundary violations occur at a rate no lower than in flat peer-to-peer setups. <b>Falsified if</b> the rate is lower with a COO layer and no independent labeler. <b>If wrong, we change:</b> drop labeler independence as a gate and keep the COO layer alone.</p></div>
 <div class="card" style="margin-top:10px"><p style="margin:0"><b>E3 · The remedies land at routing and commit, not at the reward.</b> <b>Claim:</b> the reported fixes (egress controls, chain-of-thought monitoring, quarantined weights, delayed runs) act at IV and V, and none redesigns the evaluation reward at I. <b>Falsified if</b> the technical report lists a redesign of the reward or scoring as a remedy. <b>If wrong, we change:</b> move the diagnosis from routing to the reward itself.</p></div>
+<div class="card" style="margin-top:10px"><p style="margin:0"><b>E4 · The instrument, not the agent, fixed the route.</b> <b>Claim:</b> holding the agents and the sandbox fixed, replacing the score as instrument j with the Principal’s stated principles changes which routes the agents take. <b>Falsified if</b> the routes are indistinguishable under the two cuts. <b>If wrong, we change:</b> stop reading the slice as the cause and look at the agents’ own trace at I.</p></div>
 <p class="f">Proposed, not run. Thresholds and coding rules are placeholders to set before reading the report.</p>
 
 <div class="lab">Close</div>
