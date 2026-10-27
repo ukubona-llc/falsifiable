@@ -358,24 +358,29 @@ V.   DISTRIBUTION  the path actually taken
 <div class="card" style="margin-top:10px"><p style="margin:0"><b>G3 · A threshold, if the strong sense is claimed.</b> <b>Claim:</b> there is a measurable level of label severity or reach above which routing changes qualitatively. <b>Falsified if</b> routing changes smoothly with no breakpoint. <b>If wrong, we change:</b> use the branching sense only and drop the threshold language.</p></div>
 <p class="f">Proposed, not run. Thresholds and coding rules are placeholders to set before reading any data.</p>
 
-<div class="lab">The tree as an autoencoder · soil → roots → trunk → branches → canopy → soil′</div>
-<div class="card"><p style="margin:0">Read a tree as a flow system that compresses and then expands. Roots gather from a wide area into one channel (<b>encode</b>, area → point). The trunk is the narrowest place every unit of flow must pass: the <b>bottleneck</b>, where the cut lives. Branches fan the flow back out (<b>decode</b>, point → area), the canopy spends it, and what falls returns as soil′. That is Bejan’s two directions of tree-shaped flow joined end to end. The bifurcation sits where the trunk ends and the routes begin.</p></div>
+<div class="lab">The tree as an autoencoder · soil → roots → trunk → branches → canopy ↺ soil</div>
+<div class="card"><p style="margin:0">Read a tree as a flow system that compresses and then expands. Roots gather from a wide area into one channel (<b>encode</b>, area → point). The trunk is the narrowest place every unit of flow must pass: the <b>bottleneck</b>, where the cut lives. Branches fan the flow back out (<b>decode</b>, point → area), the canopy spends it, and what falls becomes the soil of the next pass. Each pass is one slice of a stack, five stages per slice, like slices of a tensor. That is Bejan’s two directions of tree-shaped flow joined end to end. The bifurcation sits where the trunk ends and the routes begin.</p></div>
 
 <div class="card" style="margin-top:10px">
-<svg viewBox="0 0 760 322" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Six boxes narrowing then widening like an hourglass: soil, roots, trunk as the bottleneck, branches, canopy, and soil prime. A dashed return arrow runs from soil prime back to soil.">
+<svg viewBox="0 0 760 350" width="100%" style="max-width:780px;display:block;margin:auto" role="img" aria-label="Five boxes narrowing then widening: soil, roots, trunk as the bottleneck, branches, canopy. Two more copies of the five stages are stacked behind like slices of a tensor, labeled t+1 and t+2. A dashed return arrow runs from the canopy back to the soil of the next slice.">
 <defs><marker id="ae-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--mut)"/></marker></defs>
-<g stroke="var(--mut)" stroke-width="1.5"><line x1="20" y1="48" x2="364" y2="48"/><line x1="396" y1="48" x2="740" y2="48"/></g>
-<text class="m" x="192" y="40" text-anchor="middle">encoder · area → point</text><text class="m" x="568" y="40" text-anchor="middle">decoder · point → area</text>
-<g stroke-width="2" fill="var(--card)">
-<rect x="20" y="60" width="95" height="140" rx="10" stroke="var(--r1)"/><rect x="145" y="82" width="95" height="96" rx="10" stroke="var(--r2)"/><rect x="270" y="102" width="95" height="56" rx="10" stroke="var(--r3)"/><rect x="395" y="82" width="95" height="96" rx="10" stroke="var(--r4)"/><rect x="520" y="60" width="95" height="140" rx="10" stroke="var(--r5)"/><rect x="645" y="60" width="95" height="140" rx="10" stroke="var(--acc)"/>
+<g stroke="var(--mut)" stroke-width="1.5"><line x1="20" y1="44" x2="344" y2="44"/><line x1="396" y1="44" x2="720" y2="44"/></g>
+<text class="m" x="182" y="36" text-anchor="middle">encoder · area → point</text><text class="m" x="558" y="36" text-anchor="middle">decoder · point → area</text>
+<g stroke="var(--line)" stroke-width="1.5" fill="var(--bg)">
+<rect x="52" y="68" width="110" height="140" rx="10"/><rect x="200" y="90" width="110" height="96" rx="10"/><rect x="348" y="110" width="110" height="56" rx="10"/><rect x="496" y="90" width="110" height="96" rx="10"/><rect x="644" y="68" width="110" height="140" rx="10"/>
+<rect x="36" y="84" width="110" height="140" rx="10"/><rect x="184" y="106" width="110" height="96" rx="10"/><rect x="332" y="126" width="110" height="56" rx="10"/><rect x="480" y="106" width="110" height="96" rx="10"/><rect x="628" y="84" width="110" height="140" rx="10"/>
 </g>
-<g stroke="var(--mut)" stroke-width="1.5" marker-end="url(#ae-ar)"><line x1="116" y1="130" x2="143" y2="130"/><line x1="241" y1="130" x2="268" y2="130"/><line x1="366" y1="130" x2="393" y2="130"/><line x1="491" y1="130" x2="518" y2="130"/><line x1="616" y1="130" x2="643" y2="130"/></g>
-<g text-anchor="middle" style="font-weight:700"><text x="67" y="134">I · soil</text><text x="192" y="134">II · roots</text><text x="317" y="134">III · trunk</text><text x="442" y="134">IV · branches</text><text x="567" y="134">V · canopy</text><text x="692" y="134">I′ · soil′</text></g>
-<g text-anchor="middle"><text x="67" y="222">inputs</text><text class="m" x="67" y="237">state at t</text><text x="192" y="222">encode</text><text class="m" x="192" y="237">gather, converge</text><text x="317" y="222">bottleneck</text><text class="m" x="317" y="237">the cut (label)</text><text x="442" y="222">decode</text><text class="m" x="442" y="237">bifurcate, route</text><text x="567" y="222">allocation</text><text class="m" x="567" y="237">where flow is spent</text><text x="692" y="222">write-back</text><text class="m" x="692" y="237">litter, seed, shade</text></g>
-<path d="M692 246 C 692 318, 67 318, 67 246" fill="none" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ae-ar)"/>
-<text x="380" y="304" text-anchor="middle" style="fill:var(--acc);font-style:italic">Δ = soil′ − soil · the error absorbed</text>
+<g class="m" style="font-size:10px"><text x="58" y="80">t+2</text><text x="42" y="96">t+1</text><text x="28" y="114">t</text></g>
+<g stroke-width="2" fill="var(--card)">
+<rect x="20" y="100" width="110" height="140" rx="10" stroke="var(--r1)"/><rect x="168" y="122" width="110" height="96" rx="10" stroke="var(--r2)"/><rect x="316" y="142" width="110" height="56" rx="10" stroke="var(--r3)"/><rect x="464" y="122" width="110" height="96" rx="10" stroke="var(--r4)"/><rect x="612" y="100" width="110" height="140" rx="10" stroke="var(--r5)"/>
+</g>
+<g stroke="var(--mut)" stroke-width="1.5" marker-end="url(#ae-ar)"><line x1="132" y1="170" x2="166" y2="170"/><line x1="280" y1="170" x2="314" y2="170"/><line x1="428" y1="170" x2="462" y2="170"/><line x1="576" y1="170" x2="610" y2="170"/></g>
+<g text-anchor="middle" style="font-weight:700"><text x="75" y="174">I · soil</text><text x="223" y="174">II · roots</text><text x="371" y="174">III · trunk</text><text x="519" y="174">IV · branches</text><text x="667" y="174">V · canopy</text></g>
+<g text-anchor="middle"><text x="75" y="262">inputs</text><text class="m" x="75" y="277">state at t</text><text x="223" y="262">encode</text><text class="m" x="223" y="277">gather, converge</text><text x="371" y="262">bottleneck</text><text class="m" x="371" y="277">the cut (label)</text><text x="519" y="262">decode</text><text class="m" x="519" y="277">bifurcate, route</text><text x="667" y="262">allocation</text><text class="m" x="667" y="277">flow is spent</text></g>
+<path d="M714 240 C 714 340, 28 340, 28 242" fill="none" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ae-ar)"/>
+<text x="380" y="342" text-anchor="middle" style="fill:var(--acc);font-style:italic">V → I at t+1 · the next slice’s soil (I′) · Δ = the error absorbed</text>
 </svg>
-<p class="f" style="margin-top:8px">The width of each box is the width of the channel. Illustrative, not measured.</p>
+<p class="f" style="margin-top:8px">The width of each box is the width of the channel. Each pass through the five stages is one slice; V returns to I at the next slice, so I′ is the next slice’s I. Illustrative, not measured.</p>
 </div>
 
 <div class="lab">Softmax at every fork · why hindsight connects the dots</div>
@@ -410,7 +415,7 @@ V.   DISTRIBUTION  the path actually taken
 </div></details>
 
 <div class="lab">Where the analogy stops</div>
-<div class="card"><p style="margin:0">An autoencoder is trained to reconstruct its input, and a tree is not. Here soil′ differs from soil on purpose, because the loop writes back, so a closer machine analogy is a recurrent or variational loop. What carries over is the bottleneck, the encode/decode symmetry, and a distribution at each fork. The tree also merges as well as splits: expert judgment chunks distinctions that stopped paying, so refinement is two-way.</p></div>
+<div class="card"><p style="margin:0">An autoencoder is trained to reconstruct its input, and a tree is not. Here the soil at t+1 (I′) differs from the soil at t on purpose, because the loop writes back, so a closer machine analogy is a recurrent or variational loop. What carries over is the bottleneck, the encode/decode symmetry, and a distribution at each fork. The tree also merges as well as splits: expert judgment chunks distinctions that stopped paying, so refinement is two-way.</p></div>
 
 <div class="lab">Falsifiables</div>
 <div class="card"><p style="margin:0"><b>H1 · Distributions beat single guesses.</b> <b>Claim:</b> at forks in a coded set of cases, calibrated probability forecasts predict the realized route better out of sample than a forecast of the single most likely route. <b>Falsified if</b> argmax forecasts match calibrated ones and the fitted probabilities sit near 0 or 1. <b>If wrong, we change:</b> treat that fork as nearly deterministic and drop the softmax language there.</p></div>
