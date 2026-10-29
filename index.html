@@ -4718,7 +4718,58 @@ const V={
 pentad(){return `<h1>Pentadics</h1><p class="sub">Five rungs; every claim is routed to the rung where it would be decided.</p>
 <h2>Table · the ladder</h2><div class="wrap"><table><tr><th>Rung</th><th>Substrate</th><th>Domain</th><th>Role · operator</th><th>What it does here</th></tr>
 ${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}</span></td><td>${r[3]}</td><td>${r[4]}</td><td><b>${r[1]}</b><div class="f">${r[2]}</div></td><td>${r[5]}</td></tr>`).join("")}</table></div>
-<h2>Diagram · the pentagram</h2><div class="card">${star()}<p class="f">Edges join non-adjacent rungs: I↔III, III↔V, V↔II, II↔IV, IV↔I. Node size is the number of ledger rows touching that rung.</p></div>`},
+<h2>Diagram · the pentagram</h2><div class="card">${star()}<p class="f">Edges join non-adjacent rungs: I↔III, III↔V, V↔II, II↔IV, IV↔I. Node size is the number of ledger rows touching that rung.</p></div>
+<h2>Compression</h2>
+<p>Each principal i = 1…N holds <code>credo_i = interiority_i</code> and bears its own consequences. Beneath it hangs an owned tree (<code>R_ij</code>, <code>A_ijk</code>). Iteration runs one loop:</p>
+<ul>
+<li><b>III:</b> obstacles force detours.</li>
+<li><b>IV:</b> detours cross other trees' paths (i ≠ i′), producing collisions.</li>
+<li><b>V:</b> costs land on bearers, and the ledger records who survived and who died.</li>
+<li><b>I′:</b> a detour that carries its own budget and survives becomes a new i, with its own credo.</li>
+</ul>
+
+<h2>What the <code>_i</code> notation makes legible</h2>
+<ol>
+<li><b>Ownership depth.</b> The index length (i, ij, ijk) is the ownership tree, so "who can write to this node" is a well-formed question for every node.</li>
+<li><b>Conflict taxonomy.</b> The same first index means internal conflict (alignment and audit). A different first index means external conflict (a game). Your "drama within the org versus against others" needs no extra machinery.</li>
+<li><b>Betrayal as a measurable gap.</b> The Stage II failure is the distance between <code>credo_i</code> and what <code>R_ij</code> stores, with the writers outside i being the attack set.</li>
+<li><b>Cost attribution.</b> V's cause-of-death field takes an i-valued or Milieu-valued entry.</li>
+<li><b>Credo count equals principal count.</b> Under the identity, N_t counts both, so "too many credos" is a statement about N_t.</li>
+<li><b>Equilibrium structure.</b> I–III vary across i, while the cost profile over i is the only object all i share. That is your Cold War point stated formally.</li>
+</ol>
+
+<h2>N under iteration</h2>
+<p>N_{t+1} = N_t + B_t − D_t, where B_t is detours that stabilize and D_t is the graveyard.</p>
+<p>Births scale roughly with N, since each i generates obstacles. Pairwise collisions scale with N(N−1)/2. If collision cost outgrows birth capacity, N saturates, unless a shared constraint at IV lowers per-pair cost. The Cold War understanding is that kind of constraint. So "N expands" holds only while detour cost stays below collision cost, and "God is dead" is the early, cheap-detour phase of that curve. The superlinear scaling is my derivation, not something you stated.</p>
+
+<h2>The two failure modes, read structurally</h2>
+<ol>
+<li><b>Non-monotone N_t is not a refutation by itself.</b> The real failure is a model that fits expansion and contraction equally well. The claim is unfalsifiable until you name the state variable that switches the sign of B − D, such as collision cost per principal against coordination capacity.</li>
+<li><b>N depends on III.</b> Counting credos needs an equivalence relation, and Classification is itself a stage that changes under iteration. N can grow because the classifier gets finer, with no new principals at all. The observer is also an i, conditioned on its own survival. So "N expands" is confounded with "the labeling operation changed" unless the count is held to a fixed criterion.</li>
+</ol>
+
+<h2>Falsifiables</h2>
+<ol>
+<li><b>Birth.</b> Founding of new i should be predicted by an independent budget and survival at V, not by obstacle density alone. It fails if obstacle density predicts founding with budget held constant.</li>
+<li><b>Reclassification invariance.</b> The growth in N should persist under two independent classifiers, one coarse and one fine. It fails if growth disappears under the coarse one.</li>
+<li><b>Collision scaling.</b> Per-principal collision cost should rise with N, and shared constraints should appear once it crosses a threshold. It fails if cost stays flat in N, or if cost rises indefinitely with no constraint structure emerging. The threshold has to be stated in advance.</li>
+<li><b>Write-audit.</b> Divergence between <code>credo_i</code> and <code>R_ij</code> should come mostly from writers outside i's tree. It fails if most of it comes from i's own writes.</li>
+</ol>
+
+<h2>Executive decisions and open contradictions</h2>
+<ul>
+<li><b>Decision:</b> N is counted under a fixed classifier, so changes in N and changes in III stay separate.</li>
+<li><b>Decision:</b> the N(N−1)/2 scaling is labeled a conjecture until you confirm it.</li>
+<li><b>Still open:</b>
+<ul>
+<li>silicon principals inflate N, which conflicts with the human-only final commit at rung I;</li>
+<li>Γ is undefined;</li>
+<li><code>Milieu_t</code> may double-count the other trees;</li>
+<li>"Collisions" has two meanings (hypotheses meeting the setting, and routes crossing between i's);</li>
+<li>the rung V ledger has no notation.</li>
+</ul></li>
+</ul>
+`},
 ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
 return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
 <div class="filters">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
@@ -4971,7 +5022,7 @@ try{localStorage.setItem("ukb-escape",JSON.stringify(ESCLOG))}catch(e){}
 document.getElementById("esc-log").innerHTML=escLogHTML()}
 function escClear(){if(!confirm("Clear the demo log from this browser?"))return;ESCLOG=[];try{localStorage.removeItem("ukb-escape")}catch(e){}document.getElementById("esc-log").innerHTML=escLogHTML()}
 const S={dom:"All"};
-const NAV=[["foreword","❝","Foreword"],["pentad","✦","Pentad"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["freewill","⚖","Free Will"],["bejan","⋔","Bejan's Law"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["llewyn","♪","Llewyn"],["counterpoint","♬","Counterpoint"],["labels","⌘","Labels"],["spiral","⟳","Spiral"],["nodes","⌖","Nodes"],["chief","♜","The Gate"],["plumbing","⚙","Plumbing"],["cortical","Ψ","Cortical"],["decoding","⌬","Decoding"],["hypomania","⚡","Hypomania"],["dangerous","⚠","Dangerous"],["escape","↯","Escape"],["flourishing","✿","Flourishing"],["append","+","Append"],["rounds","❡","Rounds"],["compression","⊚","Compression"],["ulysses","≋","Ulysses"],["orgchart","⊞","Org Chart"],["techstack","⛭","Tech Stack"],["epilogue","∎","Epilogue"]];
+const NAV=[["foreword","❝","Foreword"],["pentad","✦","Credo"],["ledger","▤","Ledger"],["figures","◔","Figures"],["rules","§","Rules"],["princeton","◇","Princeton"],["freewill","⚖","Free Will"],["bejan","⋔","Bejan's Law"],["coens","◈","Coen's"],["absurdism","∅","Absurdism"],["llewyn","♪","Llewyn"],["counterpoint","♬","Counterpoint"],["labels","⌘","Labels"],["spiral","⟳","Spiral"],["nodes","⌖","Nodes"],["chief","♜","The Gate"],["plumbing","⚙","Plumbing"],["cortical","Ψ","Cortical"],["decoding","⌬","Decoding"],["hypomania","⚡","Hypomania"],["dangerous","⚠","Dangerous"],["escape","↯","Escape"],["flourishing","✿","Flourishing"],["append","+","Append"],["rounds","❡","Rounds"],["compression","⊚","Compression"],["ulysses","≋","Ulysses"],["orgchart","⊞","Org Chart"],["techstack","⛭","Tech Stack"],["epilogue","∎","Epilogue"]];
 function render(){const k=location.hash.slice(1),v=V[k]?k:"foreword";document.getElementById("view").innerHTML=V[v]();
 document.getElementById("grid").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${n[0]===v?"on":""}"><b>${n[1]}</b>${n[2]}</a>`).join("");
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{S.dom=b.dataset.d;render()});
