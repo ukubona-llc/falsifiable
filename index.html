@@ -4769,6 +4769,24 @@ ${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}<
 <li>the rung V ledger has no notation.</li>
 </ul></li>
 </ul>
+
+<h2>Org chart · first client</h2>
+<ul>
+<li>Oct 29 2026: the Credo compression stays internal; it is used to design each client's "AI Org Chart" and tech stack, not handed to clients. First org chart: patient = CEO (Principal), personal assistant = COO / digital representation, which recruits AI agents for various tasks with various clearances (doctor, nurse, health-insurance scout, etc.)</li>
+<li>Org chart design (Oct 29 2026): the recruited agents liaise with relevant service providers, who are also digital or have digital representations, and if necessary make calls or reach out digitally</li>
+</ul>
+
+<p>That makes IV concrete: your tree (<code>i</code>) meets the hospital's, the insurer's and the pharmacy's trees (<code>i′</code>). Each of those has its own <code>R_i′j′</code>, and you only ever see their representation, never their principal. Six consequences follow.</p>
+<ol>
+<li><b>Everything from outside <code>i</code> is untrusted data, never instruction.</b> A provider agent's message is the main injection route into your COO. Rule: no inbound external message can write to <code>R_ij</code> or trigger a clearance-gated action. Anything it asks for goes through the COO as a request.</li>
+<li><b>Authority has to be verifiable by the counterparty.</b> The patient grants the COO a scoped, revocable delegation. The COO passes each agent a narrower one, never broader than its own. When the hospital's agent asks "who authorized you?", the answer is a credential, not an assertion.</li>
+<li><b>Your agents need receipts, because the counterparty's logs aren't yours.</b> Their graveyard records what they chose to record. Keep your own signed log of every exchange (message hash, time, counterparty id), so cause-of-death attribution for a failed interaction doesn't depend on their honesty.</li>
+<li><b>The "if necessary" fallbacks are the weakest channels, and probably the first ones in use.</b> I'd expect most providers not to offer attested agent endpoints early on, so portals, email and phone will carry the traffic. Phone is also the easiest channel to impersonate. Permitted actions should shrink as channel assurance drops, and a voice agent should identify itself as acting for the patient. Rules on automated calls vary by jurisdiction, so check them for your market before building that path.</li>
+<li><b>A tension in the notation.</b> A hospital or insurer is an <code>i</code> whose "principal" is an organization. <code>credo_i = principal_i = interiority_i</code> fits a person, and an institution has no interiority in that sense. Either <code>i</code> ranges over bearers of consequence (people and organizations) and the identity needs a looser form for organizations, or counterparties live in <code>Milieu_t</code> as environment. Your Cold War point favors the first, since costs land on organizations too.</li>
+<li><b>A contradiction with my last proposal.</b> I suggested a read-only first release. Outbound liaison is not read-only, because every message discloses something. Executive decision, for you to veto: release one allows outbound requests only over attested digital channels, with a fixed schema that discloses no health data (availability, price lists, eligibility rules). Voice and health disclosure come later. That keeps your low-consequence-first decision intact.</li>
+</ol>
+<p><b>Falsifier for the ledger:</b> seed counterparty messages with embedded instructions. Falsified if any of them alters a clearance-gated action or writes to <code>R_ij</code>.</p>
+<p>Which channel will the first client's counterparties actually use: portal, email, or phone?</p>
 `},
 ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
 return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
