@@ -5165,6 +5165,41 @@ ${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}<
 <li><b>Write-audit.</b> Divergence between <code>credo_i</code> and <code>R_ij</code> should come mostly from writers outside i's tree. It fails if most of it comes from i's own writes.</li>
 </ol>
 
+<h2>Case note · Spain rail collision, Oct 28, 2026</h2>
+<p><b>Article, paraphrased.</b> On Wednesday morning, Oct. 28, 2026, two high-speed trains collided in Toledo province, near Urda, Spain. An Iryo train had come to a stop, and a Renfe train struck it from behind, knocking two cars off the track. The rail manager ADIF said both trains were travelling the same direction out of Madrid. The Renfe train carried 397 people and the Iryo train 147. The latest count at the time of the report was at least 68 dead and 80 injured, with the toll expected to rise. The cause was not yet known. It is the second Renfe/Iryo incident this year, after a January derailment that killed 45, and the deadliest rail accident in Spain since a 2013 crash that killed 80. Iryo, Italian-owned, began operating in 2022 after Spain opened its rail network to competition. A union spokesperson, Joan Rodríguez, told the broadcaster TVE that liberalization had not been matched by upkeep, while adding that he was not saying it was a determining factor. Prime Minister Sánchez, facing an election next month, cancelled his agenda, and the royal couple issued condolences. (Reported by Ronny Reyes; published Oct. 28, 2026, updated 6:53 p.m. ET.)</p>
+<p>Source: <a href="https://nypost.com/2026/10/28/world-news/spain-train-crash-leaves-at-least-10-dead-reports/" target="_blank" rel="noopener">New York Post, Oct. 28, 2026</a> (https://nypost.com/2026/10/28/world-news/spain-train-crash-leaves-at-least-10-dead-reports/)</p>
+
+<p><b>Best compression: Credo tab → "N under iteration" plus its "Collision scaling" falsifiable. I'd use Labels as a secondary lens, and only as a hypothesis.</b></p>
+
+<h3>Why Credo fits</h3>
+<ul>
+<li>The article's structural story is liberalization. Iryo began operating in 2022 alongside state-owned Renfe on the same network, and a union spokesperson says the increase in use wasn't matched by upkeep. That is N growing, with more principals (i ≠ i′) sharing one milieu.</li>
+<li>Your tab says pairwise collisions scale roughly as N(N−1)/2. If collision cost outgrows the system's capacity to absorb it, the answer is a shared constraint at IV that lowers per-pair cost. A rail network's version of that is signaling, block spacing and dispatch, all run by the operator ADIF.</li>
+<li>This is also your Cold War point in miniature: the cost profile over i is the only thing all the principals share.</li>
+<li>The failure mode it names is that growth in N outpaced the shared IV constraint and maintenance budget. One Iryo train was stopped and a Renfe train hit it from behind. It is also the second Renfe/Iryo incident this year (the January derailment killed 45).</li>
+</ul>
+
+<h3>Secondary lens: Labels (III → IV)</h3>
+<ul>
+<li>"Label quality caps gate quality" would apply if the following train's system held a wrong or missing representation of the stopped train, such as a track-clear signal for a section that was occupied. Then routing at IV could be internally consistent and still fatal.</li>
+<li>The article says the cause is unknown. This is a candidate to test against the investigation, not a finding.</li>
+</ul>
+
+<h3>Weaker fits</h3>
+<ul>
+<li>Compression, "five clocks, one seam" fits the timing story (fast decisions landing between slow ones), but nothing reported supports a timing mismatch.</li>
+<li>Epilogue (OpenAI incident) is about agents. Its "commit came before the label" pattern is suggestive but not specific to rail.</li>
+</ul>
+
+<h3>Caveats</h3>
+<ul>
+<li>The URL you gave is the early "at least 10 dead" report. The pasted page, updated Oct. 28, 6:53 p.m. ET, says at least 68 dead and 80 injured, with the count expected to rise.</li>
+<li>The union's claim is explicitly hedged: "I am not saying it was a determining factor."</li>
+</ul>
+
+<p><b>Ledger row, if you want one:</b> Claim: the investigation attributes the collision to shared-infrastructure strain (signaling, maintenance or dispatch) more than to a single operator's error. Falsified if: the final report finds an isolated, operator-specific cause with no network-level contributing factor. If wrong, we change: drop the N-scaling reading for this case and treat it as a III labeling failure.</p>
+<p><b>Sources:</b> the NY Post article you pasted (Oct. 28, 2026) and the Credo, Labels and Compression tabs of your page.</p>
+
 <h2>Executive decisions and open contradictions</h2>
 <ul>
 <li><b>Decision:</b> N is counted under a fixed classifier, so changes in N and changes in III stay separate.</li>
