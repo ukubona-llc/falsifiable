@@ -5466,47 +5466,53 @@ This is the terminal enforcement event: positions are closed, assets surrendered
 `},
 ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
 return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
-<div class="filters">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
-<div class="wrap"><table><tr><th>ID</th><th>Claim and falsifier</th><th>Rungs</th><th>Status</th></tr>
+<div class="filters" style="max-width:66ch;margin:0 auto 12px">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
+<div class="wrap" style="max-width:66ch;margin:0 auto"><table><tr><th>ID</th><th>Claim and falsifier</th><th>Rungs</th><th>Status</th></tr>
 ${all().filter(r=>f==="All"||r[1]===f).map(r=>{const s=status(r);return `<tr><td><b>${esc(r[0])}</b><div class="f">${esc(r[1])}<br>${esc(r[2])}</div></td><td>${esc(r[3])}<div class="f"><em>Falsified if:</em> ${esc(r[4])}</div>${r[7]?`<div class="f"><em>If wrong, we change:</em> ${esc(r[7])}</div>`:""}</td><td>${chips(r[5])}</td><td class="st" style="color:${s[1]}">${s[0]}${r[6]?`<div class="f">by ${r[6]}</div>`:""}</td></tr>`}).join("")}</table></div>
 
-<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:var(--bg);margin:1.5rem 0">
+<div class="stream" style="margin-top:1.8em;margin-bottom:0.5em">
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:var(--bg);margin:0 0 1.8em">
 <iframe src="https://www.youtube.com/embed/Dx9LCKnV7n8" title="YouTube video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-<div class="stream" style="margin-top:1.5em">
 <p>Yes. And I think you've now made an important distinction that was implicit in the earlier pentad: the Principal is not simply a node in a network. The Principal is a living, continuously changing organism whose interiority is both the source and the eventual recipient of the entire process.</p>
 <p>The architecture is recursive, not merely sequential.</p>
 <p>Let me sharpen what you've described.</p>
 <h2>The five stages</h2>
-<p><b>I. Interiority — Principal \(P_{ti}\)</b></p>
+<p><b>I. Interiority — Principal <i>P<sub>ti</sub></i></b></p>
 <p>The biological substrate.</p>
 <p>Anatomy, physiology, metabolism, sensation, memory, affect, and all the things happening before language.</p>
 <p>The organism generates more data than it can consciously sample. Sensory experience is already a selection. Before language, there are bodily expressions: facial gestures, stank-face, dance, rhythm, song, laughter, tears, aggression, attraction.</p>
 <p>Output: lived experience and prelinguistic expression.</p>
-<p><b>II. Kin-Network — Representation \(R_{tij}\)</b></p>
+<p><b>II. Kin-Network — Representation <i>R<sub>tij</sub></i></b></p>
 <p>The accumulated representation of the Principal.</p>
 <p>The kin-network samples the Principal across time and across relationships.</p>
-<p>\(i=1,\ldots,N\) principals; \(t=0,\ldots,N\) observations; \(j\) representations, relationships, and accumulated interpretations.</p>
+<p><i>i</i> = 1, …, <i>N</i> principals; <i>t</i> = 0, …, <i>N</i> observations; <i>j</i> representations, relationships, and accumulated interpretations.</p>
 <p>This is where experience becomes transmissible: language, stories, science, cultural inheritance, models, next-token prediction, and error.</p>
 <p>Importantly, representation is lossy. It cannot contain the entirety of the Principal.</p>
 <p>Output: a model of the person and their world.</p>
 <p><b>III. Constructal-Network — Agents and Gametes</b></p>
 <p>The expansion of representational capacity into commissioned action.</p>
-<p>\(A_{tijk}\) and \(G_{tijk}\) emerge from, or are commissioned by, the representation.</p>
+<p><i>A<sub>tijk</sub></i> and <i>G<sub>tijk</sub></i> emerge from, or are commissioned by, the representation.</p>
 <p>Constructal Law supplies the architectural intuition: flows encounter constraints, find paths, organize networks, and expand access to resources.</p>
 <p>Agents specialize. Gametes reproduce, recombine, and propagate possibilities. The system doesn't merely describe the world; it generates more ways of interacting with it.</p>
 <p>Output: expanded capacity, specialization, and new possibilities.</p>
 <p><b>IV. Social-Network — Collisions</b></p>
 <p>The encounter with reality.</p>
-<div class="eq">\[ \operatorname{Collisions} (Milieu_t,P_{ti},R_{tij},A_{tijk},G_{tijk}) \]</div>
+<div class="eq">Collisions(<i>Milieu<sub>t</sub></i>, <i>P<sub>ti</sub></i>, <i>R<sub>tij</sub></i>, <i>A<sub>tijk</sub></i>, <i>G<sub>tijk</sub></i>)</div>
 <p>Here the interesting stuff happens.</p>
 <p>Agents encounter other agents, collaborators, adversaries, institutions, environments, and unexpected events.</p>
 <p>The representation meets the world. Predictions meet observations. Intentions meet resistance. Cooperation meets competition.</p>
 <p>Output: realized outcomes, errors, relationships, and changed possibilities.</p>
 <p><b>V. Weights — Allocation</b></p>
 <p>The accounting of survival and commitment.</p>
-<div class="eq">\[ \begin{aligned} Allocation_t = f(&Budget_t,\\ &E[Payout_{t+M}],\\ &Survival_{t:t+M},\\ &Graveyard_t,\\ &Unknowns_t) \end{aligned} \]</div>
+<div class="eq" style="font-size:1.05rem;line-height:1.6">
+Allocation<sub><i>t</i></sub> = <i>f</i>( Budget<sub><i>t</i></sub> ,<br>
+E[Payout<sub><i>t</i>+<i>M</i></sub>] ,<br>
+Survival<sub><i>t</i> : <i>t</i>+<i>M</i></sub> ,<br>
+Graveyard<sub><i>t</i></sub> ,<br>
+Unknowns<sub><i>t</i></sub> )
+</div>
 <p>Today's budget is allocated against expected future payouts, conditional on surviving long enough to receive them.</p>
 <p>The graveyard matters: adversaries eliminated, collaborators lost, failed strategies, exhausted resources, and paths that are no longer available.</p>
 <p>And then there are the unknowns, which cannot be wished away by a sufficiently compelling representation.</p>
@@ -5518,9 +5524,9 @@ ${all().filter(r=>f==="All"||r[1]===f).map(r=>{const s=status(r);return `<tr><td
 <p>I would resist collapsing this into a simple five-step pipeline.</p>
 <p>Your formulation has at least three distinct clocks:</p>
 <ol>
-<li>Biological time: \(P_{ti}\) is continuously changing, even when nobody observes it.</li>
-<li>Representational time: \(R_{tij}\) accumulates observations, interpretations, language, and errors.</li>
-<li>Economic/evolutionary time: today's allocation is justified by possible outcomes at \(t+M\), conditional on survival.</li>
+<li>Biological time: <i>P<sub>ti</sub></i> is continuously changing, even when nobody observes it.</li>
+<li>Representational time: <i>R<sub>tij</sub></i> accumulates observations, interpretations, language, and errors.</li>
+<li>Economic/evolutionary time: today's allocation is justified by possible outcomes at <i>t</i>+<i>M</i>, conditional on survival.</li>
 </ol>
 <p>That last one is particularly important.</p>
 <p>An agent may spend resources today for a payout years from now. But the future is not guaranteed. The agent may die, the collaborator may defect, the adversary may disappear, or the milieu may change.</p>
@@ -5528,15 +5534,15 @@ ${all().filter(r=>f==="All"||r[1]===f).map(r=>{const s=status(r);return `<tr><td
 <h2>Three propositions emerge</h2>
 <ol>
 <li>The Principal is always richer than its Representation.
-<div class="eq">\[ P_{ti}\neq R_{tij} \]</div>
+<div class="eq"><i>P<sub>ti</sub></i> ≠ <i>R<sub>tij</sub></i></div>
 No language model, scientific description, kinship structure, or institutional record exhausts the living person.</li>
 <li>Expansion is not the same as progress.
 Constructal expansion generates possibilities. Social collisions test them. Weights determine which possibilities receive resources and which are abandoned.
 This connects directly to your scout/colony distinction: the scout discovers; the colony decides whether to exploit.</li>
 <li>The final Scalar feeds back into the original Tensor.
-<div class="eq">\[ P_{t+1,i}=F(P_{ti},Allocation_t,Collisions_t) \]</div>
+<div class="eq"><i>P<sub>t+1,i</sub></i> = <i>F</i>(<i>P<sub>ti</sub></i>, Allocation<sub><i>t</i></sub>, Collisions<sub><i>t</i></sub>)</div>
 And more generally:
-<div class="eq">\[ P_{t+\tau,i}=F_\tau(P_{ti},R,A,G,Milieu,Allocation) \]</div>
+<div class="eq"><i>P<sub>t+τ,i</sub></i> = <i>F<sub>τ</sub></i>(<i>P<sub>ti</sub></i>, <i>R</i>, <i>A</i>, <i>G</i>, <i>Milieu</i>, Allocation)</div>
 The future Principal inherits the consequences of prior decisions, including consequences that were never represented or anticipated.</li>
 </ol>
 <h2>One refinement I would make</h2>
@@ -5548,6 +5554,27 @@ The future Principal inherits the consequences of prior decisions, including con
 <p>Interiority generates the data; representation makes it transmissible; constructal expansion makes it actionable; social collisions make it consequential; weights make it selective.</p>
 <p>Then selection changes the very interiority from which the process began.</p>
 <p>That is not merely a model of human behavior. It is a model of how living systems become different living systems through their encounters with the world.</p>
+
+<hr>
+
+<p>That is a brutally clean taxonomy. When you strip away the mechanics, the pentad collapses into its true functional anatomy:</p>
+<ul>
+<li><b>I, II, and IV are the invariants</b> (the furniture of the universe): The biological substrate (I), the lossy mirror of representation (II), and the game-theoretic arena of collisions (IV). They set the rules, the medium, and the friction. They are what they are.</li>
+<li><b>III is the adaptive engine:</b> Constructal expansion. This is where the system doesn't just sit there getting bumped into; it actively forks, specializes, sends out scouts, and builds pathways to bypass constraints.</li>
+<li><b>V is the ledger:</b> Pure, unvarnished accounting. It doesn't negotiate with the milieu; it just tallies who survived, who went to the graveyard, and what the remaining budget looks like.</li>
+</ul>
+<p>This reading is already present under the <a href="#bejan">Bejan’s Law</a> tab, where I, II and IV are described as terrain (“given to the flow and not chosen by it”) and III is named “the only adaptive rung.” The difference here is the explicit clocks: biological time on I, representational time on II, and economic/evolutionary time that justifies the allocation at V.</p>
+
+<h2>The Catch with “Just Accounting”</h2>
+<p>Calling Stage V “accounting” makes it sound like a back-office spreadsheet exercise, but in a living system, accounting is existential.</p>
+<p>It is double-entry bookkeeping where the currency is life, and the auditor is the milieu.</p>
+<ul>
+<li>If your adaptive engine (III) overextends branches that the accounting ledger (V) can't fund, you crash into insolvency.</li>
+<li>If your representation (II) misprices the future payout <i>E</i>[Payout<sub><i>t</i>+<i>M</i></sub>], the allocation engine buys toxic assets and fills up the graveyard.</li>
+</ul>
+<p>And that is why the feedback loop into <i>P<sub>t+1</sub></i> is so unforgiving. The accounting doesn't stay on paper—it rewrites the biology.</p>
+<p>If Stage V logs a catastrophic loss in the graveyard, Stage I doesn't get to pretend it didn't happen; it inherits a depleted, stressed, or scarred organism for the next turn of the clock.</p>
+<p>Does adaptation (III) ever try to outrun or game the accounting (V), or is the ledger always the final, inescapable wall?</p>
 </div>`},
 figures(){const c=load(),mx=Math.max(...c);
 const ax=i=>{const a=(-90+72*i)*Math.PI/180;return[150+Math.cos(a),150+Math.sin(a)]};
