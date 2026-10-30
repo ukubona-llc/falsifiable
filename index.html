@@ -2422,7 +2422,7 @@ V. Company / Allocation(Budget, Payoff, Survival, Graveyard, Unknowns)
 <td>SLM</td>
 <td>Professional</td>
 <td>Specialist · A_ijk, Γ_ijk</td>
-<td>A small specialist that acts in one domain and can be copied into other settings.</td>
+<td>A small specialist that acts in one domain and can be copied into other settings (Within vs. Between Network Expansion).</td>
 </tr>
 <tr>
 <td>IV · 4</td>
@@ -5311,6 +5311,66 @@ ${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}<
 </ol>
 <p>One reading of IV that I'd like you to correct: a rootless voicing leaves the root unstated, which would map to "you only see their representation, never their principal."</p>
 <p>Is V in the origin chain only the record, with allocation as the next cycle's decision at I′?</p>
+
+<div class="lab">Financial pentad · life-course accounting</div>
+<p>I think your original five terms are stronger than they might initially appear. They have an important property: each rung represents a progressively more binding financial constraint on the principal's ability to sustain a position.</p>
+<p>But I'd make two corrections to your force-map:</p>
+<ol>
+<li>Solvency belongs at II, but credit spread is the price of perceived credit risk, not solvency itself.</li>
+<li>Runway and collateral belong at IV, but a margin call is the enforcement event. It is what happens when available collateral fails to satisfy the present requirement.</li>
+</ol>
+<p>I'd preserve your original sequence and sharpen the mapping rather than invent a new mnemonic.</p>
+
+<div class="lab">The five-rung financial mnemonic</div>
+<div class="wrap"><table>
+<tr><th>Rung</th><th>Financial operator</th><th>Life-course interpretation</th><th>Core question</th></tr>
+<tr><td><b>I. Interiority</b></td><td>\(r_{\mathrm{eff}}-r_f\)</td><td>My bet versus the risk-free benchmark</td><td>Is this bet worth making?</td></tr>
+<tr><td><b>II. Kin-Network</b></td><td>Credit spread</td><td>Solvency; perceived risk and cost of financing</td><td>How credible is my capacity to repay?</td></tr>
+<tr><td><b>III. Expansion</b></td><td>Haircut</td><td>Discount applied to recognized collateral</td><td>How much of my claimed value is actually recognized?</td></tr>
+<tr><td><b>IV. Social-Network</b></td><td>Margin call</td><td>Liquidity demand, runway and collateral requirements</td><td>Can I meet today's obligations?</td></tr>
+<tr><td><b>V. Weights</b></td><td>Forced liquidation</td><td>Allocation, survival, realized losses and irreversible consequences</td><td>What gets sacrificed when the constraint binds?</td></tr>
+</table></div>
+
+<div class="lab">A few technical refinements</div>
+<p><b>I. \(r_{\mathrm{eff}}-r_f\): Excess return</b><br>
+Your bet must outperform the risk-free alternative to justify taking risk. Strictly, opportunity cost is the return foregone from the best alternative, not necessarily the risk-free rate. But \(r_f\) is a useful baseline.</p>
+<p><b>II. Credit spread: Solvency</b><br>
+The spread is the market's compensation for perceived credit risk, including default and liquidity risk. It is a signal about the credibility of the enterprise, not solvency itself.</p>
+<p><b>III. Haircut: Recognized value</b><br>
+This is particularly powerful for your out-of-network expansion. You may believe your intellectual capital, credentials, technical architecture and relationships are worth a great deal. But what will an external institution actually recognize as collateral?<br>
+The haircut is the difference between claimed value and lendable value.</p>
+<p><b>IV. Margin call: Present constraint</b><br>
+The ten-year payoff is irrelevant if you cannot satisfy today's collateral requirement. Runway measures how long you can continue before that constraint binds.</p>
+<p><b>V. Forced liquidation: Consequence</b><br>
+This is the terminal enforcement event: positions are closed, assets surrendered, and losses realized.</p>
+<p>One terminology point: forced liquidation is the established financial term. Forced liquidity is understandable as your broader conceptual label, but they aren't quite interchangeable.</p>
+
+<div class="lab">My preferred compressed version</div>
+<div class="card">
+<p style="margin:0 0 8px;font:700 .78rem system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)">THE FIVE WEIGHTS</p>
+<p style="margin:0 0 12px;font:600 .9rem system-ui,sans-serif">FINANCIAL PENTAD · LIFE-COURSE ACCOUNTING</p>
+<div class="wrap"><table>
+<tr><th>Rung</th><th>Operator</th><th>Meaning</th><th>Key word</th></tr>
+<tr><td><span class="chip" style="background:var(--r1)">I</span></td><td><b>EXCESS RETURN</b></td><td>My bet − risk-free alternative</td><td>Rationale</td></tr>
+<tr><td><span class="chip" style="background:var(--r2)">II</span></td><td><b>CREDIT SPREAD</b></td><td>Solvency · perceived risk</td><td>Credibility</td></tr>
+<tr><td><span class="chip" style="background:var(--r3)">III</span></td><td><b>HAIRCUT</b></td><td>Collateral · recognized value</td><td>Recognition</td></tr>
+<tr><td><span class="chip" style="background:var(--r4)">IV</span></td><td><b>MARGIN CALL</b></td><td>Liquidity · runway</td><td>Constraint</td></tr>
+<tr><td><span class="chip" style="background:var(--r5)">V</span></td><td><b>FORCED LIQUIDATION</b></td><td>Allocation · survival · realized loss</td><td>Consequence</td></tr>
+</table></div>
+</div>
+
+<p>And the progression has a beautiful logic:</p>
+<p style="text-align:center;font:1.05rem Georgia,serif;margin:1em 0"><b>Rationale → Credibility → Recognition → Constraint → Consequence.</b></p>
+<p>Or, in the language of your life-course ledger:</p>
+<ul>
+<li>I believe my bet has value.</li>
+<li>II The network prices my risk.</li>
+<li>III The external world discounts my collateral.</li>
+<li>IV The present demands payment.</li>
+<li>V Reality allocates survival and loss.</li>
+</ul>
+<p>Then V → I′: the next interiority inherits the realized consequences.</p>
+<p>That's the mnemonic I'd put on your hard drive. It preserves your original financial sequence while making every rung do distinct conceptual work.</p>
 `},
 ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
 return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
