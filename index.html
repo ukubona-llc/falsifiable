@@ -5326,7 +5326,7 @@ ${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}<
 <tr><th>Rung</th><th>Financial operator</th><th>Life-course interpretation</th><th>Core question</th></tr>
 <tr><td><b>I. Interiority</b></td><td>\(r_{\mathrm{eff}}-r_f\)</td><td>My bet versus the risk-free benchmark</td><td>Is this bet worth making?</td></tr>
 <tr><td><b>II. Kin-Network</b></td><td>Credit spread</td><td>Solvency; perceived risk and cost of financing</td><td>How credible is my capacity to repay?</td></tr>
-<tr><td><b>III. Expansion</b></td><td>Haircut</td><td>Discount applied to recognized collateral</td><td>How much of my claimed value is actually recognized?</td></tr>
+<tr><td><b>III. Expansion</b></td><td>Haircut <span class="f">(Within → Between Network Expansion = Haircut)</span></td><td>Discount applied to recognized collateral. Credentials don't hold as much outside one's circles.</td><td>How much of my claimed value is actually recognized?</td></tr>
 <tr><td><b>IV. Social-Network</b></td><td>Margin call</td><td>Liquidity demand, runway and collateral requirements</td><td>Can I meet today's obligations?</td></tr>
 <tr><td><b>V. Weights</b></td><td>Forced liquidation</td><td>Allocation, survival, realized losses and irreversible consequences</td><td>What gets sacrificed when the constraint binds?</td></tr>
 </table></div>
@@ -5336,8 +5336,8 @@ ${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}<
 Your bet must outperform the risk-free alternative to justify taking risk. Strictly, opportunity cost is the return foregone from the best alternative, not necessarily the risk-free rate. But \(r_f\) is a useful baseline.</p>
 <p><b>II. Credit spread: Solvency</b><br>
 The spread is the market's compensation for perceived credit risk, including default and liquidity risk. It is a signal about the credibility of the enterprise, not solvency itself.</p>
-<p><b>III. Haircut: Recognized value</b><br>
-This is particularly powerful for your out-of-network expansion. You may believe your intellectual capital, credentials, technical architecture and relationships are worth a great deal. But what will an external institution actually recognize as collateral?<br>
+<p><b>III. Haircut: Recognized value</b> <span class="f">(Within → Between Network Expansion = Haircut)</span><br>
+This is particularly powerful for your out-of-network expansion. You may believe your intellectual capital, credentials, technical architecture and relationships are worth a great deal. But what will an external institution actually recognize as collateral? The credentials don't hold as much outside one's circles.<br>
 The haircut is the difference between claimed value and lendable value.</p>
 <p><b>IV. Margin call: Present constraint</b><br>
 The ten-year payoff is irrelevant if you cannot satisfy today's collateral requirement. Runway measures how long you can continue before that constraint binds.</p>
@@ -5353,7 +5353,7 @@ This is the terminal enforcement event: positions are closed, assets surrendered
 <tr><th>Rung</th><th>Operator</th><th>Meaning</th><th>Key word</th></tr>
 <tr><td><span class="chip" style="background:var(--r1)">I</span></td><td><b>EXCESS RETURN</b></td><td>My bet − risk-free alternative</td><td>Rationale</td></tr>
 <tr><td><span class="chip" style="background:var(--r2)">II</span></td><td><b>CREDIT SPREAD</b></td><td>Solvency · perceived risk</td><td>Credibility</td></tr>
-<tr><td><span class="chip" style="background:var(--r3)">III</span></td><td><b>HAIRCUT</b></td><td>Collateral · recognized value</td><td>Recognition</td></tr>
+<tr><td><span class="chip" style="background:var(--r3)">III</span></td><td><b>HAIRCUT</b> <span class="f">(Within → Between Network Expansion)</span></td><td>Collateral · recognized value. Credentials don't hold as much outside one's circles.</td><td>Recognition</td></tr>
 <tr><td><span class="chip" style="background:var(--r4)">IV</span></td><td><b>MARGIN CALL</b></td><td>Liquidity · runway</td><td>Constraint</td></tr>
 <tr><td><span class="chip" style="background:var(--r5)">V</span></td><td><b>FORCED LIQUIDATION</b></td><td>Allocation · survival · realized loss</td><td>Consequence</td></tr>
 </table></div>
@@ -5379,7 +5379,7 @@ This is the terminal enforcement event: positions are closed, assets surrendered
 <ol>
 <li><b>I · Rationale (\(r_{\text{eff}} - r_f\)):</b> Internal conviction. You decide the asymmetric upside of the bet justifies the opportunity cost. It’s pure private agency.</li>
 <li><b>II · Credibility (Credit Spread):</b> The network prices you. The market doesn’t care about your internal enthusiasm; it evaluates your default risk and prices the cost of your financing. It’s your structural reputation rendered as a basis point spread.</li>
-<li><b>III · Recognition (Haircut):</b> The institutional filter. You bring your intellectual capital, architectures, and relationships to the table, but the external gatekeeper applies a haircut. Claimed value is slashed down to lendable value.</li>
+<li><b>III · Recognition (Haircut)</b> <span class="f">(Within → Between Network Expansion = Haircut)</span><b>:</b> The institutional filter. You bring your intellectual capital, architectures, and relationships to the table, but the external gatekeeper applies a haircut. Claimed value is slashed down to lendable value. The credentials don't hold as much outside one's circles.</li>
 <li><b>IV · Constraint (Margin Call &amp; Runway):</b> The temporal wall. The ten-year vision doesn't matter if your runway hits zero today. The margin call isn't just a notification; it's a discrete step-function boundary where the liquidity equation stops negotiating.</li>
 <li><b>V · Consequence (Forced Liquidation):</b> The terminal ledger clear. Positions are closed, assets are seized, losses are realized, and the system is violently forced back to zero.</li>
 </ol>
