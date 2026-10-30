@@ -5466,11 +5466,11 @@ This is the terminal enforcement event: positions are closed, assets surrendered
 `},
 ledger(){const doms=["All",...new Set(all().map(r=>r[1]))];const f=S.dom;
 return `<h1>Ledger of Falsifiables</h1><p class="sub">Append-only. Rows are never edited or deleted; a revision is a new row that names what it supersedes.</p>
-<div class="filters" style="max-width:66ch;margin:0 auto 12px">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
-<div class="wrap" style="max-width:66ch;margin:0 auto"><table><tr><th>ID</th><th>Claim and falsifier</th><th>Rungs</th><th>Status</th></tr>
+<div class="filters">${doms.map(d=>`<button class="${d===f?"on":""}" data-d="${esc(d)}">${esc(d)}</button>`).join("")}</div>
+<div class="wrap"><table><tr><th>ID</th><th>Claim and falsifier</th><th>Rungs</th><th>Status</th></tr>
 ${all().filter(r=>f==="All"||r[1]===f).map(r=>{const s=status(r);return `<tr><td><b>${esc(r[0])}</b><div class="f">${esc(r[1])}<br>${esc(r[2])}</div></td><td>${esc(r[3])}<div class="f"><em>Falsified if:</em> ${esc(r[4])}</div>${r[7]?`<div class="f"><em>If wrong, we change:</em> ${esc(r[7])}</div>`:""}</td><td>${chips(r[5])}</td><td class="st" style="color:${s[1]}">${s[0]}${r[6]?`<div class="f">by ${r[6]}</div>`:""}</td></tr>`}).join("")}</table></div>
 
-<div class="stream" style="margin-top:1.8em;margin-bottom:0.5em">
+<div style="margin-top:1.8em;margin-bottom:0.5em">
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:var(--bg);margin:0 0 1.8em">
 <iframe src="https://www.youtube.com/embed/Dx9LCKnV7n8" title="YouTube video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
