@@ -6064,7 +6064,20 @@ function status(r){if(!r[6])return["OPEN · pattern","var(--mut)"];const n=days(
 const load=()=>{const c=[0,0,0,0,0];all().forEach(r=>r[5].forEach(i=>c[i-1]++));return c};
 
 const V={
-pentad(){return `<div class="cr"><h1>Pentadics</h1><p class="sub">Five rungs; every claim is routed to the rung where it would be decided.</p>
+pentad(){return `<div class="cr"><h1>Pentadics</h1>
+<p class="sub">Five rungs; every claim is routed to the rung where it would be decided.</p>
+
+<div class="lab">Opening clip · Stephen Kotkin on why intellectuals are drawn to Marxism</div>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:var(--bg);margin:1rem 0">
+<iframe src="https://www.youtube.com/embed/78II2ts-g1o" title="Why Are Intellectuals So Attracted to Marxism? – Stephen Kotkin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<div class="card">
+<p style="margin:0">Kotkin’s answer turns on two linked mechanisms: the ideology’s promise of total, impatient transformation, and the way it places the intellectual class (and its “lump” fringe) in the role of decision-maker rather than subject of market or electoral discipline.<sup>1</sup> The state becomes the instrument; the intellectual becomes the operator who need not submit to the ordinary tests of legitimacy. That is a clean illustration of the Credo tab’s core claim: a representation (here, a totalizing ideology) acquires power only when a downstream process actually routes on it.</p>
+<p style="margin:10px 0 0">Read against the ladder: the ideology is a label at <span class="chip" style="background:var(--r3)">III</span>; the empowerment of the intellectual class is the routing at <span class="chip" style="background:var(--r4)">IV</span>; the historical body count and the subsequent adherence despite it are the ledger at <span class="chip" style="background:var(--r5)">V</span> feeding the next cycle’s <span class="chip" style="background:var(--acc)">I′</span>. The clip does not settle the larger historical argument; it supplies a vivid case of how a credo can become operational.</p>
+</div>
+<p class="f"><sup>1</sup> Clip from the Dwarkesh Patel interview with Stephen Kotkin (Dwarkesh Clips). Full episode linked in the video description. The paraphrase above is from the transcript; timestamps and exact wording should be checked against the source if cited further.</p>
+<p class="f"><sup>2</sup> Kotkin’s point that the ideology “empowers the intellectual class” maps cleanly onto the page’s distinction between a label that remains inert and a label that is read by a downstream process. Whether that empowerment is the dominant historical driver, or only one among several, is left open; the embed is offered as illustration, not proof.</p>
+
 <h2>Table · the ladder</h2><div class="wrap"><table><tr><th>Rung</th><th>Substrate</th><th>Domain</th><th>Role · operator</th><th>What it does here</th></tr>
 ${RG.map((r,i)=>`<tr><td><span class="chip" style="background:${RC[i]}">${r[0]}</span></td><td>${r[3]}</td><td>${r[4]}</td><td><b>${r[1]}</b><div class="f">${r[2]}</div></td><td>${r[5]}</td></tr>`).join("")}</table></div>
 <h2>Diagram · the pentagram</h2><div class="card">${star()}<p class="f">Edges join non-adjacent rungs: I↔III, III↔V, V↔II, II↔IV, IV↔I. Node size is the number of ledger rows touching that rung.</p></div>
